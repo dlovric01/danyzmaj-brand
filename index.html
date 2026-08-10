@@ -239,8 +239,13 @@ section{padding-block:clamp(2.75rem,6vw,4.5rem)}
 .sib.here{background:var(--dz-ink-raised)}
 .sib.here .cap b{color:var(--dz-cinnabar)}
 
-.variants{display:grid;gap:var(--dz-hairline);grid-template-columns:repeat(auto-fit,minmax(15.5rem,1fr));
+.variants{display:grid;gap:var(--dz-hairline);
   border:var(--dz-hairline) solid var(--dz-rule-strong);background:var(--dz-rule-strong)}
+/* column counts divide the panel counts exactly, so no empty track ever shows the hairline ground */
+#barbs .variants{grid-template-columns:repeat(4,minmax(0,1fr))}
+#details .variants{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:1180px){#barbs .variants,#details .variants{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:660px){#barbs .variants,#details .variants{grid-template-columns:minmax(0,1fr)}}
 .variants figure{margin:0;background:var(--dz-ink);display:grid;grid-template-rows:auto auto 1fr}
 .variants .here{background:var(--dz-ink-raised)}
 .variants .big{background:var(--dz-bone);padding:var(--dz-space-4) var(--dz-space-3);display:grid;place-items:center}
@@ -256,6 +261,7 @@ section{padding-block:clamp(2.75rem,6vw,4.5rem)}
   letter-spacing:var(--dz-tracking-display)}
 .variants .cap p{font-size:var(--dz-text-sm);color:var(--dz-bone-dim);margin:0;max-width:none}
 .variants .cap .nums{font-family:var(--dz-font-mono);font-size:var(--dz-text-xs);color:var(--dz-brass);line-height:1.6}
+.variants .cap a{color:var(--dz-brass)}
 .variants .cap code{display:block;font-size:10px;overflow-wrap:anywhere;line-height:1.6;
   border-top:var(--dz-hairline) solid var(--dz-rule);padding-top:7px}
 
@@ -318,6 +324,11 @@ footer{padding-block:clamp(2.5rem,6vw,4rem) clamp(3rem,8vw,6rem);
   <path id="g-05a" d="M 86 64 L 118 77 L 86 90 L 99 77 Z"/>
   <path id="g-05b" d="M 86 61 L 110 68 L 94 77 L 110 86 L 86 93 Z"/>
   <path id="g-05c" d="M 86 62 L 102 77 L 86 92 L 91 77 Z"/>
+  <path id="g-d-crest" d="M 72 10 L 86 4 L 84 12 Z M 88 10 L 98 6 L 97 13 Z"/>
+  <path id="g-d-ridge" d="M 95.3 25.5 L 99.4 38.3 L 86.7 33.9 Z M 84.9 35.6 L 89.0 48.4 L 76.3 44.0 Z M 74.6 45.7 L 78.6 58.5 L 66.0 54.1 Z"/>
+  <path id="g-d-tongue" d="M 16 25.4 L 8 26.6 L 3.5 21 L 9 28.6 L 3.5 36.2 L 8 30.6 L 16 31.8 Z"/>
+  <path id="g-b-ram" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52 10 L 57 2 L 70 2 L 78 11 L 72 9 L 66 5 L 58 6 Z M 86 61 L 108 77 L 86 93 L 93 77 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 56 22 L 62 22 L 62 16 L 56 16 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/>
+  <path id="g-b-scaled" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16 64 L 90 64 L 90 90 L 84 90 L 80 85 L 76 90 L 68 90 L 64 85 L 60 90 L 52 90 L 48 85 L 44 90 L 36 90 L 36 90 L 16 90 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86 61 L 108 77 L 86 93 L 93 77 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 56 22 L 62 22 L 62 16 L 56 16 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/>
   <path id="g-10-old" d="M 0 30.2 L 0 24.2 L 8 27.2 Z M -1 23.6 L -2 18.6 L 5 20.6 Z M 6 35.6 L -1 37.6 L 0 32.6 Z"/>
 </defs>
 </svg>
@@ -458,8 +469,10 @@ footer{padding-block:clamp(2.5rem,6vw,4rem) clamp(3rem,8vw,6rem);
     <li><i style="background:var(--dz-brass)"></i><span><b>Lower jaw.</b> A 3.3-deep strip at the muzzle,
     6.4 at the throat. Both fangs (06, 07) hang off it. This is the thinnest thing in the mark and the first
     to close up at small sizes.</span></li>
-    <li><i class="hollow"></i><span><b>The gape (09)</b> is the knockout between them. It stops at x 47 —
-    behind that point the jaws rejoin and the bar is one solid piece.</span></li>
+    <li><i class="hollow"></i><span><b>The gape (09)</b> is the cut between them. It stops at x 47 — behind
+    that point the jaws rejoin and the bar is one solid piece. Since the muzzle was trimmed the gape is open to
+    the outside, so it is no longer a hole at all; the mark's two enclosed regions are the eye and the barb
+    notch.</span></li>
   </ul>
 </section>
 <hr class="rule">
@@ -661,8 +674,12 @@ footer{padding-block:clamp(2.5rem,6vw,4rem) clamp(3rem,8vw,6rem);
       <p class="say"><b style="color:var(--dz-bone)">Trimmed to x 16</b>, flush with the jaw edge. The wedge no
       longer extends past anything it can subtract from, so the nub is gone and the mouth is open for the first
       time. Re-probed by walking the centreline from x 12 to x 50: clear the whole way to the throat at x 47,
-      with no hairline seam at the x 16 join. The hole invariant is satisfied — the eye is now the only enclosed
-      region in the mark.</p>
+      with no hairline seam at the x 16 join.</p>
+      <p class="say"><b style="color:var(--dz-bone)">Correction.</b> This finding first claimed the eye was then
+      the only enclosed region in the mark. Flood-filling the render says otherwise: there are two. The eye at
+      36 units², and a 21-unit² sliver in the barb's notch, between the notch vertex at x 93 and the tail bar's
+      right edge at x 90. That second one is not a defect — it is what makes the barb read as a barb rather than
+      a triangle — but the hole invariant should name it, because any future check will otherwise flag it.</p>
       <p class="say">The silhouette changed, which is the cost: the muzzle is a clean vertical edge rather than
       a blunt point, and the mark lost 5 units of reach on the left. The crop tightened to take that back.</p>
     </div>
@@ -785,6 +802,78 @@ footer{padding-block:clamp(2.5rem,6vw,4rem) clamp(3rem,8vw,6rem);
       <p class="nums">reach 102 · spread 30 · notch 11 · axis y 77<br>6 clear of the crop</p><code>M 86 62 L 102 77 L 86 92 L 91 77 Z</code></figcaption>
     </figure>
   </div>
+</section>
+
+<hr class="rule">
+
+<!-- ══ dragon details ════════════════════════════════════ -->
+<section id="details">
+  <div class="sechead">
+    <p class="label">Dragon details · from the reference</p>
+    <p class="meta">Sketches, not proposals.</p>
+  </div>
+  <p class="note" style="margin-bottom:var(--dz-space-5)">Five details lifted off actual dragon imagery rather
+  than invented: heraldic blazon conventions, the Ljubljana bronze, the Vinycomb wyvern engravings, and Serbian
+  descriptions of the zmaj. Each swaps or adds one thing and leaves the rest alone. Every one was flood-filled
+  first and rejected if it produced an enclosed region the mark does not already sanction — three earlier ram
+  horns failed that test by closing into a handle.</p>
+  <div class="variants">
+    <figure class="here">
+      <div class="big"><svg viewBox="3 -2 107 100" role="img" aria-label="Original">
+        <use href="#g-body" class="ink"></use><use href="#g-10" class="spark"></use></svg></div>
+      <div class="tiny"><svg viewBox="3 -2 107 100" aria-hidden="true">
+        <use href="#g-body" class="ink"></use><use href="#g-10" class="spark"></use></svg></div>
+      <figcaption class="cap"><span class="id">—</span><b>Original</b><p>The mark as it stands, for comparison.</p>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="big"><svg viewBox="3 -2 107 100" role="img" aria-label="Crest">
+        <use href="#g-body" class="ink"></use><use href="#g-d-crest" class="ink"></use><use href="#g-10" class="spark"></use></svg></div>
+      <div class="tiny"><svg viewBox="3 -2 107 100" aria-hidden="true">
+        <use href="#g-body" class="ink"></use><use href="#g-d-crest" class="ink"></use><use href="#g-10" class="spark"></use></svg></div>
+      <figcaption class="cap"><span class="id">heraldic · Ljubljana bronze</span><b>Crest</b><p>Two more horns stepping back down the skull. Heraldry describes “a row of formidable spines extending from his head to his tail”, and the Ljubljana bronze leads with exactly that ridge.</p>
+      <code>M 72 10 L 86 4 L 84 12 Z M 88 10 L 98 6 L 97 13 Z</code></figcaption>
+    </figure>
+    <figure>
+      <div class="big"><svg viewBox="3 -2 107 100" role="img" aria-label="Ridge">
+        <use href="#g-body" class="ink"></use><use href="#g-d-ridge" class="ink"></use><use href="#g-10" class="spark"></use></svg></div>
+      <div class="tiny"><svg viewBox="3 -2 107 100" aria-hidden="true">
+        <use href="#g-body" class="ink"></use><use href="#g-d-ridge" class="ink"></use><use href="#g-10" class="spark"></use></svg></div>
+      <figcaption class="cap"><span class="id">Ljubljana bronze</span><b>Ridge</b><p>The same spines moved off the skull and onto the neck — three cut square to the spine's outer edge. Only the upper third of that edge has open counter to grow into; below it the tail bar swallows them.</p>
+      <code>three spikes on the spine's outer edge</code></figcaption>
+    </figure>
+    <figure>
+      <div class="big"><svg viewBox="3 -2 107 100" role="img" aria-label="Ram">
+        <use href="#g-b-ram" class="ink"></use><use href="#g-10" class="spark"></use></svg></div>
+      <div class="tiny"><svg viewBox="3 -2 107 100" aria-hidden="true">
+        <use href="#g-b-ram" class="ink"></use><use href="#g-10" class="spark"></use></svg></div>
+      <figcaption class="cap"><span class="id">Serbian zmaj</span><b>Ram</b><p>The zmaj is not a western dragon. Sources describe “a ram's head and a seductive snake's body”, and ram horns rather than draconic ones. The single spike becomes a horn that sweeps back and hooks down.</p>
+      <code>M 52 10 L 57 2 L 70 2 L 78 11 L 72 9 L 66 5 L 58 6 Z</code></figcaption>
+    </figure>
+    <figure>
+      <div class="big"><svg viewBox="3 -2 107 100" role="img" aria-label="Langued">
+        <use href="#g-body" class="ink"></use><use href="#g-d-tongue" class="spark"></use></svg></div>
+      <div class="tiny"><svg viewBox="3 -2 107 100" aria-hidden="true">
+        <use href="#g-body" class="ink"></use><use href="#g-d-tongue" class="spark"></use></svg></div>
+      <figcaption class="cap"><span class="id">heraldic blazon</span><b>Langued</b><p>The ember swapped for a forked tongue in the accent colour — heraldry calls a dragon langued when its tongue is blazoned separately. Only available now that the mouth actually opens.</p>
+      <code>M 16 25.4 L 8 26.6 L 3.5 21 L 9 28.6 L 3.5 36.2 L 8 30.6 L 16 31.8 Z</code></figcaption>
+    </figure>
+    <figure>
+      <div class="big"><svg viewBox="3 -2 107 100" role="img" aria-label="Scaled">
+        <use href="#g-b-scaled" class="ink"></use><use href="#g-10" class="spark"></use></svg></div>
+      <div class="tiny"><svg viewBox="3 -2 107 100" aria-hidden="true">
+        <use href="#g-b-scaled" class="ink"></use><use href="#g-10" class="spark"></use></svg></div>
+      <figcaption class="cap"><span class="id">heraldic</span><b>Scaled</b><p>Notches cut into the underside of the tail: the “armoured rolls on the chest and belly” that heraldic dragons carry. The only variant that changes the outline along its whole length.</p>
+      <code>tail bar 03, serrated underside</code></figcaption>
+    </figure>
+  </div>
+  <p class="note" style="margin-top:var(--dz-space-5)">Sources: heraldic anatomy and the langued
+  convention from the <a href="https://heralds.westkingdom.org/CommonBlazonKnowledge.htm">West Kingdom College
+  of Heralds</a> and <a href="https://en.wikisource.org/wiki/A_Complete_Guide_to_Heraldry/Chapter_13">Fox-Davies,
+  <em>A Complete Guide to Heraldry</em></a>; the ram-headed zmaj from
+  <a href="https://www.ancient-origins.net/myths-legends-europe/zmaj-and-dragon-lore-slavic-mythology-002984">Ancient
+  Origins</a> and <a href="https://en.wikipedia.org/wiki/Slavic_dragon">Slavic dragon</a>; spine ridges read off
+  the Ljubljana Dragon Bridge bronze and John Vinycomb's 1906 wyvern, both on Wikimedia Commons.</p>
 </section>
 
 <hr class="rule">
