@@ -45,24 +45,10 @@ svg{
 </head>
 <body>
 <h1>danyzmaj</h1>
-<svg id="mark" viewBox="2.5 0 108.5 97.69" role="img" aria-label="danyzmaj">
+<svg viewBox="2.5 0 108.5 97.69" role="img" aria-label="danyzmaj">
   <path class="body" fill-rule="nonzero" d="M 16 10 L 90 10 L 90 36 L 16 36 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16 64 L 90 64 L 90 90 L 16 90 Z M 52 10 L 70 3 L 67 12 Z M 86 61 L 108 77 L 86 93 L 93 77 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 56 22 L 62 22 L 62 16 L 56 16 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/>
   <path class="hole" d="M 56 16 L 62 16 L 62 22 L 56 22 Z M 16 24.5 L 47 27.6 L 47 29.6 L 16 32.7 Z"/>
   <path class="acc" d="M 5.5 24.1 L 5.5 33.1 L 15.5 28.6 Z"/>
-  <path class="hole" id="eye" d="M 56 16 L 62 16 L 62 22 L 56 22 Z"/>
 </svg>
-<script>
-// the eye follows the pointer — the only thing on the page that moves with you
-if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  const eye = document.getElementById("eye"), mark = document.getElementById("mark");
-  addEventListener("pointermove", e => {
-    const r = mark.getBoundingClientRect();
-    if (!r.width) return;
-    const dx = Math.max(-1, Math.min(1, (e.clientX - (r.left + r.width * .55)) / (r.width * .9)));
-    const dy = Math.max(-1, Math.min(1, (e.clientY - (r.top  + r.height * .30)) / (r.height * .9)));
-    eye.setAttribute("transform", `translate(${(dx*1.6).toFixed(2)} ${(dy*1.3).toFixed(2)})`);
-  }, {passive:true});
-}
-</script>
 </body>
 </html>
