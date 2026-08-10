@@ -29,6 +29,7 @@ body{
   overflow:hidden;
 }
 html.burned{--ink:#F2EDE4;--bone:#171210} /* the burned page: paper bed, ink mark (mirrors :root values) */
+html.burned svg{filter:drop-shadow(0 2px 0 rgb(0 0 0/.14)) drop-shadow(0 28px 48px rgb(0 0 0/.18))} /* paper throws softer shadows */
 h1{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
   clip-path:inset(50%);white-space:nowrap;border:0}
 .trigger{
@@ -79,44 +80,39 @@ svg{
   transform-origin:15.5px 28.6px;
   transform:translate(0,calc(-5.6px*var(--ph))) scale(calc(1 + 1.6*var(--p3)));
 }
-/* ── the rampage: a scroll summons the dragon; it strafes the seam and the page burns ── */
+/* ── the rampage: a scroll summons the dragon; it strafes the seam and the page burns ──
+   flat like the mark: no filters, no blur — only transform, opacity, and hard-edged clips */
 #fx{display:none}
 html.rampage #fx{display:contents} /* children stack against the dragon, no wrapper context */
 #fx>div{position:fixed;pointer-events:none}
-#fxdefs{position:absolute;width:0;height:0}
 html.rampage{animation:wake 1400ms var(--reveal) both} /* the scroll pulls the mark awake */
-html.rampage svg{animation:dragonfire 1ms linear 2150ms forwards} /* strike disarmed; its return re-strikes the fresh page */
+html.rampage svg{animation:none;filter:none} /* strike disarmed; a crisp cutout in flight — the shadow returns to re-strike */
 html.rampage .trigger{animation:liftoff 800ms cubic-bezier(.6,.05,.9,.5) 1050ms forwards,charge 1250ms cubic-bezier(.4,.08,.62,.92) 2150ms forwards}
-html.rampage .body{animation:ignite 1ms linear 2150ms forwards} /* a black shape against the fire */
+html.rampage .body{animation:ignite 1ms linear 2150ms forwards} /* the beast burns ember, flat as the spark */
 html.rampage #fire{animation:blaze 130ms linear 2150ms infinite alternate}
 html.rampage body{animation:quake 1300ms linear 2150ms} /* the impact shakes the room */
 #dim{inset:0;z-index:1;opacity:0;background:color-mix(in srgb,var(--ink) 85%,transparent);
   animation:dimdown 2150ms linear 2150ms forwards} /* the old world recedes so the fire can own the frame */
-#preglow{left:-10vw;right:-10vw;bottom:-8vh;height:66vh;z-index:1;opacity:0;filter:blur(22px);
-  background:radial-gradient(70% 62% at 50% 100%,var(--ember),color-mix(in srgb,var(--ember) 45%,transparent) 60%,transparent 82%);
-  animation:heatgather 1150ms ease-in-out 1400ms forwards} /* the floor breathes — something below is coming */
+#preglow{left:0;right:0;bottom:0;height:16vh;z-index:1;opacity:0;background:var(--ember);
+  clip-path:polygon(0 100%,0 55%,6% 30%,11% 62%,17% 22%,23% 58%,29% 34%,36% 66%,42% 18%,50% 52%,57% 28%,63% 62%,70% 24%,77% 58%,84% 30%,90% 64%,95% 26%,100% 48%,100% 100%);
+  animation:heatgather 1150ms ease-in-out 1400ms forwards} /* flat teeth lick at the floor — something below is coming */
 #pyre,#sear{inset:0}
-#pyre{z-index:1;filter:blur(7px);transform:scale(1.07,1.03);transform-origin:50% 100%} /* the burning rim around the seam */
-#sear{z-index:2;filter:url(#flamewarp) drop-shadow(0 0 18px var(--ember)) drop-shadow(0 0 70px color-mix(in srgb,var(--ember) 55%,transparent))}
+#pyre{z-index:1;transform:scale(1.05,1.025);transform-origin:50% 100%} /* the same seam, one register off — a hard ember rim */
+#sear{z-index:2}
 #pyre .clip,#sear .clip{position:absolute;inset:0;
   clip-path:polygon(49.2% 112%,48.8% 112%,49.1% 112%,48.9% 112%,49.3% 112%,49% 112%,49.4% 112%,49.6% 111%,50.4% 111%,50.6% 112%,51% 112%,50.7% 112%,51.1% 112%,50.9% 112%,51.2% 112%,50.8% 112%);
   animation:burnspread 2000ms linear 2300ms forwards}
 #pyre .clip{background:var(--ember)}
 #sear .clip{background:var(--bone)} /* the seam interior is already the new bed — the settle is seamless */
 #sear .clip::after{content:"";position:absolute;inset:0;opacity:0;
-  background:linear-gradient(to top,var(--ember),color-mix(in srgb,var(--ember) 45%,transparent) 38%,transparent 70%);
-  animation:searfade 2000ms linear 2300ms forwards} /* residual heat cools as the burn completes */
-#glow{left:50%;top:50%;width:96vmin;height:96vmin;margin:-48vmin 0 0 -48vmin;z-index:2;opacity:0;filter:blur(22px);
-  background:radial-gradient(closest-side,color-mix(in srgb,var(--ember) 55%,transparent),transparent 72%);
-  animation:glowride 1250ms cubic-bezier(.4,.08,.62,.92) 2150ms forwards} /* the halo rides the dragon */
-#flash{inset:0;z-index:2;opacity:0;
-  background:radial-gradient(130% 110% at 50% 100%,color-mix(in srgb,var(--ember) 65%,transparent),transparent 62%);
+  background:linear-gradient(to top,var(--ember) 0 9%,color-mix(in srgb,var(--ember) 45%,var(--bone)) 9% 26%,transparent 26%);
+  animation:searfade 2000ms linear 2300ms forwards} /* banded heat cools as the burn completes */
+#flash{inset:0;z-index:2;opacity:0;background:var(--ember);
   animation:flashpulse 420ms ease-out 2150ms forwards} /* the entry concussion */
 #embers{left:-30vw;right:-30vw;top:-120vh;bottom:-10vh;z-index:4;opacity:0;
-  background:radial-gradient(circle,var(--ember) 1.3px,transparent 2.4px),radial-gradient(circle,color-mix(in srgb,var(--ember) 70%,transparent) 1px,transparent 2px),radial-gradient(circle,color-mix(in srgb,var(--bone) 80%,transparent) .8px,transparent 1.6px);
+  background:radial-gradient(circle,var(--ember) 1.4px,transparent 1.4px),radial-gradient(circle,var(--ember) 1px,transparent 1px),radial-gradient(circle,color-mix(in srgb,var(--bone) 80%,transparent) .9px,transparent .9px);
   background-size:97px 143px,61px 89px,131px 211px;background-position:7px 13px,31px 57px,3px 41px;
-  animation:emberrise 2200ms linear 2150ms forwards} /* sparks outlive the beast */
-html.burned svg{filter:drop-shadow(0 2px 0 rgb(0 0 0/.14)) drop-shadow(0 28px 48px rgb(0 0 0/.18))} /* paper throws softer shadows */
+  animation:emberrise 2200ms linear 2150ms forwards} /* hard sparks outlive the beast */
 @keyframes strike{from{opacity:0;transform:scale(1.14) rotate(-8deg)}to{opacity:1;transform:none}}
 @keyframes wake{to{--p:1}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.68}}
@@ -129,8 +125,7 @@ html.burned svg{filter:drop-shadow(0 2px 0 rgb(0 0 0/.14)) drop-shadow(0 28px 48
   0%{transform:translateY(114vh) scale(1.6)}
   100%{transform:translateY(-140vh) scale(1.2)}
 }
-@keyframes ignite{to{fill:var(--ink)}} /* the beast goes dark — a shadow inside its own light */
-@keyframes dragonfire{to{filter:drop-shadow(0 0 12px var(--ember)) drop-shadow(0 0 42px color-mix(in srgb,var(--ember) 60%,transparent))}}
+@keyframes ignite{to{fill:var(--ember)}}
 @keyframes blaze{
   from{transform:translate(0,-5.6px) scale(2.6)}
   to{transform:translate(0,-7px) scale(3.1)}
@@ -148,18 +143,14 @@ html.burned svg{filter:drop-shadow(0 2px 0 rgb(0 0 0/.14)) drop-shadow(0 28px 48
 }
 @keyframes dimdown{0%{opacity:0}25%{opacity:.35}85%{opacity:.25}100%{opacity:0}}
 @keyframes heatgather{
-  0%{opacity:0;transform:translateY(9vh)}
-  28%{opacity:.85;transform:translateY(4vh)}
-  46%{opacity:.6;transform:translateY(5vh)}
-  62%{opacity:.75;transform:translateY(3vh)}
+  0%{opacity:0;transform:translateY(15vh)}
+  28%{opacity:1;transform:translateY(5vh)}
+  46%{opacity:1;transform:translateY(9vh)}
+  62%{opacity:1;transform:translateY(6vh)}
   78%{opacity:1;transform:translateY(0)} /* the burst — it breaks through here */
   100%{opacity:0;transform:translateY(-4vh)}
 }
-@keyframes glowride{
-  from{opacity:.9;transform:translateY(114vh)}
-  to{opacity:.9;transform:translateY(-140vh)}
-}
-@keyframes flashpulse{0%{opacity:0}25%{opacity:.85}100%{opacity:0}}
+@keyframes flashpulse{0%{opacity:0}25%{opacity:.4}100%{opacity:0}}
 @keyframes emberrise{
   0%{opacity:0;transform:rotate(7deg) translateY(18vh)} /* the tilt breaks the lattice — sparks, not graph paper */
   12%{opacity:.85}
@@ -222,16 +213,9 @@ html.burned svg{filter:drop-shadow(0 2px 0 rgb(0 0 0/.14)) drop-shadow(0 28px 48
   <div id="preglow"></div>
   <div id="pyre"><div class="clip"></div></div>
   <div id="sear"><div class="clip"></div></div>
-  <div id="glow"></div>
   <div id="flash"></div>
   <div id="embers"></div>
 </div>
-<svg id="fxdefs" aria-hidden="true" focusable="false">
-  <filter id="flamewarp" x="-20%" y="-20%" width="140%" height="140%">
-    <feTurbulence type="fractalNoise" baseFrequency="0.05 0.012" numOctaves="2" seed="7"/>
-    <feDisplacementMap in="SourceGraphic" scale="26" xChannelSelector="R" yChannelSelector="G"/>
-  </filter>
-</svg>
 <script>
 (()=>{
   const r=document.documentElement,
