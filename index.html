@@ -250,7 +250,6 @@ section{padding-block:clamp(2.75rem,6vw,4.5rem)}
 .jaw-up{fill:var(--dz-cinnabar)}
 .jaw-low{fill:var(--dz-brass)}
 .legend{list-style:none;margin:var(--dz-space-5) 0 0;padding:0;display:grid;gap:var(--dz-space-3)}
-.nub{fill:var(--dz-oxide)}
 .legend li{display:grid;grid-template-columns:14px minmax(0,1fr);gap:var(--dz-space-3);
   align-items:baseline;font-size:var(--dz-text-sm);color:var(--dz-bone-dim);max-width:70ch}
 .legend i{width:14px;height:14px;display:block;transform:translateY(2px)}
@@ -280,8 +279,9 @@ footer{padding-block:clamp(2.5rem,6vw,4rem) clamp(3rem,8vw,6rem);
 <!-- ══ shared geometry, defined once ══════════════════════ -->
 <svg width="0" height="0" aria-hidden="true" style="position:absolute">
 <defs>
-  <path id="g-body" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z M 11 33.2 L 47 29.6 L 47 27.6 L 11 24 Z"/>
-  <path id="g-holes" d="M 55 15 L 63 15 L 63 23 L 55 23 Z M 11 24 L 47 27.6 L 47 29.6 L 11 33.2 Z"/>
+  <path id="g-body" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/>
+  <path id="g-body-old" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z M 11 33.2 L 47 29.6 L 47 27.6 L 11 24 Z"/>
+  <path id="g-holes" d="M 55 15 L 63 15 L 63 23 L 55 23 Z M 16 24.5 L 47 27.6 L 47 29.6 L 16 32.7 Z"/>
   <path id="g-01" d="M 16 10 L 90 10 L 90 36 L 16 36 Z"/>
   <path id="g-02" d="M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z"/>
   <path id="g-03" d="M 16 64 L 90 64 L 90 90 L 16 90 Z"/>
@@ -292,10 +292,9 @@ footer{padding-block:clamp(2.5rem,6vw,4rem) clamp(3rem,8vw,6rem);
   <path id="g-08" d="M 55 15 L 63 15 L 63 23 L 55 23 Z"/>
   <path id="g-upper" d="M 16 10 L 90 10 L 90 36 L 47 36 L 47 27.6 L 16 24.5 Z"/>
   <path id="g-lower" d="M 16 32.7 L 47 29.6 L 47 36 L 16 36 Z"/>
-  <path id="g-09" d="M 11 24 L 47 27.6 L 47 29.6 L 11 33.2 Z"/>
-  <path id="g-10" d="M 0.5 24.1 L 0.5 33.1 L 10.5 28.6 Z"/>
+  <path id="g-09" d="M 16 24.5 L 47 27.6 L 47 29.6 L 16 32.7 Z"/>
+  <path id="g-10" d="M 5.5 24.1 L 5.5 33.1 L 15.5 28.6 Z"/>
   <path id="g-10-old" d="M 0 30.2 L 0 24.2 L 8 27.2 Z M -1 23.6 L -2 18.6 L 5 20.6 Z M 6 35.6 L -1 37.6 L 0 32.6 Z"/>
-  <path id="g-nub" d="M 11 24 L 16 24.5 L 16 32.7 L 11 33.2 Z"/>
 </defs>
 </svg>
 
@@ -307,7 +306,7 @@ footer{padding-block:clamp(2.5rem,6vw,4rem) clamp(3rem,8vw,6rem);
   <p class="lead" style="margin-top:var(--dz-space-5)">Ten named parts. Hover or tap any one — on the plate,
   on a tag, or in the register — and it lights everywhere at once. Then tell me a number and a dial:
   <em style="color:var(--dz-bone);font-style:normal">“06 shorter, 09 wider at the mouth.”</em></p>
-  <p class="meta" style="margin-top:var(--dz-space-5)">grid <code>viewBox="-1 0 111 100"</code> · ink <code>#121212</code> · accent <code>#FF6A1F</code></p>
+  <p class="meta" style="margin-top:var(--dz-space-5)">grid <code>viewBox="3 0 107 100"</code> · ink <code>#121212</code> · accent <code>#FF6A1F</code></p>
 </header>
 
 <hr class="rule">
@@ -325,8 +324,8 @@ footer{padding-block:clamp(2.5rem,6vw,4rem) clamp(3rem,8vw,6rem);
         <title>Ember — numbered anatomy</title>
 
         <!-- the crop that ships -->
-        <rect class="frame" x="-1" y="0" width="111" height="100"></rect>
-        <text class="framelbl" x="-1" y="106.4">crop · -1 0 111 100</text>
+        <rect class="frame" x="3" y="0" width="107" height="100"></rect>
+        <text class="framelbl" x="3" y="106.4">crop · 3 0 107 100</text>
 
         <!-- the mark -->
         <use href="#g-body" class="ink"></use>
@@ -425,7 +424,6 @@ footer{padding-block:clamp(2.5rem,6vw,4rem) clamp(3rem,8vw,6rem);
       <use href="#g-lower" class="jaw-low"></use>
       <use href="#g-06" class="jaw-low"></use>
       <use href="#g-07" class="jaw-low"></use>
-      <use href="#g-nub" class="nub"></use>
       <use href="#g-08" class="sheetfill"></use>
       <use href="#g-10" class="spark"></use>
     </svg>
@@ -438,8 +436,6 @@ footer{padding-block:clamp(2.5rem,6vw,4rem) clamp(3rem,8vw,6rem);
     to close up at small sizes.</span></li>
     <li><i class="hollow"></i><span><b>The gape (09)</b> is the knockout between them. It stops at x 47 —
     behind that point the jaws rejoin and the bar is one solid piece.</span></li>
-    <li><i style="background:var(--dz-oxide)"></i><span><b>The nub.</b> The 5 units of gape that overshoot the
-    muzzle do not open the mouth — they fill solid. Finding 02.</span></li>
   </ul>
 </section>
 <hr class="rule">
@@ -566,12 +562,12 @@ footer{padding-block:clamp(2.5rem,6vw,4rem) clamp(3rem,8vw,6rem);
         <div class="head"><span class="idx">09</span><span class="nm">Mouth slit</span><span class="kind">hole · knockout</span></div>
         <p>The gape, and the part that does the most work: it is the cut that turns one bar into two jaws.
         A wedge running 36 back from the muzzle, 9.2 tall at the opening and tapering to 2 at the throat, on
-        a level centreline. It overshoots the head bar's left edge by 5 — but that overshoot does not open
-        the mouth, it fills solid. See finding 02. In Ember the gape is left unpainted, so it takes whatever
-        the ground is; plate 01 fills the same wedge orange.</p>
-        <p class="geo">x 11 → 47 · 9.2 tall at the mouth → 2 at the throat · centreline y 28.6 ·
-        5 past the muzzle edge, of which all 5 render as ink</p>
-        <ul class="dials"><li>gape height</li><li>taper rate</li><li>length (where the jaws hinge)</li><li>centreline — raise it for a heavier lower jaw</li><li>overshoot past the muzzle</li><li>painted vs. knockout</li></ul>
+        a level centreline. It now starts flush with the head bar's left edge at x 16, so the mouth is genuinely
+        open at the muzzle — see finding 02. In Ember the gape is left unpainted, so it takes whatever the
+        ground is; plate 01 fills the same wedge orange.</p>
+        <p class="geo">x 16 → 47 · 8.2 tall at the muzzle → 2 at the throat · centreline y 28.6 ·
+        flush with the jaw edge, open to the outside</p>
+        <ul class="dials"><li>gape height</li><li>taper rate</li><li>length (where the jaws hinge)</li><li>centreline — raise it for a heavier lower jaw</li><li>overshoot past the muzzle (0 now)</li><li>painted vs. knockout</li></ul>
       </div>
     </article>
 
@@ -604,11 +600,11 @@ footer{padding-block:clamp(2.5rem,6vw,4rem) clamp(3rem,8vw,6rem);
   <div class="pair" style="margin-bottom:var(--dz-space-6)">
     <figure>
       <div class="box"><svg viewBox="8 0 104 100" role="img" aria-label="Ember before: three sparks, all clipped away">
-        <use href="#g-body" class="ink"></use><use href="#g-10-old" class="spark"></use></svg></div>
+        <use href="#g-body-old" class="ink"></use><use href="#g-10-old" class="spark"></use></svg></div>
       <figcaption class="cap"><b>Before</b><span class="meta">three sparks at x −2 → 8 · crop started at x 8 · zero orange pixels rendered</span></figcaption>
     </figure>
     <figure>
-      <div class="box"><svg viewBox="-1 0 111 100" role="img" aria-label="Ember now: one spark beside the muzzle">
+      <div class="box"><svg viewBox="3 0 107 100" role="img" aria-label="Ember now: one spark beside the muzzle">
         <use href="#g-body" class="ink"></use><use href="#g-10" class="spark"></use></svg></div>
       <figcaption class="cap"><b>Now</b><span class="meta">one ember, 0.5 clear of the muzzle · crop −1 0 111 100 · renders down to 24 px</span></figcaption>
     </figure>
@@ -620,32 +616,30 @@ footer{padding-block:clamp(2.5rem,6vw,4rem) clamp(3rem,8vw,6rem);
       <h3>01 — The embers were cropped away</h3>
       <p class="say">The three original sparks sat at x −2 → 8 while the <code>viewBox</code> started at x 8, so
       the SVG root clipped every one of them: the file rendered as solid <code>#121212</code> with no accent
-      anywhere. Replaced with a single ember at x 0.5 → 10.5 and the crop opened to
-      <code>viewBox="-1 0 111 100"</code>.</p>
-      <p class="say"><b style="color:var(--dz-bone)">What that cost.</b> The box grew from 104 × 100 to
-      111 × 100 — 9 units on the left, and the aspect moved from 1.04 to 1.11. Margins are now even at 3 left,
-      3 right, 3 top, 5 bottom. Any lockup or app-icon built on the old box needs re-centring. The diagonal's
-      bottom-left tip, previously clipped by 0.38, is now fully inside the frame.</p>
-      <p class="say">Measured on the current file: 1,147 orange pixels at 512 px, 32 at 96 px, 8 at 48 px, 3 at 32 px,
-      1 at 24 px and 1 at 16 px. It reads as a shape down to about 48 px and as a colour cue below that — but
-      it now survives the whole ladder, which the smaller ember did not.</p>
+      anywhere. Replaced with a single ember, now at x 5.5 → 15.5, and the crop reworked to
+      <code>viewBox="3 0 107 100"</code>.</p>
+      <p class="say"><b style="color:var(--dz-bone)">What that cost.</b> The box went 104 × 100 → 111 × 100 when the ember first
+      needed room, then back to 107 × 100 once the nub came off and the ember advanced. Aspect 1.04 → 1.07.
+      Margins sit at 2.5 left, 2 right, 3 top, 5 bottom. Any lockup or app-icon built on the original box still
+      needs re-centring, but by 3 units rather than 9.</p>
+      <p class="say">Measured on the current file: 1,155 orange pixels at 512 px, 32 at 96 px, 10 at 48 px, 3 at 32 px,
+      1 at 24 px, 0 at 16 px. It reads as a shape down to about 48 px and as a colour cue below that.</p>
     </div>
     <div class="find">
-      <span class="tag-sev sev-break">Breaks</span>
-      <h3>02 — The muzzle overshoot fills solid instead of opening the mouth</h3>
-      <p class="say">The gape (09) runs from x 11 to x 47, but the head bar only starts at x 16. In that
-      5-unit overshoot the wedge is reverse-wound with nothing beneath it to subtract from, so
-      <code>fill-rule: nonzero</code> counts it as <em>filled</em>. Verified by rasterising the path and probing:
-      (13, 28.6), (11.8, 28.6), (13, 26) and (13, 31) all come back ink, while the same wedge inside the bar at
-      (30, 28.6) and (46, 28.6) is correctly empty.</p>
-      <p class="say">The result is a solid black nub floating in front of the muzzle, joined to the bar at two
-      corner points only — and the gape behind it becomes a fully enclosed slot rather than an open mouth. That
-      is a second unsanctioned island under DESIGN.md's hole invariant, and it is why the mouth closes up so
-      fast at small sizes.</p>
-      <p class="say"><b style="color:var(--dz-bone)">The real fix</b> is to stop drawing the head as one bar
-      with a reverse-wound wedge and draw the two jaws as separate forward-wound subpaths. Then the mouth is
-      genuinely open at the muzzle. The cheap fix — trim the wedge to start at x 16 — removes the nub but leaves
-      the gape a closed slot. Not touched: it changes the silhouette, and that is your call.</p>
+      <span class="tag-sev sev-fixed">Fixed</span>
+      <h3>02 — The muzzle overshoot filled solid instead of opening the mouth</h3>
+      <p class="say">The gape used to run from x 11 while the head bar only starts at x 16. In that 5-unit
+      overshoot the wedge was reverse-wound with nothing beneath it to subtract from, so
+      <code>fill-rule: nonzero</code> counted it as <em>filled</em> — a solid black nub floating in front of the
+      muzzle, joined to the bar at two corner points, with the gape behind it sealed into an enclosed slot.
+      Probes at (13, 28.6), (11.8, 28.6), (13, 26) and (13, 31) all came back ink.</p>
+      <p class="say"><b style="color:var(--dz-bone)">Trimmed to x 16</b>, flush with the jaw edge. The wedge no
+      longer extends past anything it can subtract from, so the nub is gone and the mouth is open for the first
+      time. Re-probed by walking the centreline from x 12 to x 50: clear the whole way to the throat at x 47,
+      with no hairline seam at the x 16 join. The hole invariant is satisfied — the eye is now the only enclosed
+      region in the mark.</p>
+      <p class="say">The silhouette changed, which is the cost: the muzzle is a clean vertical edge rather than
+      a blunt point, and the mark lost 5 units of reach on the left. The crop tightened to take that back.</p>
     </div>
     <div class="find">
       <span class="tag-sev sev-drift">Drift</span>
@@ -682,18 +676,19 @@ footer{padding-block:clamp(2.5rem,6vw,4rem) clamp(3rem,8vw,6rem);
     <p class="meta">Same geometry as the file, at the sizes it has to survive.</p>
   </div>
   <div class="ladder">
-    <figure><svg viewBox="-1 0 111 100" style="height:96px;width:auto"><use href="#g-body" class="ink"></use><use href="#g-10" class="spark"></use></svg><figcaption>96 px</figcaption></figure>
-    <figure><svg viewBox="-1 0 111 100" style="height:48px;width:auto"><use href="#g-body" class="ink"></use><use href="#g-10" class="spark"></use></svg><figcaption>48 px</figcaption></figure>
-    <figure><svg viewBox="-1 0 111 100" style="height:32px;width:auto"><use href="#g-body" class="ink"></use><use href="#g-10" class="spark"></use></svg><figcaption>32 px</figcaption></figure>
-    <figure><svg viewBox="-1 0 111 100" style="height:24px;width:auto"><use href="#g-body" class="ink"></use><use href="#g-10" class="spark"></use></svg><figcaption>24 px</figcaption></figure>
-    <figure><svg viewBox="-1 0 111 100" style="height:16px;width:auto"><use href="#g-body" class="ink"></use><use href="#g-10" class="spark"></use></svg><figcaption>16 px</figcaption></figure>
+    <figure><svg viewBox="3 0 107 100" style="height:96px;width:auto"><use href="#g-body" class="ink"></use><use href="#g-10" class="spark"></use></svg><figcaption>96 px</figcaption></figure>
+    <figure><svg viewBox="3 0 107 100" style="height:48px;width:auto"><use href="#g-body" class="ink"></use><use href="#g-10" class="spark"></use></svg><figcaption>48 px</figcaption></figure>
+    <figure><svg viewBox="3 0 107 100" style="height:32px;width:auto"><use href="#g-body" class="ink"></use><use href="#g-10" class="spark"></use></svg><figcaption>32 px</figcaption></figure>
+    <figure><svg viewBox="3 0 107 100" style="height:24px;width:auto"><use href="#g-body" class="ink"></use><use href="#g-10" class="spark"></use></svg><figcaption>24 px</figcaption></figure>
+    <figure><svg viewBox="3 0 107 100" style="height:16px;width:auto"><use href="#g-body" class="ink"></use><use href="#g-10" class="spark"></use></svg><figcaption>16 px</figcaption></figure>
   </div>
-  <p class="note" style="margin-top:var(--dz-space-5)">The gape (09) is an enclosed slot, not a break in the
-  outline — finding 02 — so it fills in early: legible at 48 px, a smudge by 24 px. The rear fang (07) and the
-  horn's rake (04) close up around the same point, and the eye (08) is the first thing to go. The ember (10)
-  measures 8 orange pixels at 48 px and 3 at 32 px: below 48 px it is a colour cue rather than a shape, but
-  it now holds one pixel even at 16 px. Otherwise only the parts that touch the outline — 01, 02, 03, 05 —
-  survive that far.</p>
+  <p class="note" style="margin-top:var(--dz-space-5)">The gape (09) now breaks the outline at the muzzle
+  rather than sitting behind a solid nub, so the head reads as open-mouthed instead of blunt. That is a
+  correctness fix, not a legibility one: sampled across the gape's interior the open area measures 92% at
+  96 px and 88% at 48 px and 32 px either way — the trim changed the muzzle, not the slot. The rear fang (07)
+  and the horn's rake (04) close up around 24 px and the eye (08) is the first thing to go. The ember (10) is
+  10 orange pixels at 48 px and 3 at 32 px: a shape down to roughly 48 px, a colour cue below it, gone by
+  16 px. Only the parts that touch the outline — 01, 02, 03, 05 — hold at favicon size.</p>
 </section>
 
 <hr class="rule">
@@ -705,13 +700,13 @@ footer{padding-block:clamp(2.5rem,6vw,4rem) clamp(3rem,8vw,6rem);
     <p class="meta">Same body, different part carries the colour. You can mix.</p>
   </div>
   <div class="siblings">
-    <div class="sib"><div class="box"><svg class="sibmark" viewBox="8 0 104 100" role="img" aria-label="Snarl, red slit"><path fill="#E5231B" fill-rule="nonzero" d="M 11 24 L 47 27.6 L 47 29.6 L 11 33.2 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z M 11 33.2 L 47 29.6 L 47 27.6 L 11 24 Z"/></svg></div><div class="cap"><b>00 · Snarl</b><span class="meta">slit in #E5231B</span></div></div>
-    <div class="sib"><div class="box"><svg class="sibmark" viewBox="8 0 104 100" role="img" aria-label="Orange slit"><path fill="#FF6A1F" fill-rule="nonzero" d="M 11 24 L 47 27.6 L 47 29.6 L 11 33.2 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z M 11 33.2 L 47 29.6 L 47 27.6 L 11 24 Z"/></svg></div><div class="cap"><b>01 · Slit</b><span class="meta">part 09 painted</span></div></div>
-    <div class="sib"><div class="box"><svg class="sibmark" viewBox="8 0 104 100" role="img" aria-label="Orange fangs"><path fill="#FF6A1F" fill-rule="nonzero" d="M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z M 11 33.2 L 47 29.6 L 47 27.6 L 11 24 Z"/></svg></div><div class="cap"><b>02 · Fangs</b><span class="meta">parts 06 + 07</span></div></div>
-    <div class="sib"><div class="box"><svg class="sibmark" viewBox="8 0 104 100" role="img" aria-label="Orange eye"><path fill="#FF6A1F" fill-rule="nonzero" d="M 55 15 L 63 15 L 63 23 L 55 23 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z M 11 33.2 L 47 29.6 L 47 27.6 L 11 24 Z"/></svg></div><div class="cap"><b>03 · Eye</b><span class="meta">part 08 filled</span></div></div>
-    <div class="sib"><div class="box"><svg class="sibmark" viewBox="8 0 104 100" role="img" aria-label="Orange barb"><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z M 11 33.2 L 47 29.6 L 47 27.6 L 11 24 Z"/><path fill="#FF6A1F" fill-rule="nonzero" d="M 86 62 L 108 79 L 86 95 L 93 79 Z"/></svg></div><div class="cap"><b>04 · Barb</b><span class="meta">part 05</span></div></div>
-    <div class="sib here"><div class="box"><svg class="sibmark" viewBox="-1 0 111 100" role="img" aria-label="Ember"><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z M 11 33.2 L 47 29.6 L 47 27.6 L 11 24 Z"/><path fill="#FF6A1F" fill-rule="nonzero" d="M 0.5 24.1 L 0.5 33.1 L 10.5 28.6 Z"/></svg></div><div class="cap"><b>05 · Ember</b><span class="meta">part 10 — one spark</span></div></div>
-    <div class="sib"><div class="box"><svg class="sibmark" viewBox="8 0 104 100" role="img" aria-label="Orange horn"><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z M 11 33.2 L 47 29.6 L 47 27.6 L 11 24 Z"/><path fill="#FF6A1F" fill-rule="nonzero" d="M 52 10 L 70 3 L 67 12 Z"/></svg></div><div class="cap"><b>06 · Brow</b><span class="meta">part 04</span></div></div>
+    <div class="sib"><div class="box"><svg class="sibmark" viewBox="8 0 104 100" role="img" aria-label="Snarl, red slit"><path fill="#E5231B" fill-rule="nonzero" d="M 16 24.5 L 47 27.6 L 47 29.6 L 16 32.7 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/></svg></div><div class="cap"><b>00 · Snarl</b><span class="meta">slit in #E5231B</span></div></div>
+    <div class="sib"><div class="box"><svg class="sibmark" viewBox="8 0 104 100" role="img" aria-label="Orange slit"><path fill="#FF6A1F" fill-rule="nonzero" d="M 16 24.5 L 47 27.6 L 47 29.6 L 16 32.7 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/></svg></div><div class="cap"><b>01 · Slit</b><span class="meta">part 09 painted</span></div></div>
+    <div class="sib"><div class="box"><svg class="sibmark" viewBox="8 0 104 100" role="img" aria-label="Orange fangs"><path fill="#FF6A1F" fill-rule="nonzero" d="M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/></svg></div><div class="cap"><b>02 · Fangs</b><span class="meta">parts 06 + 07</span></div></div>
+    <div class="sib"><div class="box"><svg class="sibmark" viewBox="8 0 104 100" role="img" aria-label="Orange eye"><path fill="#FF6A1F" fill-rule="nonzero" d="M 55 15 L 63 15 L 63 23 L 55 23 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/></svg></div><div class="cap"><b>03 · Eye</b><span class="meta">part 08 filled</span></div></div>
+    <div class="sib"><div class="box"><svg class="sibmark" viewBox="8 0 104 100" role="img" aria-label="Orange barb"><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/><path fill="#FF6A1F" fill-rule="nonzero" d="M 86 62 L 108 79 L 86 95 L 93 79 Z"/></svg></div><div class="cap"><b>04 · Barb</b><span class="meta">part 05</span></div></div>
+    <div class="sib here"><div class="box"><svg class="sibmark" viewBox="3 0 107 100" role="img" aria-label="Ember"><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/><path fill="#FF6A1F" fill-rule="nonzero" d="M 5.5 24.1 L 5.5 33.1 L 15.5 28.6 Z"/></svg></div><div class="cap"><b>05 · Ember</b><span class="meta">part 10 — one spark</span></div></div>
+    <div class="sib"><div class="box"><svg class="sibmark" viewBox="8 0 104 100" role="img" aria-label="Orange horn"><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/><path fill="#FF6A1F" fill-rule="nonzero" d="M 52 10 L 70 3 L 67 12 Z"/></svg></div><div class="cap"><b>06 · Brow</b><span class="meta">part 04</span></div></div>
   </div>
 </section>
 
@@ -749,7 +744,7 @@ footer{padding-block:clamp(2.5rem,6vw,4rem) clamp(3rem,8vw,6rem);
   <p class="note" style="margin-bottom:var(--dz-space-5)">The nine subpaths of the ink path are parts
   <b>01</b> to <b>09</b> in order — head, spine, tail, horn, barb, front fang, rear fang, eye, gape. The eye and
   the gape are wound backwards, which is what makes them holes. The second path is <b>10</b>, the ember.</p>
-  <pre>&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;-1 0 111 100&quot; width=&quot;512&quot;&gt;
+  <pre>&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;3 0 107 100&quot; width=&quot;512&quot;&gt;
   &lt;path fill=&quot;#121212&quot; fill-rule=&quot;nonzero&quot; d=&quot;
     M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z
     M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z
@@ -759,9 +754,9 @@ footer{padding-block:clamp(2.5rem,6vw,4rem) clamp(3rem,8vw,6rem);
     M 27 34 L 22.5 47 L 18 34 Z
     M 37 34 L 33.5 43 L 30 34 Z
     M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z
-    M 11 33.2 L 47 29.6 L 47 27.6 L 11 24 Z
+    M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z
   &quot;/&gt;
-  &lt;path fill=&quot;#FF6A1F&quot; fill-rule=&quot;nonzero&quot; d=&quot;M 0.5 24.1 L 0.5 33.1 L 10.5 28.6 Z&quot;/&gt;
+  &lt;path fill=&quot;#FF6A1F&quot; fill-rule=&quot;nonzero&quot; d=&quot;M 5.5 24.1 L 5.5 33.1 L 15.5 28.6 Z&quot;/&gt;
 &lt;/svg&gt;</pre>
 </section>
 
