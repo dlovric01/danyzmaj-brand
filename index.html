@@ -10,11 +10,15 @@
 <meta property="og:url" content="https://www.danyzmaj.com/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='2.5 0 108.5 97.69'%3E%3Cpath fill='%23121212' fill-rule='nonzero' d='M%2016%2010%20L%2090%2010%20L%2090%2036%20L%2016%2036%20Z%20M%2098.38%2022.49%20L%2024.38%2094.69%20L%207.62%2077.51%20L%2081.62%205.31%20Z%20M%2016%2064%20L%2090%2064%20L%2090%2090%20L%2016%2090%20Z%20M%2052%2010%20L%2070%203%20L%2067%2012%20Z%20M%2086%2061%20L%20108%2077%20L%2086%2093%20L%2093%2077%20Z%20M%2027%2034%20L%2022.5%2047%20L%2018%2034%20Z%20M%2037%2034%20L%2033.5%2043%20L%2030%2034%20Z%20M%2056%2022%20L%2062%2022%20L%2062%2016%20L%2056%2016%20Z%20M%2016%2032.7%20L%2047%2029.6%20L%2047%2027.6%20L%2016%2024.5%20Z'/%3E%3Cpath fill='%23FF6A1F' d='M%205.5%2024.1%20L%205.5%2033.1%20L%2015.5%2028.6%20Z'/%3E%3C/svg%3E">
 <style>
+@property --p{syntax:'<number>';inherits:true;initial-value:0}
 :root{
   --ink:#171210;      /* the press bed */
   --bone:#F2EDE4;     /* the mark      */
   --ember:#FF6A1F;    /* the spark     */
-  --ease:cubic-bezier(0.16,1,0.3,1);
+  --ease:cubic-bezier(0.16,1,0.3,1);   /* entrance flourish */
+  --reveal:cubic-bezier(0.4,0,0.2,1);  /* the show unfolds  */
+  --recoil:cubic-bezier(0.7,0,0.84,0); /* quick snap back   */
+  --p:0;              /* tap toggle    */
 }
 *{box-sizing:border-box}
 html,body{height:100%}
@@ -25,30 +29,114 @@ body{
   padding:max(6vmin,1.5rem);
   overflow:hidden;
 }
+html{transition:--p 1400ms var(--reveal)}
+html:not(.awake){transition-duration:750ms;transition-timing-function:var(--recoil)}
+html.awake{--p:1}
 h1{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
   clip-path:inset(50%);white-space:nowrap;border:0}
+.trigger{
+  all:unset;cursor:pointer;display:block;
+}
+.trigger:focus-visible{
+  outline:2px solid var(--ember);outline-offset:10px;border-radius:4px;
+}
 svg{
-  display:block;
+  display:block;overflow:visible;
   width:min(58vmin,620px);height:auto;
   filter:drop-shadow(0 2px 0 rgb(0 0 0/.55)) drop-shadow(0 28px 48px rgb(0 0 0/.5));
   animation:strike 620ms var(--ease) both;
+  /* the type re-sets itself: skeleton, spark, wings, settle */
+  --p1:clamp(0,calc(var(--p) / .55),1);            /* Z straightens   */
+  --ph:clamp(0,calc((var(--p) - .3) / .15),1);     /* head flips up   */
+  --p2:clamp(0,calc((var(--p) - .45) / .45),1);    /* wings unfold    */
+  --p3:clamp(0,calc((var(--p) - .78) / .22),1);    /* fire            */
 }
 .body{fill:var(--bone)}
 .hole{fill:var(--ink)}
 .acc{fill:var(--ember);animation:pulse 3.6s ease-in-out infinite}
+#mark,#spine,#head,#tail,#spark,#fire,.fold,.side,.crown{transform-box:view-box}
+.side{transform-origin:53px 23px;transform:scale(1,calc(1 - var(--ph)))}
+.crown{transform-origin:53px 23px;transform:scale(1,var(--ph))}
+#mark{
+  transform-origin:56.75px 48.85px;
+  transform:scale(calc((1 - .22*var(--p2)) * (1 - .6*var(--p)*(1 - var(--p))))) translate(0,calc(4.75px*var(--p2)));
+}
+#spine{
+  transform-origin:53px 50px;
+  transform:translate(calc(3.75px*var(--p1)),0) scale(1,calc(1 - .12*var(--p1))) rotate(calc(-45.7deg*var(--p1)));
+}
+#head{
+  transform-origin:53px 23px;
+  transform:translate(calc(3.75px*var(--p1)),calc(-22.6px*var(--p1))) scale(calc(1 - .2*var(--p1))) rotate(calc(90deg*var(--p1)));
+}
+#tail{
+  transform-origin:53px 77px;
+  transform:translate(calc(3.75px*var(--p1)),calc(31.35px*var(--p1))) scale(calc(1 - .45*var(--p1))) rotate(calc(90deg*var(--p1)));
+}
+.fold{
+  transform-origin:56.75px 42px;
+  transform:rotate(calc(58deg*(1 - var(--p2)))) scale(var(--p2),calc(.3 + .7*var(--p2)));
+}
+#spark{
+  transform-origin:53px 23px;
+  transform:translate(calc(3.75px*var(--p1)),calc(-22.6px*var(--p1))) scale(calc(1 - .2*var(--p1))) rotate(calc(90deg*var(--p1)));
+}
+#fire{
+  transform-origin:15.5px 28.6px;
+  transform:translate(0,calc(-5.6px*var(--ph))) scale(calc(1 + 1.6*var(--p3)));
+}
 @keyframes strike{from{opacity:0;transform:scale(1.14) rotate(-8deg)}to{opacity:1;transform:none}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.68}}
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:1ms !important;animation-iteration-count:1 !important}
+  html{transition:none}
 }
 </style>
 </head>
 <body>
 <h1>danyzmaj</h1>
-<svg viewBox="2.5 0 108.5 97.69" role="img" aria-label="danyzmaj">
-  <path class="body" fill-rule="nonzero" d="M 16 10 L 90 10 L 90 36 L 16 36 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16 64 L 90 64 L 90 90 L 16 90 Z M 52 10 L 70 3 L 67 12 Z M 86 61 L 108 77 L 86 93 L 93 77 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 56 22 L 62 22 L 62 16 L 56 16 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/>
-  <path class="hole" d="M 56 16 L 62 16 L 62 22 L 56 22 Z M 16 24.5 L 47 27.6 L 47 29.6 L 16 32.7 Z"/>
-  <path class="acc" d="M 5.5 24.1 L 5.5 33.1 L 15.5 28.6 Z"/>
+<button type="button" class="trigger" id="trigger" aria-pressed="false" aria-label="Transform the mark">
+<svg viewBox="2.5 0 108.5 97.69" role="img" aria-hidden="true">
+  <g id="mark">
+    <g id="wings">
+      <g id="wingR"><g class="fold">
+        <path class="body" d="M 66 26 L 108 8 L 150 4 L 132 24 L 146 36 L 116 40 L 124 54 L 92 52 L 98 66 L 70 54 L 66 52 Z"/>
+        <path class="hole" d="M 76 32 L 96 26 L 82 44 Z"/>
+      </g></g>
+      <g id="wingL" transform="translate(113.5 0) scale(-1 1)"><g class="fold">
+        <path class="body" d="M 66 26 L 108 8 L 150 4 L 132 24 L 146 36 L 116 40 L 124 54 L 92 52 L 98 66 L 70 54 L 66 52 Z"/>
+        <path class="hole" d="M 76 32 L 96 26 L 82 44 Z"/>
+      </g></g>
+    </g>
+    <g id="tail">
+      <path class="body" d="M 16 64 L 90 64 L 90 90 L 16 90 Z M 86 61 L 108 77 L 86 93 L 93 77 Z"/>
+    </g>
+    <g id="spine">
+      <path class="body" d="M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z"/>
+    </g>
+    <g id="head">
+      <g class="side">
+        <path class="body" fill-rule="nonzero" d="M 16 10 L 90 10 L 90 36 L 16 36 Z M 52 10 L 70 3 L 67 12 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 56 22 L 62 22 L 62 16 L 56 16 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/>
+        <path class="hole" d="M 56 16 L 62 16 L 62 22 L 56 22 Z M 16 24.5 L 47 27.6 L 47 29.6 L 16 32.7 Z"/>
+      </g>
+      <g class="crown">
+        <path class="body" d="M 80 8 L 56 4 L 34 12 L 18 19 L 14 23 L 18 27 L 34 34 L 56 42 L 80 38 Z M 58 9 L 64 -16 L 52 7 Z M 52 39 L 64 62 L 58 37 Z M 31 14 L 36 3 L 26 16.2 Z M 26 29.8 L 36 43 L 31 32 Z"/>
+        <path class="hole" d="M 45 9.5 L 53 9.5 L 53 16 L 45 16 Z M 45 30 L 53 30 L 53 36.5 L 45 36.5 Z M 17 21.5 L 42 22.6 L 42 23.4 L 17 24.5 Z"/>
+      </g>
+    </g>
+    <g id="spark"><g id="fire">
+      <path class="acc" d="M 5.5 24.1 L 5.5 33.1 L 15.5 28.6 Z"/>
+    </g></g>
+  </g>
 </svg>
+</button>
+<script>
+(()=>{
+  const b=document.getElementById('trigger'),r=document.documentElement;
+  b.addEventListener('click',()=>{
+    b.setAttribute('aria-pressed',r.classList.toggle('awake'));
+  });
+})();
+</script>
 </body>
 </html>
