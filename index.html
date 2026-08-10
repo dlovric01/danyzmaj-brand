@@ -239,6 +239,26 @@ section{padding-block:clamp(2.75rem,6vw,4.5rem)}
 .sib.here{background:var(--dz-ink-raised)}
 .sib.here .cap b{color:var(--dz-cinnabar)}
 
+.variants{display:grid;gap:var(--dz-hairline);grid-template-columns:repeat(auto-fit,minmax(15.5rem,1fr));
+  border:var(--dz-hairline) solid var(--dz-rule-strong);background:var(--dz-rule-strong)}
+.variants figure{margin:0;background:var(--dz-ink);display:grid;grid-template-rows:auto auto 1fr}
+.variants .here{background:var(--dz-ink-raised)}
+.variants .big{background:var(--dz-bone);padding:var(--dz-space-4) var(--dz-space-3);display:grid;place-items:center}
+.variants .big svg{height:118px;width:auto}
+.variants .tiny{background:var(--dz-bone);border-top:var(--dz-hairline) solid #E1D9CA;
+  padding:var(--dz-space-3);display:grid;place-items:center}
+.variants .tiny svg{height:32px;width:auto}
+.variants .cap{padding:var(--dz-space-4);display:grid;gap:7px;align-content:start}
+.variants .cap .id{font-family:var(--dz-font-mono);font-size:var(--dz-text-xs);color:var(--dz-brass);
+  letter-spacing:var(--dz-tracking-label)}
+.variants .here .cap .id{color:var(--dz-cinnabar)}
+.variants .cap b{font-family:var(--dz-font-display);font-size:1.3rem;font-weight:600;line-height:1;
+  letter-spacing:var(--dz-tracking-display)}
+.variants .cap p{font-size:var(--dz-text-sm);color:var(--dz-bone-dim);margin:0;max-width:none}
+.variants .cap .nums{font-family:var(--dz-font-mono);font-size:var(--dz-text-xs);color:var(--dz-brass);line-height:1.6}
+.variants .cap code{display:block;font-size:10px;overflow-wrap:anywhere;line-height:1.6;
+  border-top:var(--dz-hairline) solid var(--dz-rule);padding-top:7px}
+
 /* ── phrasebook ─────────────────────────────────────────── */
 .phrase{border:var(--dz-hairline) solid var(--dz-rule);background:var(--dz-ink-sunk);
   padding:var(--dz-space-5);display:grid;gap:var(--dz-space-3);font-family:var(--dz-font-mono);
@@ -279,9 +299,9 @@ footer{padding-block:clamp(2.5rem,6vw,4rem) clamp(3rem,8vw,6rem);
 <!-- ══ shared geometry, defined once ══════════════════════ -->
 <svg width="0" height="0" aria-hidden="true" style="position:absolute">
 <defs>
-  <path id="g-body" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/>
+  <path id="g-body" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 56 22 L 62 22 L 62 16 L 56 16 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/>
   <path id="g-body-old" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z M 11 33.2 L 47 29.6 L 47 27.6 L 11 24 Z"/>
-  <path id="g-holes" d="M 55 15 L 63 15 L 63 23 L 55 23 Z M 16 24.5 L 47 27.6 L 47 29.6 L 16 32.7 Z"/>
+  <path id="g-holes" d="M 56 16 L 62 16 L 62 22 L 56 22 Z M 16 24.5 L 47 27.6 L 47 29.6 L 16 32.7 Z"/>
   <path id="g-01" d="M 16 10 L 90 10 L 90 36 L 16 36 Z"/>
   <path id="g-02" d="M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z"/>
   <path id="g-03" d="M 16 64 L 90 64 L 90 90 L 16 90 Z"/>
@@ -289,11 +309,15 @@ footer{padding-block:clamp(2.5rem,6vw,4rem) clamp(3rem,8vw,6rem);
   <path id="g-05" d="M 86 62 L 108 79 L 86 95 L 93 79 Z"/>
   <path id="g-06" d="M 27 34 L 22.5 47 L 18 34 Z"/>
   <path id="g-07" d="M 37 34 L 33.5 43 L 30 34 Z"/>
-  <path id="g-08" d="M 55 15 L 63 15 L 63 23 L 55 23 Z"/>
+  <path id="g-08" d="M 56 16 L 62 16 L 62 22 L 56 22 Z"/>
   <path id="g-upper" d="M 16 10 L 90 10 L 90 36 L 47 36 L 47 27.6 L 16 24.5 Z"/>
   <path id="g-lower" d="M 16 32.7 L 47 29.6 L 47 36 L 16 36 Z"/>
   <path id="g-09" d="M 16 24.5 L 47 27.6 L 47 29.6 L 16 32.7 Z"/>
   <path id="g-10" d="M 5.5 24.1 L 5.5 33.1 L 15.5 28.6 Z"/>
+  <path id="g-body-nb" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 56 22 L 62 22 L 62 16 L 56 16 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/>
+  <path id="g-05a" d="M 86 66 L 118 79 L 86 92 L 99 79 Z"/>
+  <path id="g-05b" d="M 86 62 L 110 70 L 94 79 L 110 88 L 86 95 Z"/>
+  <path id="g-05c" d="M 86 64 L 102 79 L 86 94 L 91 79 Z"/>
   <path id="g-10-old" d="M 0 30.2 L 0 24.2 L 8 27.2 Z M -1 23.6 L -2 18.6 L 5 20.6 Z M 6 35.6 L -1 37.6 L 0 32.6 Z"/>
 </defs>
 </svg>
@@ -547,10 +571,10 @@ footer{padding-block:clamp(2.5rem,6vw,4rem) clamp(3rem,8vw,6rem);
         <use href="#g-body" class="ghost"></use><use href="#g-holes" class="sheetfill"></use><use href="#g-08" class="lit"></use></svg></div>
       <div>
         <div class="head"><span class="idx">08</span><span class="nm">Eye</span><span class="kind">hole · knockout</span></div>
-        <p>An 8 × 8 square knocked out of the upper jaw. Reverse-wound inside the same path, so it is a hole
+        <p>A 6 × 6 square knocked out of the upper jaw. Reverse-wound inside the same path, so it is a hole
         in one shape rather than a second shape — that is what lets the mark sit on any ground in one colour.
         Square on purpose: nothing in this system is rounded except the seal.</p>
-        <p class="geo">8 × 8 · centre (59, 19) · 5 below the bar top · 39 from the muzzle · 8 behind the throat</p>
+        <p class="geo">6 × 6 · centre (59, 19) · 6 below the bar top · 40 from the muzzle · 9 behind the throat</p>
         <ul class="dials"><li>size</li><li>position</li><li>knockout vs. painted (see plate 03)</li><li>shape — square is a system rule</li></ul>
       </div>
     </article>
@@ -700,13 +724,64 @@ footer{padding-block:clamp(2.5rem,6vw,4rem) clamp(3rem,8vw,6rem);
     <p class="meta">Same body, different part carries the colour. You can mix.</p>
   </div>
   <div class="siblings">
-    <div class="sib"><div class="box"><svg class="sibmark" viewBox="8 0 104 100" role="img" aria-label="Snarl, red slit"><path fill="#E5231B" fill-rule="nonzero" d="M 16 24.5 L 47 27.6 L 47 29.6 L 16 32.7 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/></svg></div><div class="cap"><b>00 · Snarl</b><span class="meta">slit in #E5231B</span></div></div>
-    <div class="sib"><div class="box"><svg class="sibmark" viewBox="8 0 104 100" role="img" aria-label="Orange slit"><path fill="#FF6A1F" fill-rule="nonzero" d="M 16 24.5 L 47 27.6 L 47 29.6 L 16 32.7 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/></svg></div><div class="cap"><b>01 · Slit</b><span class="meta">part 09 painted</span></div></div>
-    <div class="sib"><div class="box"><svg class="sibmark" viewBox="8 0 104 100" role="img" aria-label="Orange fangs"><path fill="#FF6A1F" fill-rule="nonzero" d="M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/></svg></div><div class="cap"><b>02 · Fangs</b><span class="meta">parts 06 + 07</span></div></div>
-    <div class="sib"><div class="box"><svg class="sibmark" viewBox="8 0 104 100" role="img" aria-label="Orange eye"><path fill="#FF6A1F" fill-rule="nonzero" d="M 55 15 L 63 15 L 63 23 L 55 23 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/></svg></div><div class="cap"><b>03 · Eye</b><span class="meta">part 08 filled</span></div></div>
-    <div class="sib"><div class="box"><svg class="sibmark" viewBox="8 0 104 100" role="img" aria-label="Orange barb"><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/><path fill="#FF6A1F" fill-rule="nonzero" d="M 86 62 L 108 79 L 86 95 L 93 79 Z"/></svg></div><div class="cap"><b>04 · Barb</b><span class="meta">part 05</span></div></div>
-    <div class="sib here"><div class="box"><svg class="sibmark" viewBox="3 0 107 100" role="img" aria-label="Ember"><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/><path fill="#FF6A1F" fill-rule="nonzero" d="M 5.5 24.1 L 5.5 33.1 L 15.5 28.6 Z"/></svg></div><div class="cap"><b>05 · Ember</b><span class="meta">part 10 — one spark</span></div></div>
-    <div class="sib"><div class="box"><svg class="sibmark" viewBox="8 0 104 100" role="img" aria-label="Orange horn"><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/><path fill="#FF6A1F" fill-rule="nonzero" d="M 52 10 L 70 3 L 67 12 Z"/></svg></div><div class="cap"><b>06 · Brow</b><span class="meta">part 04</span></div></div>
+    <div class="sib"><div class="box"><svg class="sibmark" viewBox="8 0 104 100" role="img" aria-label="Snarl, red slit"><path fill="#E5231B" fill-rule="nonzero" d="M 16 24.5 L 47 27.6 L 47 29.6 L 16 32.7 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 56 22 L 62 22 L 62 16 L 56 16 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/></svg></div><div class="cap"><b>00 · Snarl</b><span class="meta">slit in #E5231B</span></div></div>
+    <div class="sib"><div class="box"><svg class="sibmark" viewBox="8 0 104 100" role="img" aria-label="Orange slit"><path fill="#FF6A1F" fill-rule="nonzero" d="M 16 24.5 L 47 27.6 L 47 29.6 L 16 32.7 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 56 22 L 62 22 L 62 16 L 56 16 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/></svg></div><div class="cap"><b>01 · Slit</b><span class="meta">part 09 painted</span></div></div>
+    <div class="sib"><div class="box"><svg class="sibmark" viewBox="8 0 104 100" role="img" aria-label="Orange fangs"><path fill="#FF6A1F" fill-rule="nonzero" d="M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 56 22 L 62 22 L 62 16 L 56 16 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/></svg></div><div class="cap"><b>02 · Fangs</b><span class="meta">parts 06 + 07</span></div></div>
+    <div class="sib"><div class="box"><svg class="sibmark" viewBox="8 0 104 100" role="img" aria-label="Orange eye"><path fill="#FF6A1F" fill-rule="nonzero" d="M 56 16 L 62 16 L 62 22 L 56 22 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 56 22 L 62 22 L 62 16 L 56 16 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/></svg></div><div class="cap"><b>03 · Eye</b><span class="meta">part 08 filled</span></div></div>
+    <div class="sib"><div class="box"><svg class="sibmark" viewBox="8 0 104 100" role="img" aria-label="Orange barb"><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 56 22 L 62 22 L 62 16 L 56 16 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/><path fill="#FF6A1F" fill-rule="nonzero" d="M 86 62 L 108 79 L 86 95 L 93 79 Z"/></svg></div><div class="cap"><b>04 · Barb</b><span class="meta">part 05</span></div></div>
+    <div class="sib here"><div class="box"><svg class="sibmark" viewBox="3 0 107 100" role="img" aria-label="Ember"><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 56 22 L 62 22 L 62 16 L 56 16 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/><path fill="#FF6A1F" fill-rule="nonzero" d="M 5.5 24.1 L 5.5 33.1 L 15.5 28.6 Z"/></svg></div><div class="cap"><b>05 · Ember</b><span class="meta">part 10 — one spark</span></div></div>
+    <div class="sib"><div class="box"><svg class="sibmark" viewBox="8 0 104 100" role="img" aria-label="Orange horn"><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 56 22 L 62 22 L 62 16 L 56 16 Z M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z"/><path fill="#FF6A1F" fill-rule="nonzero" d="M 52 10 L 70 3 L 67 12 Z"/></svg></div><div class="cap"><b>06 · Brow</b><span class="meta">part 04</span></div></div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ══ barb alternatives ═════════════════════════════════ -->
+<section id="barbs">
+  <div class="sechead">
+    <p class="label">Tail barb · three alternatives</p>
+    <p class="meta">Part 05 only. Everything else identical.</p>
+  </div>
+  <p class="note" style="margin-bottom:var(--dz-space-5)">Three directions off the current chevron — longer,
+  split, shorter. Each panel swaps only part 05, and repeats the mark at 32 px underneath, because the barb
+  touches the outline and that is where it has to hold. The dashed rule is the current crop at x 110.</p>
+  <div class="variants">
+    <figure class="here">
+      <div class="big"><svg viewBox="3 0 120 100" role="img" aria-label="Current barb">
+        <rect class="frame" x="3" y="0" width="107" height="100"></rect>
+        <use href="#g-body-nb" class="ink"></use><use href="#g-05" class="ink"></use><use href="#g-10" class="spark"></use></svg></div>
+      <div class="tiny"><svg viewBox="3 0 120 100" aria-hidden="true">
+        <use href="#g-body-nb" class="ink"></use><use href="#g-05" class="ink"></use><use href="#g-10" class="spark"></use></svg></div>
+      <figcaption class="cap"><span class="id">05</span><b>Current</b><p>The notched chevron. Symmetric about y 79, overhangs the tail bar on three sides.</p>
+      <p class="nums">reach 108 · spread 33 · notch 15<br>inside the crop</p><code>M 86 62 L 108 79 L 86 95 L 93 79 Z</code></figcaption>
+    </figure>
+    <figure>
+      <div class="big"><svg viewBox="3 0 120 100" role="img" aria-label="Blade barb">
+        <rect class="frame" x="3" y="0" width="107" height="100"></rect>
+        <use href="#g-body-nb" class="ink"></use><use href="#g-05a" class="ink"></use><use href="#g-10" class="spark"></use></svg></div>
+      <div class="tiny"><svg viewBox="3 0 120 100" aria-hidden="true">
+        <use href="#g-body-nb" class="ink"></use><use href="#g-05a" class="ink"></use><use href="#g-10" class="spark"></use></svg></div>
+      <figcaption class="cap"><span class="id">05a</span><b>Blade</b><p>Longer and leaner. 10 more reach on a narrower spread, so the tail reads fast rather than heavy — and the deeper notch keeps it a barb instead of a spear.</p>
+      <p class="nums">reach 118 · spread 26 · notch 19<br>reaches 8 past the crop — needs the box reopened to about 3 0 117 100</p><code>M 86 66 L 118 79 L 86 92 L 99 79 Z</code></figcaption>
+    </figure>
+    <figure>
+      <div class="big"><svg viewBox="3 0 120 100" role="img" aria-label="Fork barb">
+        <rect class="frame" x="3" y="0" width="107" height="100"></rect>
+        <use href="#g-body-nb" class="ink"></use><use href="#g-05b" class="ink"></use><use href="#g-10" class="spark"></use></svg></div>
+      <div class="tiny"><svg viewBox="3 0 120 100" aria-hidden="true">
+        <use href="#g-body-nb" class="ink"></use><use href="#g-05b" class="ink"></use><use href="#g-10" class="spark"></use></svg></div>
+      <figcaption class="cap"><span class="id">05b</span><b>Fork</b><p>The tail splits. Two prongs rake apart around a deep V, echoing the two fangs at the other end of the letter.</p>
+      <p class="nums">reach 110 · spread 33 · valley x 94<br>lands exactly on the crop edge at 110 — wants 1–2 units of air</p><code>M 86 62 L 110 70 L 94 79 L 110 88 L 86 95 Z</code></figcaption>
+    </figure>
+    <figure>
+      <div class="big"><svg viewBox="3 0 120 100" role="img" aria-label="Blunt barb">
+        <rect class="frame" x="3" y="0" width="107" height="100"></rect>
+        <use href="#g-body-nb" class="ink"></use><use href="#g-05c" class="ink"></use><use href="#g-10" class="spark"></use></svg></div>
+      <div class="tiny"><svg viewBox="3 0 120 100" aria-hidden="true">
+        <use href="#g-body-nb" class="ink"></use><use href="#g-05c" class="ink"></use><use href="#g-10" class="spark"></use></svg></div>
+      <figcaption class="cap"><span class="id">05c</span><b>Blunt</b><p>Cropped back and heavier. Least reach, shallowest notch, the calmest of the four — and the one that still reads as a barb at favicon size.</p>
+      <p class="nums">reach 102 · spread 30 · notch 11<br>6 clear of the crop — would let the box tighten further</p><code>M 86 64 L 102 79 L 86 94 L 91 79 Z</code></figcaption>
+    </figure>
   </div>
 </section>
 
@@ -753,7 +828,7 @@ footer{padding-block:clamp(2.5rem,6vw,4rem) clamp(3rem,8vw,6rem);
     M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z
     M 27 34 L 22.5 47 L 18 34 Z
     M 37 34 L 33.5 43 L 30 34 Z
-    M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z
+    M 56 22 L 62 22 L 62 16 L 56 16 Z
     M 16 32.7 L 47 29.6 L 47 27.6 L 16 24.5 Z
   &quot;/&gt;
   &lt;path fill=&quot;#FF6A1F&quot; fill-rule=&quot;nonzero&quot; d=&quot;M 5.5 24.1 L 5.5 33.1 L 15.5 28.6 Z&quot;/&gt;
