@@ -87,28 +87,52 @@ svg{
   transform-origin:15.5px 28.6px;
   transform:translate(0,calc(-5.6px*var(--ph))) scale(calc(1 + 1.6*var(--p3)));
 }
-/* ── the rampage: a scroll summons the dragon; it burns the bed into its opposite ── */
-html.rampage svg{animation:none} /* disarm strike; its return at the end re-strikes the fresh page */
-html.rampage .trigger{animation:liftoff 800ms cubic-bezier(.6,.05,.9,.5) 1050ms forwards,charge 1250ms cubic-bezier(.3,.2,.25,1) 2150ms forwards}
+/* ── the rampage: a scroll summons the dragon; it strafes the seam and the page burns ── */
+#fx{display:none}
+html.rampage #fx{display:contents} /* children stack against the dragon, no wrapper context */
+#fx>div{position:fixed;pointer-events:none}
+#fxdefs{position:absolute;width:0;height:0}
+html.rampage svg{animation:dragonfire 1ms linear 2150ms forwards} /* strike disarmed; its return re-strikes the fresh page */
+html.rampage .trigger{animation:liftoff 800ms cubic-bezier(.6,.05,.9,.5) 1050ms forwards,charge 1250ms cubic-bezier(.4,.08,.62,.92) 2150ms forwards}
 html.rampage .body{animation:ignite 1ms linear 2150ms forwards} /* white-hot for the charge */
-html.rampage #fire{animation:blaze 150ms linear 2150ms infinite alternate}
-html.rampage body::before{ /* the incoming bed, torn edge first */
-  content:"";position:fixed;inset:0;z-index:1;background:var(--bone);
-  clip-path:polygon(0 106%,12% 103%,25% 108%,38% 104%,50% 107%,62% 103%,75% 108%,88% 104%,100% 106%,100% 200%,0 200%);
-  animation:burnwipe 1350ms cubic-bezier(.3,.2,.25,1) 2250ms forwards;
-}
-html.rampage body::after{ /* the combustion line */
-  content:"";position:fixed;left:-5vw;right:-5vw;top:0;height:10vh;z-index:2;opacity:0;
-  background:radial-gradient(60% 100% at 50% 100%,color-mix(in srgb,var(--ember) 55%,transparent),transparent 70%),linear-gradient(to top,var(--ember),color-mix(in srgb,var(--ember) 25%,transparent) 55%,transparent);
-  filter:blur(6px);
-  animation:burnedge 1700ms cubic-bezier(.3,.2,.25,1) 1900ms forwards;
-}
+html.rampage #fire{animation:blaze 130ms linear 2150ms infinite alternate}
+html.rampage body{animation:quake 1300ms linear 2150ms} /* the impact shakes the room */
+#dim{inset:0;z-index:1;opacity:0;background:color-mix(in srgb,var(--ink) 85%,transparent);
+  animation:dimdown 2150ms linear 2150ms forwards} /* the old world recedes so the fire can own the frame */
+#preglow{left:-10vw;right:-10vw;bottom:-14vh;height:64vh;z-index:1;opacity:0;filter:blur(24px);
+  background:radial-gradient(70% 62% at 50% 100%,var(--ember),color-mix(in srgb,var(--ember) 35%,transparent) 55%,transparent 78%);
+  animation:heatgather 1150ms ease-in-out 1400ms forwards} /* the floor breathes — something below is coming */
+#pyre,#sear{inset:0}
+#pyre{z-index:1;filter:url(#flamewarp) blur(9px);transform:scale(1.07,1.03);transform-origin:50% 100%} /* the burning rim around the seam */
+#sear{z-index:2;filter:url(#flamewarp) drop-shadow(0 0 18px var(--ember)) drop-shadow(0 0 70px color-mix(in srgb,var(--ember) 55%,transparent))}
+#pyre .clip,#sear .clip{position:absolute;inset:0;
+  clip-path:polygon(49.2% 112%,48.8% 112%,49.1% 112%,48.9% 112%,49.3% 112%,49% 112%,49.4% 112%,49.6% 111%,50.4% 111%,50.6% 112%,51% 112%,50.7% 112%,51.1% 112%,50.9% 112%,51.2% 112%,50.8% 112%);
+  animation:burnspread 2000ms linear 2300ms forwards}
+#pyre .clip{background:var(--ember)}
+#sear .clip{background:var(--bone)} /* the seam interior is already the new bed — the settle is seamless */
+#sear .clip::after{content:"";position:absolute;inset:0;opacity:0;
+  background:linear-gradient(to top,var(--ember),color-mix(in srgb,var(--ember) 45%,transparent) 38%,transparent 70%);
+  animation:searfade 2000ms linear 2300ms forwards} /* residual heat cools as the burn completes */
+#glow{left:50%;top:50%;width:110vmin;height:110vmin;margin:-55vmin 0 0 -55vmin;z-index:2;opacity:0;filter:blur(22px);
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--ember) 55%,transparent),transparent 72%);
+  animation:glowride 1250ms cubic-bezier(.4,.08,.62,.92) 2150ms forwards} /* the halo rides the dragon */
+#flash{inset:0;z-index:2;opacity:0;
+  background:radial-gradient(130% 110% at 50% 100%,color-mix(in srgb,var(--ember) 65%,transparent),transparent 62%);
+  animation:flashpulse 420ms ease-out 2150ms forwards} /* the entry concussion */
+#embers{left:-30vw;right:-30vw;top:-120vh;bottom:-10vh;z-index:4;opacity:0;
+  background:radial-gradient(circle,var(--ember) 1.3px,transparent 2.4px),radial-gradient(circle,color-mix(in srgb,var(--ember) 70%,transparent) 1px,transparent 2px),radial-gradient(circle,color-mix(in srgb,var(--bone) 80%,transparent) .8px,transparent 1.6px);
+  background-size:97px 143px,61px 89px,131px 211px;background-position:7px 13px,31px 57px,3px 41px;
+  animation:emberrise 2200ms linear 2150ms forwards} /* sparks outlive the beast */
 /* already a dragon? skip the wake — every delay minus 900ms */
+html.rampage.swift svg{animation-delay:1250ms}
 html.rampage.swift .trigger{animation-delay:150ms,1250ms}
 html.rampage.swift .body{animation-delay:1250ms}
 html.rampage.swift #fire{animation-delay:1250ms}
-html.rampage.swift body::before{animation-delay:1350ms}
-html.rampage.swift body::after{animation-delay:1000ms}
+html.rampage.swift body{animation-delay:1250ms}
+html.rampage.swift #dim{animation-delay:1250ms}
+html.rampage.swift #preglow{animation-delay:500ms}
+html.rampage.swift #pyre .clip,html.rampage.swift #sear .clip,html.rampage.swift #sear .clip::after{animation-delay:1400ms}
+html.rampage.swift #glow,html.rampage.swift #flash,html.rampage.swift #embers{animation-delay:1250ms}
 html.burned svg{filter:drop-shadow(0 2px 0 rgb(0 0 0/.14)) drop-shadow(0 28px 48px rgb(0 0 0/.18))} /* paper throws softer shadows */
 @keyframes strike{from{opacity:0;transform:scale(1.14) rotate(-8deg)}to{opacity:1;transform:none}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.68}}
@@ -118,27 +142,54 @@ html.burned svg{filter:drop-shadow(0 2px 0 rgb(0 0 0/.14)) drop-shadow(0 28px 48
   100%{transform:translateY(-118vh) scale(.8)}
 }
 @keyframes charge{
-  0%{transform:translateY(114vh) scale(2.1)}
-  100%{transform:translateY(-140vh) scale(1.6)}
+  0%{transform:translateY(114vh) scale(2.6)}
+  100%{transform:translateY(-140vh) scale(1.7)}
 }
 @keyframes ignite{to{fill:var(--ember)}}
+@keyframes dragonfire{to{filter:drop-shadow(0 0 16px var(--ember)) drop-shadow(0 0 56px color-mix(in srgb,var(--ember) 60%,transparent))}}
 @keyframes blaze{
   from{transform:translate(0,-5.6px) scale(2.6)}
-  to{transform:translate(0,-8px) scale(3.6)}
+  to{transform:translate(0,-8.4px) scale(4)}
 }
-@keyframes burnwipe{
-  0%{clip-path:polygon(0 106%,12% 103%,25% 108%,38% 104%,50% 107%,62% 103%,75% 108%,88% 104%,100% 106%,100% 200%,0 200%)}
-  35%{clip-path:polygon(0 66%,12% 61%,25% 67%,38% 60%,50% 65%,62% 59%,75% 66%,88% 61%,100% 64%,100% 200%,0 200%)}
-  70%{clip-path:polygon(0 29%,12% 24%,25% 31%,38% 23%,50% 28%,62% 22%,75% 30%,88% 25%,100% 27%,100% 200%,0 200%)}
-  100%{clip-path:polygon(0 -8%,12% -12%,25% -6%,38% -13%,50% -9%,62% -14%,75% -7%,88% -11%,100% -9%,100% 200%,0 200%)}
+@keyframes quake{
+  0%,100%{transform:none}
+  8%{transform:translate(2px,-3px) rotate(.2deg)}
+  16%{transform:translate(-3px,2px) rotate(-.24deg)}
+  24%{transform:translate(3px,1px) rotate(.18deg)}
+  32%{transform:translate(-2px,-2px) rotate(-.16deg)}
+  40%{transform:translate(2px,2px) rotate(.12deg)}
+  55%{transform:translate(-2px,1px) rotate(-.1deg)}
+  70%{transform:translate(1px,-1px) rotate(.06deg)}
+  85%{transform:translate(-1px,1px) rotate(-.04deg)}
 }
-@keyframes burnedge{
-  0%{transform:translateY(101vh);opacity:0}
-  10%{transform:translateY(97vh);opacity:1}
-  20%{transform:translateY(96vh);opacity:1} /* seeps in and holds — something is coming */
-  90%{transform:translateY(2vh);opacity:1}
-  100%{transform:translateY(-12vh);opacity:0}
+@keyframes dimdown{0%{opacity:0}25%{opacity:.35}85%{opacity:.25}100%{opacity:0}}
+@keyframes heatgather{
+  0%{opacity:0;transform:translateY(9vh)}
+  28%{opacity:.65;transform:translateY(4vh)}
+  46%{opacity:.45;transform:translateY(5vh)}
+  62%{opacity:.75;transform:translateY(3vh)}
+  78%{opacity:1;transform:translateY(0)} /* the burst — it breaks through here */
+  100%{opacity:0;transform:translateY(-4vh)}
 }
+@keyframes glowride{
+  from{opacity:.9;transform:translateY(114vh)}
+  to{opacity:.9;transform:translateY(-140vh)}
+}
+@keyframes flashpulse{0%{opacity:0}25%{opacity:.85}100%{opacity:0}}
+@keyframes emberrise{
+  0%{opacity:0;transform:rotate(7deg) translateY(18vh)} /* the tilt breaks the lattice — sparks, not graph paper */
+  12%{opacity:.85}
+  85%{opacity:.7}
+  100%{opacity:0;transform:rotate(7deg) translateY(-46vh)}
+}
+/* the seam: a jagged sliver splits at the center, races up behind the dragon, then devours the width */
+@keyframes burnspread{
+  0%{clip-path:polygon(49.2% 112%,48.8% 112%,49.1% 112%,48.9% 112%,49.3% 112%,49% 112%,49.4% 112%,49.6% 111%,50.4% 111%,50.6% 112%,51% 112%,50.7% 112%,51.1% 112%,50.9% 112%,51.2% 112%,50.8% 112%)}
+  42%{clip-path:polygon(45% 110%,42% 88%,45.5% 66%,43% 44%,46% 24%,44% 8%,47% -4%,48.5% -10%,52% -10%,53.5% -4%,56.5% 8%,54% 24%,57.5% 44%,54.5% 66%,58.5% 88%,55.5% 110%)}
+  75%{clip-path:polygon(37% 110%,31% 88%,36% 66%,33% 44%,38% 24%,35% 8%,40% -4%,44% -10%,57% -10%,61% -4%,66% 8%,62% 24%,68% 44%,63% 66%,70% 88%,64% 110%)}
+  100%{clip-path:polygon(-12% 112%,-15% 88%,-10% 66%,-14% 44%,-9% 24%,-13% 8%,-11% -4%,-15% -12%,115% -12%,111% -4%,115% 8%,110% 24%,114% 44%,109% 66%,115% 88%,112% 112%)}
+}
+@keyframes searfade{0%{opacity:.9}45%{opacity:.75}80%{opacity:.45}100%{opacity:0}}
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:1ms !important;animation-iteration-count:1 !important}
   html{transition:none}
@@ -182,6 +233,23 @@ html.burned svg{filter:drop-shadow(0 2px 0 rgb(0 0 0/.14)) drop-shadow(0 28px 48
   </g>
 </svg>
 </button>
+<div id="fx" aria-hidden="true">
+  <div id="dim"></div>
+  <div id="preglow"></div>
+  <div id="pyre"><div class="clip"></div></div>
+  <div id="sear"><div class="clip"></div></div>
+  <div id="glow"></div>
+  <div id="flash"></div>
+  <div id="embers"></div>
+</div>
+<svg id="fxdefs" aria-hidden="true" focusable="false">
+  <filter id="flamewarp" x="-20%" y="-20%" width="140%" height="140%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.05 0.012" numOctaves="2" seed="7">
+      <animate attributeName="baseFrequency" values="0.05 0.012;0.07 0.018;0.05 0.012" dur="0.55s" repeatCount="indefinite"/>
+    </feTurbulence>
+    <feDisplacementMap in="SourceGraphic" scale="26" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
 <script>
 (()=>{
   const b=document.getElementById('trigger'),r=document.documentElement,
@@ -205,7 +273,7 @@ html.burned svg{filter:drop-shadow(0 2px 0 rgb(0 0 0/.14)) drop-shadow(0 28px 48
     r.classList.add('rampage','awake');
     b.setAttribute('aria-pressed','true');
     const done=e=>{
-      if(e&&!(e.animationName==='burnwipe'&&e.pseudoElement==='::before'))return;
+      if(e&&e.animationName!=='burnspread')return; // liftoff/charge/ignite/blaze/heatgather/strike bubble here too
       clearTimeout(wd);document.body.removeEventListener('animationend',done);
       r.classList.add('snap'); // instant form reset while everything swaps in one frame
       r.classList.remove('rampage','swift','awake');
@@ -213,7 +281,7 @@ html.burned svg{filter:drop-shadow(0 2px 0 rgb(0 0 0/.14)) drop-shadow(0 28px 48
       settle();
     };
     document.body.addEventListener('animationend',done);
-    const wd=setTimeout(done,5200); // watchdog: throttled/hidden tabs still settle
+    const wd=setTimeout(done,6000); // watchdog: throttled/hidden tabs still settle
   };
   addEventListener('wheel',e=>{if(!e.ctrlKey&&e.deltaY&&Math.abs(e.deltaY)>=Math.abs(e.deltaX))rampage()},{passive:true});
   let ty=null;
