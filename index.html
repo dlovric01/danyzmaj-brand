@@ -59,7 +59,7 @@ svg{
 .crown{transform-origin:53px 23px;transform:scale(1,var(--ph))}
 #mark{
   transform-origin:56.75px 48.85px;
-  transform:scale(calc(1 - .22*var(--p2))) translate(0,calc(4.75px*var(--p2)));
+  transform:scale(calc((1 - .22*var(--p2)) * (1 - .6*var(--p)*(1 - var(--p))))) translate(0,calc(4.75px*var(--p2)));
 }
 #spine{
   transform-origin:53px 50px;
@@ -100,11 +100,11 @@ svg{
   <g id="mark">
     <g id="wings">
       <g id="wingR"><g class="fold">
-        <path class="body" d="M 66 26 L 112 12 L 154 20 L 130 36 L 148 50 L 110 50 L 122 68 L 80 56 L 66 54 Z"/>
+        <path class="body" d="M 66 26 L 108 8 L 150 4 L 132 24 L 146 36 L 116 40 L 124 54 L 92 52 L 98 66 L 70 54 L 66 52 Z"/>
         <path class="hole" d="M 76 32 L 96 26 L 82 44 Z"/>
       </g></g>
       <g id="wingL" transform="translate(113.5 0) scale(-1 1)"><g class="fold">
-        <path class="body" d="M 66 26 L 112 12 L 154 20 L 130 36 L 148 50 L 110 50 L 122 68 L 80 56 L 66 54 Z"/>
+        <path class="body" d="M 66 26 L 108 8 L 150 4 L 132 24 L 146 36 L 116 40 L 124 54 L 92 52 L 98 66 L 70 54 L 66 52 Z"/>
         <path class="hole" d="M 76 32 L 96 26 L 82 44 Z"/>
       </g></g>
     </g>
@@ -120,7 +120,7 @@ svg{
         <path class="hole" d="M 56 16 L 62 16 L 62 22 L 56 22 Z M 16 24.5 L 47 27.6 L 47 29.6 L 16 32.7 Z"/>
       </g>
       <g class="crown">
-        <path class="body" d="M 80 8 L 56 4 L 34 12 L 18 19 L 14 23 L 18 27 L 34 34 L 56 42 L 80 38 Z M 58 5 L 26 -14 L 46 10 Z M 46 36 L 26 60 L 58 41 Z M 32 14 L 20 7 L 27 16 Z M 27 30 L 20 39 L 32 32 Z"/>
+        <path class="body" d="M 80 8 L 56 4 L 34 12 L 18 19 L 14 23 L 18 27 L 34 34 L 56 42 L 80 38 Z M 58 9 L 64 -16 L 52 7 Z M 52 39 L 64 62 L 58 37 Z M 31 14 L 36 3 L 26 16.2 Z M 26 29.8 L 36 43 L 31 32 Z"/>
         <path class="hole" d="M 45 9.5 L 53 9.5 L 53 16 L 45 16 Z M 45 30 L 53 30 L 53 36.5 L 45 36.5 Z M 17 21.5 L 42 22.6 L 42 23.4 L 17 24.5 Z"/>
       </g>
     </g>
