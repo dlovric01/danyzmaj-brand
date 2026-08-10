@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>danyzmaj — the fanged Z and the twohead</title>
+<meta name="description" content="The two marks that made the shortlist, and how they work together.">
+<link rel="icon" type="image/svg+xml" href="logo/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#0E0C0B;color:#E8E4DA;font-family:Chivo,Archivo,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+svg{display:block}
+.mono{font-family:'JetBrains Mono',monospace}
+.xs{font-size:.7rem;letter-spacing:.06em}
+a{color:#FF6A5E}
+:focus-visible{outline:2px solid #FF6A5E;outline-offset:3px}
+.top{position:sticky;top:0;z-index:9;background:#0E0C0B;border-bottom:1px solid #2A2521}
+.top nav{max-width:1240px;margin:auto;display:flex;gap:20px;align-items:center;overflow-x:auto;
+  padding:.75rem clamp(1rem,4vw,3rem);font-family:'JetBrains Mono',monospace;font-size:.7rem;
+  letter-spacing:.1em;text-transform:uppercase;scrollbar-width:none}
+.top nav::-webkit-scrollbar{display:none}
+.top a{color:#8A7F72;text-decoration:none;white-space:nowrap}
+.top a:hover{color:#E8E4DA}
+.wrap{max-width:1240px;margin:auto;padding-inline:clamp(1rem,4vw,3rem)}
+.intro{padding-block:clamp(3rem,8vw,5.5rem) clamp(2rem,4vw,2.6rem)}
+.intro h1{font-weight:900;letter-spacing:-.035em;line-height:.92;font-size:clamp(2.5rem,7.5vw,5rem);margin:0}
+.intro p{max-width:64ch;color:#BFB6A9;margin:1.3rem 0 0}
+.shared{display:grid;gap:14px;margin-top:2.2rem;padding-top:1.5rem;border-top:1px solid #2A2521}
+@media(min-width:760px){.shared{grid-template-columns:repeat(3,1fr)}}
+.grid{display:grid;gap:2px;background:#2A2521;border-block:1px solid #2A2521}
+@media(min-width:940px){.grid{grid-template-columns:1fr 1fr}}
+.panel{background:#FAF7F2;color:#121212;padding:clamp(1.5rem,3vw,2.4rem);min-width:0;scroll-margin-top:52px}
+.phead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.phead .num{color:#C0130C;font-size:.8rem}
+.phead h2{font-weight:900;letter-spacing:-.03em;font-size:1.9rem;margin:0;text-transform:uppercase}
+.phead .kind{color:#6E6A66;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;margin-left:auto}
+.stage{margin-top:1.3rem;background:#F1EDE6;border:1px solid #E2DDD2;display:grid;place-items:center;padding:28px;min-height:16rem}
+.strip{display:flex;gap:2px;margin-top:2px;flex-wrap:wrap}
+.strip .dark{background:#121212;padding:20px 26px;display:grid;place-items:center;flex:1 1 150px}
+.strip .sizes{background:#F1EDE6;border:1px solid #E2DDD2;padding:14px 18px;display:flex;align-items:flex-end;gap:14px;flex:2 1 210px}
+.strip .sizes .mono{color:#6E6A66;margin-left:4px}
+.lock{display:flex;align-items:center;gap:12px;margin-top:16px;padding:14px 16px;border:1px solid #E2DDD2}
+.wmz{font-weight:900;letter-spacing:-.02em;font-size:1.3rem;line-height:1}
+.what{margin:18px 0 0;color:#6E6A66;font-size:.95rem;max-width:54ch}
+.verd dt{color:#C0130C;margin-top:14px}
+.verd dd{margin:5px 0 0;font-size:.93rem;color:#121212;max-width:54ch}
+.both{padding-block:clamp(3rem,7vw,5rem)}
+.both h2{font-weight:900;letter-spacing:-.03em;font-size:clamp(1.9rem,5vw,3.2rem);line-height:1;margin:.4rem 0 1.1rem}
+.roles{display:grid;gap:2px;margin-top:2.2rem;background:#2A2521;border:1px solid #2A2521}
+@media(min-width:820px){.roles{grid-template-columns:1fr 1fr}}
+.role{background:#151110;padding:22px}
+.role h3{margin:0;font-size:1.05rem;font-weight:700;color:#E8E4DA}
+.role p{margin:.5rem 0 0;color:#BFB6A9;font-size:.93rem;max-width:46ch}
+.role ul{margin:.7rem 0 0;padding-left:1.1rem;color:#BFB6A9;font-size:.9rem}
+.cards{display:grid;gap:18px;margin-top:2.2rem}
+@media(min-width:700px){.cards{grid-template-columns:1fr 1fr}}
+.card{aspect-ratio:1.75/1;padding:22px;display:flex;flex-direction:column;justify-content:space-between}
+.card.front{background:#FAF7F2;color:#121212}
+.card.back{background:#121212;align-items:center;justify-content:center}
+.cap{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#8A7F72;margin:10px 0 0}
+footer{max-width:1240px;margin:auto;padding:clamp(2rem,5vw,3.5rem) clamp(1rem,4vw,3rem) clamp(4rem,8vw,6rem)}
+footer p{max-width:64ch;color:#BFB6A9}
+footer h2{font-weight:900;letter-spacing:-.03em;color:#E8E4DA;font-size:clamp(1.7rem,4vw,2.6rem);line-height:1;margin:.4rem 0 1.1rem}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}</style>
+</head>
+<body>
+
+<div class="top"><nav aria-label="Marks">
+  <a href="#top">the shortlist</a>
+  <a href="#p08">08 fanged</a><a href="#p08C">08C twohead</a><a href="#both">use both</a>
+  <a href="propositions-fanged-four.html" style="color:#8A7F72">08 + siblings &rarr;</a>
+  <a href="propositions-all-nine.html" style="color:#8A7F72">all nine &rarr;</a>
+</nav></div>
+
+<div class="wrap intro" id="top">
+  <p class="mono xs" style="color:#FF6A5E;letter-spacing:.18em">DANYZMAJ · THE SHORTLIST · TWO MARKS</p>
+  <h1>The two that<br>made the cut.</h1>
+  <p>Round two is gone. These are the two you picked: the fanged Z and the twohead. Nothing else is on the
+  table, and nothing here is new — they are exactly as they were.</p>
+  <p>They are drawn on the <b style="color:#E8E4DA">same Z skeleton</b>, to the same weight, in the same palette
+  and the same typeface. That is not a coincidence of taste — it is measurable, and it is the reason the next
+  section is worth reading before you choose.</p>
+  <div class="shared">
+    <p class="mono xs" style="color:#8A7F72">SHARED SKELETON<br><span style="color:#E8E4DA">Bar 26 · diagonal 24 · same terminals. Identical letterform underneath.</span></p>
+    <p class="mono xs" style="color:#8A7F72">SHARED PALETTE<br><span style="color:#E8E4DA">Chalk #FAF7F2 · jet #121212 · signal #E5231B.</span></p>
+    <p class="mono xs" style="color:#8A7F72">SHARED TYPE<br><span style="color:#E8E4DA">Chivo 900 for the wordmark, Chivo for everything else.</span></p>
+  </div>
+</div>
+
+<div class="grid">
+
+    <article class="panel" id="p08">
+      <div class="phead"><span class="mono num">08</span><h2>Fanged Z</h2><span class="mono kind">one head · the worker</span></div>
+      <div class="stage"><svg width="240" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#E5231B" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 40.00 L 22.00 25.60 Z M 30.00 34.60 L 35.00 25.00 L 40.00 33.20 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 12.00 37.50 L 48.00 28.60 L 12.00 20.50 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z"/></svg></div>
+      <div class="strip">
+        <div class="dark"><svg width="96" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#E5231B" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z"/><path fill="#FAF7F2" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 40.00 L 22.00 25.60 Z M 30.00 34.60 L 35.00 25.00 L 40.00 33.20 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 12.00 37.50 L 48.00 28.60 L 12.00 20.50 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z"/></svg></div>
+        <div class="sizes"><svg width="48" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#E5231B" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 40.00 L 22.00 25.60 Z M 30.00 34.60 L 35.00 25.00 L 40.00 33.20 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 12.00 37.50 L 48.00 28.60 L 12.00 20.50 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z"/></svg><svg width="32" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#E5231B" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 40.00 L 22.00 25.60 Z M 30.00 34.60 L 35.00 25.00 L 40.00 33.20 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 12.00 37.50 L 48.00 28.60 L 12.00 20.50 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z"/></svg><svg width="16" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#E5231B" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 40.00 L 22.00 25.60 Z M 30.00 34.60 L 35.00 25.00 L 40.00 33.20 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 12.00 37.50 L 48.00 28.60 L 12.00 20.50 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z"/></svg>
+          <span class="mono xs">48 · 32 · 16</span></div>
+      </div>
+      <div class="lock"><svg width="36" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#E5231B" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 40.00 L 22.00 25.60 Z M 30.00 34.60 L 35.00 25.00 L 40.00 33.20 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 12.00 37.50 L 48.00 28.60 L 12.00 20.50 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z"/></svg><span class="wmz">DANYZMAJ</span></div>
+      <p class="what">A heavy Z opens a jaw at its top-left terminal, grows a brow horn and a barbed tail, and sticks its tongue out. You read the letter first and the animal half a second later.</p>
+      <dl class="verd">
+        <dt class="mono xs">BEST FOR</dt><dd>Everything, every day. Favicon, avatar, invoice header, lockup, sticker. It is calm enough to sit next to text and still legible at 16 pixels.</dd>
+        <dt class="mono xs">RISK</dt><dd>On its own it is the more ordinary of the two. It has no fact about itself to tell.</dd>
+      </dl>
+    </article>
+
+    <article class="panel" id="p08C">
+      <div class="phead"><span class="mono num">08C</span><h2>Twohead</h2><span class="mono kind">two heads · the seal</span></div>
+      <div class="stage"><svg width="240" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#E5231B" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z M 93.00 71.60 L 76.00 70.80 L 82.00 67.60 L 72.00 66.40 L 93.00 64.80 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 39.00 L 22.00 25.60 Z M 51.00 10.00 L 69.00 3.00 L 66.00 12.00 Z M 71.00 73.00 L 78.00 61.00 L 84.00 72.40 Z M 55.00 90.00 L 37.00 97.00 L 40.00 88.00 Z M 12.00 37.50 L 46.00 28.40 L 12.00 20.50 Z M 54.00 23.00 L 62.00 23.00 L 62.00 15.00 L 54.00 15.00 Z M 94.00 62.50 L 60.00 71.60 L 94.00 79.50 Z M 44.00 85.00 L 52.00 85.00 L 52.00 77.00 L 44.00 77.00 Z"/></svg></div>
+      <div class="strip">
+        <div class="dark"><svg width="96" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#E5231B" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z M 93.00 71.60 L 76.00 70.80 L 82.00 67.60 L 72.00 66.40 L 93.00 64.80 Z"/><path fill="#FAF7F2" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 39.00 L 22.00 25.60 Z M 51.00 10.00 L 69.00 3.00 L 66.00 12.00 Z M 71.00 73.00 L 78.00 61.00 L 84.00 72.40 Z M 55.00 90.00 L 37.00 97.00 L 40.00 88.00 Z M 12.00 37.50 L 46.00 28.40 L 12.00 20.50 Z M 54.00 23.00 L 62.00 23.00 L 62.00 15.00 L 54.00 15.00 Z M 94.00 62.50 L 60.00 71.60 L 94.00 79.50 Z M 44.00 85.00 L 52.00 85.00 L 52.00 77.00 L 44.00 77.00 Z"/></svg></div>
+        <div class="sizes"><svg width="48" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#E5231B" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z M 93.00 71.60 L 76.00 70.80 L 82.00 67.60 L 72.00 66.40 L 93.00 64.80 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 39.00 L 22.00 25.60 Z M 51.00 10.00 L 69.00 3.00 L 66.00 12.00 Z M 71.00 73.00 L 78.00 61.00 L 84.00 72.40 Z M 55.00 90.00 L 37.00 97.00 L 40.00 88.00 Z M 12.00 37.50 L 46.00 28.40 L 12.00 20.50 Z M 54.00 23.00 L 62.00 23.00 L 62.00 15.00 L 54.00 15.00 Z M 94.00 62.50 L 60.00 71.60 L 94.00 79.50 Z M 44.00 85.00 L 52.00 85.00 L 52.00 77.00 L 44.00 77.00 Z"/></svg><svg width="32" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#E5231B" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z M 93.00 71.60 L 76.00 70.80 L 82.00 67.60 L 72.00 66.40 L 93.00 64.80 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 39.00 L 22.00 25.60 Z M 51.00 10.00 L 69.00 3.00 L 66.00 12.00 Z M 71.00 73.00 L 78.00 61.00 L 84.00 72.40 Z M 55.00 90.00 L 37.00 97.00 L 40.00 88.00 Z M 12.00 37.50 L 46.00 28.40 L 12.00 20.50 Z M 54.00 23.00 L 62.00 23.00 L 62.00 15.00 L 54.00 15.00 Z M 94.00 62.50 L 60.00 71.60 L 94.00 79.50 Z M 44.00 85.00 L 52.00 85.00 L 52.00 77.00 L 44.00 77.00 Z"/></svg><svg width="16" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#E5231B" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z M 93.00 71.60 L 76.00 70.80 L 82.00 67.60 L 72.00 66.40 L 93.00 64.80 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 39.00 L 22.00 25.60 Z M 51.00 10.00 L 69.00 3.00 L 66.00 12.00 Z M 71.00 73.00 L 78.00 61.00 L 84.00 72.40 Z M 55.00 90.00 L 37.00 97.00 L 40.00 88.00 Z M 12.00 37.50 L 46.00 28.40 L 12.00 20.50 Z M 54.00 23.00 L 62.00 23.00 L 62.00 15.00 L 54.00 15.00 Z M 94.00 62.50 L 60.00 71.60 L 94.00 79.50 Z M 44.00 85.00 L 52.00 85.00 L 52.00 77.00 L 44.00 77.00 Z"/></svg>
+          <span class="mono xs">48 · 32 · 16</span></div>
+      </div>
+      <div class="lock"><svg width="36" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#E5231B" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z M 93.00 71.60 L 76.00 70.80 L 82.00 67.60 L 72.00 66.40 L 93.00 64.80 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 39.00 L 22.00 25.60 Z M 51.00 10.00 L 69.00 3.00 L 66.00 12.00 Z M 71.00 73.00 L 78.00 61.00 L 84.00 72.40 Z M 55.00 90.00 L 37.00 97.00 L 40.00 88.00 Z M 12.00 37.50 L 46.00 28.40 L 12.00 20.50 Z M 54.00 23.00 L 62.00 23.00 L 62.00 15.00 L 54.00 15.00 Z M 94.00 62.50 L 60.00 71.60 L 94.00 79.50 Z M 44.00 85.00 L 52.00 85.00 L 52.00 77.00 L 44.00 77.00 Z"/></svg><span class="wmz">DANYZMAJ</span></div>
+      <p class="what">A jaw at each terminal, because a Z already has 180-degree rotational symmetry and the Slavic zmaj is rarely single-headed. Turn it upside down and it is the same drawing.</p>
+      <dl class="verd">
+        <dt class="mono xs">BEST FOR</dt><dd>The moment that needs weight: a stamp on finished work, the reverse of a card, a case-study cover, the one sticker you actually hand someone.</dd>
+        <dt class="mono xs">RISK</dt><dd>Twice the detail, so it is the weaker of the two at 16 pixels and busier in a tight lockup.</dd>
+      </dl>
+    </article>
+</div>
+
+<div class="wrap both" id="both">
+  <p class="mono xs" style="color:#FF6A5E;letter-spacing:.18em">THE THING WORTH NOTICING</p>
+  <h2>You do not have to choose.</h2>
+  <p>Because both are cut from the same skeleton, they are not competing logos — they are one identity with two
+  registers, the way a publisher has a logo <i>and</i> a colophon. Pick which one does the everyday work and
+  which one is reserved, and you get the calm of 08 plus the story of 08C without diluting either.</p>
+
+  <div class="roles">
+    <div class="role">
+      <h3>08 Fanged Z — the working mark</h3>
+      <p>Used constantly, without ceremony. Roughly 95% of appearances.</p>
+      <ul><li>Favicon, app icon, avatar</li><li>Site header and email signature</li><li>Invoices, proposals, contracts</li><li>Anything below 32 pixels</li></ul>
+    </div>
+    <div class="role">
+      <h3>08C Twohead — the seal</h3>
+      <p>Used rarely and on purpose, so it keeps its weight. Never below 48 pixels.</p>
+      <ul><li>Sign-off on delivered work</li><li>Reverse of a card, cover of a case study</li><li>Stickers, packaging, anything physical</li><li>The mark you explain out loud</li></ul>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div>
+      <div class="card front">
+        <div style="display:flex;align-items:center;gap:12px"><svg width="34" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#E5231B" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 40.00 L 22.00 25.60 Z M 30.00 34.60 L 35.00 25.00 L 40.00 33.20 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 12.00 37.50 L 48.00 28.60 L 12.00 20.50 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z"/></svg><span class="wmz">DANYZMAJ</span></div>
+        <div>
+          <p class="mono xs" style="color:#C0130C;margin:0">DANYZMAJ.COM</p>
+          <p class="mono xs" style="color:#6E6A66;margin:2px 0 0">CONTRACT ENGINEERING · ONE OPERATOR</p>
+        </div>
+      </div>
+      <p class="cap">Card face — the working mark, small and quiet.</p>
+    </div>
+    <div>
+      <div class="card back"><svg width="108" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#E5231B" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z M 93.00 71.60 L 76.00 70.80 L 82.00 67.60 L 72.00 66.40 L 93.00 64.80 Z"/><path fill="#FAF7F2" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 39.00 L 22.00 25.60 Z M 51.00 10.00 L 69.00 3.00 L 66.00 12.00 Z M 71.00 73.00 L 78.00 61.00 L 84.00 72.40 Z M 55.00 90.00 L 37.00 97.00 L 40.00 88.00 Z M 12.00 37.50 L 46.00 28.40 L 12.00 20.50 Z M 54.00 23.00 L 62.00 23.00 L 62.00 15.00 L 54.00 15.00 Z M 94.00 62.50 L 60.00 71.60 L 94.00 79.50 Z M 44.00 85.00 L 52.00 85.00 L 52.00 77.00 L 44.00 77.00 Z"/></svg></div>
+      <p class="cap">Card reverse — the seal, alone, at size.</p>
+    </div>
+  </div>
+
+  <p style="margin-top:2.4rem;color:#BFB6A9">If you would rather the seal read older and more mythic than the
+  working mark, its tongues can carry gold <span style="display:inline-block;vertical-align:middle;margin:0 6px"><svg width="30" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#C8901A" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z M 93.00 71.60 L 76.00 70.80 L 82.00 67.60 L 72.00 66.40 L 93.00 64.80 Z"/><path fill="#E8E4DA" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 39.00 L 22.00 25.60 Z M 51.00 10.00 L 69.00 3.00 L 66.00 12.00 Z M 71.00 73.00 L 78.00 61.00 L 84.00 72.40 Z M 55.00 90.00 L 37.00 97.00 L 40.00 88.00 Z M 12.00 37.50 L 46.00 28.40 L 12.00 20.50 Z M 54.00 23.00 L 62.00 23.00 L 62.00 15.00 L 54.00 15.00 Z M 94.00 62.50 L 60.00 71.60 L 94.00 79.50 Z M 44.00 85.00 L 52.00 85.00 L 52.00 77.00 L 44.00 77.00 Z"/></svg></span>
+  instead of signal red. That is the one place the two marks are allowed to differ.</p>
+</div>
+
+<footer>
+  <p class="mono xs" style="color:#FF6A5E;letter-spacing:.18em">NEXT</p>
+  <h2>Say one word.</h2>
+  <p><b style="color:#E8E4DA">"Both"</b> — I build the two-mark system: 08 as primary with three size cuts,
+  08C as the seal with a minimum size, one palette, one type system, tokens, favicons, social card and
+  guidelines covering when each is used.</p>
+  <p style="margin-top:1rem"><b style="color:#E8E4DA">"08"</b> or <b style="color:#E8E4DA">"08C"</b> — I build
+  that one alone, to the same depth, and drop the other.</p>
+  <p style="margin-top:1rem">Either way the output looks like <a class="mono" href="index.html">index.html</a>,
+  which is the same depth of kit for an earlier direction.</p>
+  <p style="margin-top:1.6rem" class="mono xs">Both marks drawn parametrically on one skeleton · palette contrast-checked · danyzmaj.com</p>
+</footer>
+</body></html>

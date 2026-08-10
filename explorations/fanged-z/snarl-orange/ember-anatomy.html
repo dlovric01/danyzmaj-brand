@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ember — anatomy of the mark · danyzmaj</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500..700&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../tokens/danyzmaj.css">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--dz-ink);color:var(--dz-bone);
+  font-family:var(--dz-font-text);font-size:var(--dz-text-base);line-height:var(--dz-leading-text);
+  -webkit-font-smoothing:antialiased;
+}
+svg,img{display:block;max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(1.25rem,4vw,3rem)}
+
+/* ── type atoms ─────────────────────────────────────────── */
+.label{font-family:var(--dz-font-mono);font-size:var(--dz-text-xs);letter-spacing:var(--dz-tracking-label);
+  text-transform:uppercase;color:var(--dz-brass);margin:0}
+.meta{font-family:var(--dz-font-mono);font-size:var(--dz-text-xs);color:var(--dz-ash);margin:0}
+.mono{font-family:var(--dz-font-mono);font-variant-numeric:tabular-nums}
+h1,h2,h3{font-family:var(--dz-font-display);font-weight:600;letter-spacing:var(--dz-tracking-display);margin:0}
+h1{font-size:clamp(2.6rem,7.5vw,5rem);font-weight:700;line-height:.94}
+h2{font-size:clamp(1.7rem,3.6vw,2.6rem);line-height:1.02}
+h3{font-size:1.0625rem;font-family:var(--dz-font-text);font-weight:600;letter-spacing:0}
+p{margin:0;max-width:var(--dz-measure)}
+.lead{font-size:var(--dz-text-lg);color:var(--dz-bone-dim)}
+.note{font-size:var(--dz-text-sm);color:var(--dz-bone-dim);max-width:66ch}
+code{font-family:var(--dz-font-mono);font-size:.9em;color:var(--dz-brass)}
+
+/* ── page rhythm ────────────────────────────────────────── */
+header.plate{padding-block:clamp(3rem,8vw,6rem) clamp(2rem,4vw,3rem)}
+.rule{border:0;border-top:var(--dz-hairline) solid var(--dz-rule-strong);margin:0}
+section{padding-block:clamp(2.75rem,6vw,4.5rem)}
+.sechead{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--dz-space-4);margin-bottom:var(--dz-space-5)}
+.sechead .label{margin-right:auto}
+
+/* ── the plate: hero diagram ────────────────────────────── */
+.plateview{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(15rem,1fr);gap:var(--dz-hairline);
+  border:var(--dz-hairline) solid var(--dz-rule-strong);background:var(--dz-rule-strong)}
+.sheet{background:var(--dz-bone);color:var(--dz-ink);padding:clamp(.75rem,2vw,1.5rem)}
+.readout{background:var(--dz-ink-sunk);padding:clamp(1.25rem,2.4vw,1.75rem);
+  display:flex;flex-direction:column;gap:var(--dz-space-4)}
+.readout .num{font-family:var(--dz-font-display);font-weight:700;font-size:3.4rem;line-height:.8;
+  color:var(--dz-cinnabar);font-variant-numeric:tabular-nums}
+.readout .nm{font-family:var(--dz-font-display);font-size:1.55rem;font-weight:600;line-height:1.05;
+  letter-spacing:var(--dz-tracking-display)}
+.readout .body{font-size:var(--dz-text-sm);color:var(--dz-bone-dim);min-height:7.5em}
+.readout .geo{font-family:var(--dz-font-mono);font-size:var(--dz-text-xs);color:var(--dz-brass);
+  line-height:1.7;overflow-wrap:anywhere}
+.readout .hint{margin-top:auto;font-family:var(--dz-font-mono);font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--dz-ash)}
+.readout[data-empty] .num{display:none}
+
+/* ── svg part states ────────────────────────────────────── */
+.ink{fill:#121212}
+.ghost{fill:#CBC1B0}
+.sheetfill{fill:var(--dz-bone)}
+.spark{fill:#FF6A1F}
+.hit{fill:transparent;pointer-events:all;cursor:pointer;
+  transition:fill var(--dz-dur-tap) var(--dz-ease)}
+.hit.on{fill:var(--dz-cinnabar)}
+.lit{fill:var(--dz-cinnabar)}
+.frame{fill:none;stroke:var(--dz-brass);stroke-width:.6;stroke-dasharray:3 2.4;opacity:.85}
+.leader{fill:none;stroke:#121212;stroke-width:.7;opacity:.34;pointer-events:none;
+  transition:stroke var(--dz-dur-tap) var(--dz-ease),opacity var(--dz-dur-tap) var(--dz-ease),
+             stroke-width var(--dz-dur-tap) var(--dz-ease)}
+.taghit{fill:transparent;pointer-events:all}
+.tagdot{fill:var(--dz-bone);stroke:#121212;stroke-width:.7;opacity:.55;pointer-events:none;
+  transition:fill var(--dz-dur-tap) var(--dz-ease),stroke var(--dz-dur-tap) var(--dz-ease),
+             opacity var(--dz-dur-tap) var(--dz-ease)}
+.tagtxt{font-family:var(--dz-font-mono);font-size:7.4px;font-weight:500;fill:#121212;
+  text-anchor:middle;dominant-baseline:central;pointer-events:none;opacity:.75;
+  transition:fill var(--dz-dur-tap) var(--dz-ease),opacity var(--dz-dur-tap) var(--dz-ease)}
+.tag{cursor:pointer}
+.tag:focus{outline:none}
+.tag.on .leader{stroke:var(--dz-cinnabar);opacity:1;stroke-width:1.1}
+.tag.on .tagdot{fill:var(--dz-cinnabar);stroke:var(--dz-cinnabar);opacity:1}
+.tag.on .tagtxt{fill:var(--dz-bone);opacity:1}
+.tag:focus-visible .tagdot{stroke:var(--dz-cinnabar);stroke-width:1.4;opacity:1}
+.framelbl{font-family:var(--dz-font-mono);font-size:5.6px;letter-spacing:.1em;fill:var(--dz-brass)}
+
+/* ── the register ───────────────────────────────────────── */
+.register{border:var(--dz-hairline) solid var(--dz-rule-strong)}
+.part{display:grid;grid-template-columns:104px minmax(0,1fr);gap:var(--dz-space-5);
+  padding:var(--dz-space-5) var(--dz-space-5);
+  border-top:var(--dz-hairline) solid color-mix(in srgb,var(--dz-brass) 26%,transparent);
+  transition:background var(--dz-dur-tap) var(--dz-ease);scroll-margin-top:1rem}
+.part:first-child{border-top:0}
+.part.on{background:var(--dz-ink-raised)}
+.part .chip{background:var(--dz-bone);padding:8px;align-self:start}
+.part .head{display:flex;align-items:baseline;gap:var(--dz-space-3);flex-wrap:wrap;margin-bottom:6px}
+.part .idx{font-family:var(--dz-font-mono);font-weight:500;font-size:var(--dz-text-sm);
+  color:var(--dz-brass);font-variant-numeric:tabular-nums}
+.part.on .idx{color:var(--dz-cinnabar)}
+.part .nm{font-family:var(--dz-font-display);font-size:1.4rem;font-weight:600;line-height:1;
+  letter-spacing:var(--dz-tracking-display)}
+.part .kind{font-family:var(--dz-font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--dz-ash);border:var(--dz-hairline) solid var(--dz-rule);padding:2px 6px}
+.part p{font-size:var(--dz-text-sm);color:var(--dz-bone-dim);max-width:64ch}
+.part .geo{margin-top:8px;font-family:var(--dz-font-mono);font-size:var(--dz-text-xs);
+  color:var(--dz-brass);overflow-wrap:anywhere}
+.dials{margin:10px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.dials li{font-family:var(--dz-font-mono);font-size:11px;color:var(--dz-bone-dim);
+  border:var(--dz-hairline) solid var(--dz-rule);padding:3px 8px}
+.dials li::before{content:"◦ ";color:var(--dz-brass)}
+@media (min-width:1040px){
+  .part > div:not(.chip){display:grid;grid-template-columns:minmax(0,1fr) minmax(13rem,19rem);
+    column-gap:var(--dz-space-7);align-content:start}
+  .part .head{grid-column:1/-1}
+  .part > div:not(.chip) > p:not(.geo){grid-column:1;grid-row:2/span 2}
+  .part .geo{grid-column:2;grid-row:2;margin-top:0}
+  .dials{grid-column:2;grid-row:3;align-content:start}
+}
+
+/* ── findings ───────────────────────────────────────────── */
+.findings{border:var(--dz-hairline) solid var(--dz-rule-strong)}
+.find{padding:var(--dz-space-5);display:grid;grid-template-columns:auto minmax(0,1fr);
+  gap:var(--dz-space-2) var(--dz-space-4);align-items:baseline;
+  border-top:var(--dz-hairline) solid color-mix(in srgb,var(--dz-brass) 26%,transparent)}
+.find:first-child{border-top:0}
+.find .tag-sev{font-family:var(--dz-font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  padding:3px 7px;white-space:nowrap;grid-row:1}
+.sev-break{background:var(--dz-oxide);color:var(--dz-bone)}
+.sev-fixed{background:var(--dz-cinnabar);color:var(--dz-bone)}
+.find h3{grid-row:1}
+.find .say{grid-column:2;font-size:var(--dz-text-sm);color:var(--dz-bone-dim)}
+.find .say + .say{margin-top:var(--dz-space-2)}
+
+/* ── side-by-side proof ─────────────────────────────────── */
+.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:var(--dz-hairline);
+  border:var(--dz-hairline) solid var(--dz-rule-strong);background:var(--dz-rule-strong)}
+.pair > figure{margin:0;background:var(--dz-bone);display:grid;grid-template-rows:1fr auto}
+.pair .cap{background:var(--dz-ink);padding:var(--dz-space-3) var(--dz-space-4);display:grid;gap:2px}
+.pair .cap b{font-family:var(--dz-font-text);font-size:var(--dz-text-sm);font-weight:600;color:var(--dz-bone)}
+.pair .box{padding:var(--dz-space-6) var(--dz-space-5);display:grid;place-items:center}
+.pair .box svg{height:168px;width:auto}
+
+/* ── size ladder + siblings ─────────────────────────────── */
+.ladder{background:var(--dz-bone);border:var(--dz-hairline) solid var(--dz-rule-strong);
+  padding:var(--dz-space-6);display:flex;align-items:flex-end;gap:clamp(1.25rem,4vw,3.25rem);flex-wrap:wrap}
+.ladder figure{margin:0;display:grid;justify-items:center;gap:10px}
+.ladder figcaption{font-family:var(--dz-font-mono);font-size:10px;letter-spacing:.1em;color:#7A7166}
+.siblings{display:grid;gap:var(--dz-hairline);grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));
+  border:var(--dz-hairline) solid var(--dz-rule-strong);background:var(--dz-rule-strong)}
+.sib{background:var(--dz-ink);display:grid;gap:0;text-decoration:none;color:inherit}
+.sib .box{background:var(--dz-bone);padding:var(--dz-space-4);display:grid;place-items:center;height:104px}
+.sib .box img{height:74px;width:auto;max-width:100%}
+.sib .cap{padding:var(--dz-space-3) var(--dz-space-4);display:grid;gap:2px}
+.sib .cap b{font-size:var(--dz-text-sm);font-weight:600}
+.sib.here{background:var(--dz-ink-raised)}
+.sib.here .cap b{color:var(--dz-cinnabar)}
+
+/* ── phrasebook ─────────────────────────────────────────── */
+.phrase{border:var(--dz-hairline) solid var(--dz-rule);background:var(--dz-ink-sunk);
+  padding:var(--dz-space-5);display:grid;gap:var(--dz-space-3);font-family:var(--dz-font-mono);
+  font-size:var(--dz-text-sm);color:var(--dz-bone-dim);line-height:1.65}
+.phrase span{color:var(--dz-cinnabar)}
+
+/* ── reading the creature ───────────────────────────────── */
+.zoom{padding:var(--dz-space-5) var(--dz-space-6)}
+.jaw-up{fill:var(--dz-cinnabar)}
+.jaw-low{fill:var(--dz-brass)}
+.legend{list-style:none;margin:var(--dz-space-5) 0 0;padding:0;display:grid;gap:var(--dz-space-3)}
+.nub{fill:var(--dz-oxide)}
+.legend li{display:grid;grid-template-columns:14px minmax(0,1fr);gap:var(--dz-space-3);
+  align-items:baseline;font-size:var(--dz-text-sm);color:var(--dz-bone-dim);max-width:70ch}
+.legend i{width:14px;height:14px;display:block;transform:translateY(2px)}
+.legend i.hollow{border:var(--dz-hairline) dashed var(--dz-brass)}
+.legend b{color:var(--dz-bone);font-weight:600}
+
+footer{padding-block:clamp(2.5rem,6vw,4rem) clamp(3rem,8vw,6rem);
+  border-top:var(--dz-hairline) solid var(--dz-rule-strong)}
+
+@media (max-width:860px){
+  .plateview{grid-template-columns:1fr}
+  .readout .body{min-height:0}
+  .part{grid-template-columns:80px minmax(0,1fr);gap:var(--dz-space-4);padding:var(--dz-space-4)}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition-duration:1ms !important}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ shared geometry, defined once ══════════════════════ -->
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+<defs>
+  <path id="g-body" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z M 11 33.2 L 47 29.6 L 47 27.6 L 11 24 Z"/>
+  <path id="g-holes" d="M 55 15 L 63 15 L 63 23 L 55 23 Z M 11 24 L 47 27.6 L 47 29.6 L 11 33.2 Z"/>
+  <path id="g-01" d="M 16 10 L 90 10 L 90 36 L 16 36 Z"/>
+  <path id="g-02" d="M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z"/>
+  <path id="g-03" d="M 16 64 L 90 64 L 90 90 L 16 90 Z"/>
+  <path id="g-04" d="M 52 10 L 70 3 L 67 12 Z"/>
+  <path id="g-05" d="M 86 62 L 108 79 L 86 95 L 93 79 Z"/>
+  <path id="g-06" d="M 27 34 L 22.5 47 L 18 34 Z"/>
+  <path id="g-07" d="M 37 34 L 33.5 43 L 30 34 Z"/>
+  <path id="g-08" d="M 55 15 L 63 15 L 63 23 L 55 23 Z"/>
+  <path id="g-upper" d="M 16 10 L 90 10 L 90 36 L 47 36 L 47 27.6 L 16 24.5 Z"/>
+  <path id="g-lower" d="M 16 32.7 L 47 29.6 L 47 36 L 16 36 Z"/>
+  <path id="g-09" d="M 11 24 L 47 27.6 L 47 29.6 L 11 33.2 Z"/>
+  <path id="g-10" d="M 9 25.4 L 9 31.8 L 2 28.6 Z"/>
+  <path id="g-10-old" d="M 0 30.2 L 0 24.2 L 8 27.2 Z M -1 23.6 L -2 18.6 L 5 20.6 Z M 6 35.6 L -1 37.6 L 0 32.6 Z"/>
+  <path id="g-nub" d="M 11 24 L 16 24.5 L 16 32.7 L 11 33.2 Z"/>
+</defs>
+</svg>
+
+<div class="wrap">
+
+<header class="plate">
+  <p class="label">Explorations · fanged&nbsp;Z · snarl-orange · plate 05</p>
+  <h1 style="margin-top:var(--dz-space-4)">Ember</h1>
+  <p class="lead" style="margin-top:var(--dz-space-5)">Ten named parts. Hover or tap any one — on the plate,
+  on a tag, or in the register — and it lights everywhere at once. Then tell me a number and a dial:
+  <em style="color:var(--dz-bone);font-style:normal">“06 shorter, 09 wider at the mouth.”</em></p>
+  <p class="meta" style="margin-top:var(--dz-space-5)">source <code>05-ember.svg</code> · grid <code>viewBox="-1 0 111 100"</code> · ink <code>#121212</code> · accent <code>#FF6A1F</code></p>
+</header>
+
+<hr class="rule">
+
+<!-- ══ the plate ═════════════════════════════════════════ -->
+<section id="plate">
+  <div class="sechead">
+    <p class="label">The plate</p>
+    <p class="meta">Numbers are stable — use them.</p>
+  </div>
+
+  <div class="plateview">
+    <div class="sheet">
+      <svg viewBox="-36 -30 176 160" role="img" aria-label="Numbered anatomy of the Ember mark">
+        <title>Ember — numbered anatomy</title>
+
+        <!-- the crop that ships -->
+        <rect class="frame" x="-1" y="0" width="111" height="100"></rect>
+        <text class="framelbl" x="-1" y="106.4">crop · -1 0 111 100</text>
+
+        <!-- the mark -->
+        <use href="#g-body" class="ink"></use>
+        <use href="#g-10" class="spark"></use>
+
+        <!-- solid-part hit + highlight layer -->
+        <use href="#g-01" class="hit" data-part="01"></use>
+        <use href="#g-02" class="hit" data-part="02"></use>
+        <use href="#g-03" class="hit" data-part="03"></use>
+        <use href="#g-04" class="hit" data-part="04"></use>
+        <use href="#g-05" class="hit" data-part="05"></use>
+        <use href="#g-06" class="hit" data-part="06"></use>
+        <use href="#g-07" class="hit" data-part="07"></use>
+        <use href="#g-10" class="hit" data-part="10"></use>
+
+        <!-- holes are re-punched over the solid highlights -->
+        <use href="#g-holes" class="sheetfill" style="pointer-events:none"></use>
+
+        <!-- hole hit + highlight layer, on top -->
+        <use href="#g-08" class="hit" data-part="08"></use>
+        <use href="#g-09" class="hit" data-part="09"></use>
+
+        <!-- tags -->
+        <g class="tag" data-part="04" tabindex="0" role="button" aria-label="Part 04, crest horn">
+          <path class="leader" d="M 36 -12 L 57 8"></path>
+          <circle class="tagdot" cx="34" cy="-18" r="7"></circle><text class="tagtxt" x="34" y="-18">04</text>
+          <circle class="taghit" cx="34" cy="-18" r="10"></circle></g>
+        <g class="tag" data-part="08" tabindex="0" role="button" aria-label="Part 08, eye">
+          <path class="leader" d="M 62 -11 L 59 14"></path>
+          <circle class="tagdot" cx="62" cy="-18" r="7"></circle><text class="tagtxt" x="62" y="-18">08</text>
+          <circle class="taghit" cx="62" cy="-18" r="10"></circle></g>
+        <g class="tag" data-part="01" tabindex="0" role="button" aria-label="Part 01, head bar">
+          <path class="leader" d="M 99 -11 L 88 13"></path>
+          <circle class="tagdot" cx="100" cy="-18" r="7"></circle><text class="tagtxt" x="100" y="-18">01</text>
+          <circle class="taghit" cx="100" cy="-18" r="10"></circle></g>
+        <g class="tag" data-part="02" tabindex="0" role="button" aria-label="Part 02, spine">
+          <path class="leader" d="M 121 50 L 66 51"></path>
+          <circle class="tagdot" cx="128" cy="50" r="7"></circle><text class="tagtxt" x="128" y="50">02</text>
+          <circle class="taghit" cx="128" cy="50" r="10"></circle></g>
+        <g class="tag" data-part="05" tabindex="0" role="button" aria-label="Part 05, tail barb">
+          <path class="leader" d="M 121 87 L 101 81"></path>
+          <circle class="tagdot" cx="128" cy="88" r="7"></circle><text class="tagtxt" x="128" y="88">05</text>
+          <circle class="taghit" cx="128" cy="88" r="10"></circle></g>
+        <g class="tag" data-part="03" tabindex="0" role="button" aria-label="Part 03, tail bar">
+          <path class="leader" d="M 99 110 L 78 88"></path>
+          <circle class="tagdot" cx="100" cy="116" r="7"></circle><text class="tagtxt" x="100" y="116">03</text>
+          <circle class="taghit" cx="100" cy="116" r="10"></circle></g>
+        <g class="tag" data-part="10" tabindex="0" role="button" aria-label="Part 10, the ember">
+          <path class="leader" d="M -19 11 L 4.5 28"></path>
+          <circle class="tagdot" cx="-24" cy="8" r="7"></circle><text class="tagtxt" x="-24" y="8">10</text>
+          <circle class="taghit" cx="-24" cy="8" r="10"></circle></g>
+        <g class="tag" data-part="09" tabindex="0" role="button" aria-label="Part 09, mouth slit">
+          <path class="leader" d="M -17 45 L 26 30"></path>
+          <circle class="tagdot" cx="-24" cy="45" r="7"></circle><text class="tagtxt" x="-24" y="45">09</text>
+          <circle class="taghit" cx="-24" cy="45" r="10"></circle></g>
+        <g class="tag" data-part="06" tabindex="0" role="button" aria-label="Part 06, front fang">
+          <path class="leader" d="M -17 61 L 22 44"></path>
+          <circle class="tagdot" cx="-24" cy="62" r="7"></circle><text class="tagtxt" x="-24" y="62">06</text>
+          <circle class="taghit" cx="-24" cy="62" r="10"></circle></g>
+        <g class="tag" data-part="07" tabindex="0" role="button" aria-label="Part 07, rear fang">
+          <path class="leader" d="M -17 79 L 33.5 41"></path>
+          <circle class="tagdot" cx="-24" cy="80" r="7"></circle><text class="tagtxt" x="-24" y="80">07</text>
+          <circle class="taghit" cx="-24" cy="80" r="10"></circle></g>
+      </svg>
+    </div>
+
+    <aside class="readout" id="readout" data-empty aria-live="polite">
+      <p class="num" id="ro-num">—</p>
+      <p class="nm" id="ro-name">Nothing selected</p>
+      <p class="body" id="ro-body">Point at any part of the mark, any numbered tag, or any row in the
+      register below. The dashed brass rectangle is the crop that actually ships.</p>
+      <p class="geo" id="ro-geo"></p>
+      <p class="hint">Click to pin · Esc to release</p>
+    </aside>
+  </div>
+</section>
+
+
+<hr class="rule">
+
+<!-- ══ reading the creature ══════════════════════════════ -->
+<section id="reading">
+  <div class="sechead">
+    <p class="label">How to read it</p>
+    <p class="meta">Letter first, creature second.</p>
+  </div>
+  <p class="note" style="margin-bottom:var(--dz-space-5)">The top arm is the <b>entire head</b> — both jaws
+  are inside that one bar, and the gape is the cut that separates them. The diagonal is the neck running into
+  the body. The bottom arm is the <b>tail</b>: no teeth, no eye, and it ends in the barb.</p>
+  <div class="sheet zoom">
+    <svg viewBox="-6 0 106 50" role="img" aria-label="The head bar, with the upper jaw and lower jaw tinted separately">
+      <title>Both jaws live inside the top bar</title>
+      <use href="#g-body" class="ghost"></use>
+      <use href="#g-upper" class="jaw-up"></use>
+      <use href="#g-04" class="jaw-up"></use>
+      <use href="#g-lower" class="jaw-low"></use>
+      <use href="#g-06" class="jaw-low"></use>
+      <use href="#g-07" class="jaw-low"></use>
+      <use href="#g-nub" class="nub"></use>
+      <use href="#g-08" class="sheetfill"></use>
+      <use href="#g-10" class="spark"></use>
+    </svg>
+  </div>
+  <ul class="legend">
+    <li><i style="background:var(--dz-cinnabar)"></i><span><b>Upper jaw and skull.</b> 14.5 deep at the muzzle,
+    widening to 17.6 at the throat, then solid 26 all the way back. Carries the eye (08) and the horn (04).</span></li>
+    <li><i style="background:var(--dz-brass)"></i><span><b>Lower jaw.</b> A 3.3-deep strip at the muzzle,
+    6.4 at the throat. Both fangs (06, 07) hang off it. This is the thinnest thing in the mark and the first
+    to close up at small sizes.</span></li>
+    <li><i class="hollow"></i><span><b>The gape (09)</b> is the knockout between them. It stops at x 47 —
+    behind that point the jaws rejoin and the bar is one solid piece.</span></li>
+    <li><i style="background:var(--dz-oxide)"></i><span><b>The nub.</b> The 5 units of gape that overshoot the
+    muzzle do not open the mouth — they fill solid. Finding 02.</span></li>
+  </ul>
+</section>
+<hr class="rule">
+
+<!-- ══ the register ══════════════════════════════════════ -->
+<section id="register">
+  <div class="sechead">
+    <p class="label">The register · ten parts</p>
+    <p class="meta">“Dials” are the things I can turn on your word.</p>
+  </div>
+
+  <div class="register">
+
+    <article class="part" id="p01" data-part="01">
+      <div class="chip"><svg viewBox="-6 0 120 100" aria-hidden="true">
+        <use href="#g-body" class="ghost"></use><use href="#g-holes" class="sheetfill"></use><use href="#g-01" class="lit"></use><use href="#g-holes" class="sheetfill"></use></svg></div>
+      <div>
+        <div class="head"><span class="idx">01</span><span class="nm">Head</span><span class="kind">solid · bar</span></div>
+        <p>The Z's top arm is the <em>entire</em> head — both jaws are inside this one bar, and the gape (09)
+        is the cut that separates them. Above the gape is the upper jaw, carrying the eye and the horn;
+        below it is a thin strip of lower jaw, carrying the fangs. Behind the throat at x 47 the two rejoin
+        and the bar is solid.</p>
+        <p class="geo">x 16 → 90 · y 10 → 36 · 74 × 26 · at the muzzle: upper jaw 14.5 deep, lower jaw 3.3 ·
+        at the throat (x 47): 17.6 / 6.4 · solid 26 behind x 47</p>
+        <ul class="dials"><li>length</li><li>depth</li><li>muzzle edge (x 16)</li><li>upper : lower jaw ratio — set by 09</li><li>right edge, where 02 overshoots</li></ul>
+      </div>
+    </article>
+
+    <article class="part" id="p02" data-part="02">
+      <div class="chip"><svg viewBox="-6 0 120 100" aria-hidden="true">
+        <use href="#g-body" class="ghost"></use><use href="#g-holes" class="sheetfill"></use><use href="#g-02" class="lit"></use><use href="#g-holes" class="sheetfill"></use></svg></div>
+      <div>
+        <div class="head"><span class="idx">02</span><span class="nm">Spine</span><span class="kind">solid · diagonal</span></div>
+        <p>Structurally the Z's stroke, anatomically the neck running into the tail. Both ends are cut
+        square to the stroke, which is why it overshoots each bar by exactly 8.4 — the notch at top-right
+        and the point at bottom-left are that overshoot, not separate shapes. Change the angle and both
+        move on their own.</p>
+        <p class="geo">44.3° from horizontal · thickness 24.0 · overshoot 8.4 at both ends · reaches x 98.38 / x 7.62</p>
+        <ul class="dials"><li>angle</li><li>thickness</li><li>overshoot length</li><li>square vs. mitred ends</li></ul>
+      </div>
+    </article>
+
+    <article class="part" id="p03" data-part="03">
+      <div class="chip"><svg viewBox="-6 0 120 100" aria-hidden="true">
+        <use href="#g-body" class="ghost"></use><use href="#g-holes" class="sheetfill"></use><use href="#g-03" class="lit"></use><use href="#g-holes" class="sheetfill"></use></svg></div>
+      <div>
+        <div class="head"><span class="idx">03</span><span class="nm">Tail</span><span class="kind">solid · bar</span></div>
+        <p>The Z's bottom arm. Not a jaw — the head is entirely part 01. This is the tail, swept right out
+        of the spine and ending in the barb (05). Its 74 × 26 is identical to the head bar, and that exact
+        match is what keeps the thing reading as a letter first and a creature second.</p>
+        <p class="geo">x 16 → 90 · y 64 → 90 · 74 × 26 · counter gap to 01: 28 · left edge flush with 01</p>
+        <ul class="dials"><li>length</li><li>depth</li><li>symmetry with 01 (exact today)</li><li>counter gap</li></ul>
+      </div>
+    </article>
+
+    <article class="part" id="p04" data-part="04">
+      <div class="chip"><svg viewBox="-6 0 120 100" aria-hidden="true">
+        <use href="#g-body" class="ghost"></use><use href="#g-holes" class="sheetfill"></use><use href="#g-04" class="lit"></use><use href="#g-holes" class="sheetfill"></use></svg></div>
+      <div>
+        <div class="head"><span class="idx">04</span><span class="nm">Crest horn</span><span class="kind">solid · spike</span></div>
+        <p>One spike raked back off the skull, 7 tall over an 18 base and leaning right. The rake is
+        what makes it read as horn rather than as a stray serif. The shipped mark carries a full dorsal
+        crest; this cut reduces it to a single tooth.</p>
+        <p class="geo">base (52,10) → (67,12) · apex (70,3) · 7 above the bar · rake +18 to the right</p>
+        <ul class="dials"><li>height</li><li>rake</li><li>base width</li><li>count — one, or a crest of three</li><li>position along 01</li></ul>
+      </div>
+    </article>
+
+    <article class="part" id="p05" data-part="05">
+      <div class="chip"><svg viewBox="-6 0 120 100" aria-hidden="true">
+        <use href="#g-body" class="ghost"></use><use href="#g-holes" class="sheetfill"></use><use href="#g-05" class="lit"></use><use href="#g-holes" class="sheetfill"></use></svg></div>
+      <div>
+        <div class="head"><span class="idx">05</span><span class="nm">Tail barb</span><span class="kind">solid · chevron</span></div>
+        <p>The arrowhead on the tail end. The notch at x 93 is the whole trick — without it this is a
+        plain triangle and the tail reads as a pointer, not a barb. It overhangs the tail bar on three
+        sides, so it is also the thing that decides the mark's right-hand bounding box.</p>
+        <p class="geo">tip (108,79) · notch (93,79) · span y 62 → 95 · overhang 18 right, 2 up, 5 down</p>
+        <ul class="dials"><li>reach</li><li>notch depth</li><li>vertical spread</li><li>symmetry about y 79</li></ul>
+      </div>
+    </article>
+
+    <article class="part" id="p06" data-part="06">
+      <div class="chip"><svg viewBox="-6 0 120 100" aria-hidden="true">
+        <use href="#g-body" class="ghost"></use><use href="#g-holes" class="sheetfill"></use><use href="#g-06" class="lit"></use><use href="#g-holes" class="sheetfill"></use></svg></div>
+      <div>
+        <div class="head"><span class="idx">06</span><span class="nm">Fang · front</span><span class="kind">solid · tooth</span></div>
+        <p>The long one. Hangs off the lower jaw — the thin strip of the head bar below the gape — and drops
+        11 clear of it into open space, which is the only reason the silhouette reads as a mouth from far
+        away. Dead vertical — no tilt.</p>
+        <p class="geo">base 9 wide (x 18 → 27) rooted at y 34 · length 13 · tip (22.5, 47) · 11 visible below the bar</p>
+        <ul class="dials"><li>length</li><li>base width</li><li>position along the lower jaw</li><li>tilt</li></ul>
+      </div>
+    </article>
+
+    <article class="part" id="p07" data-part="07">
+      <div class="chip"><svg viewBox="-6 0 120 100" aria-hidden="true">
+        <use href="#g-body" class="ghost"></use><use href="#g-holes" class="sheetfill"></use><use href="#g-07" class="lit"></use><use href="#g-holes" class="sheetfill"></use></svg></div>
+      <div>
+        <div class="head"><span class="idx">07</span><span class="nm">Fang · rear</span><span class="kind">solid · tooth</span></div>
+        <p>The short one, sitting 3 behind the front fang. The size step from 13 down to 9 is deliberate:
+        two equal fangs read as a comb, two unequal ones read as a mouth.</p>
+        <p class="geo">base 7 wide (x 30 → 37) rooted at y 34 · length 9 · tip (33.5, 43) · 7 visible below the bar · gap to 06: 3</p>
+        <ul class="dials"><li>length</li><li>base width</li><li>gap to 06</li><li>size step ratio</li><li>add a third</li></ul>
+      </div>
+    </article>
+
+    <article class="part" id="p08" data-part="08">
+      <div class="chip"><svg viewBox="-6 0 120 100" aria-hidden="true">
+        <use href="#g-body" class="ghost"></use><use href="#g-holes" class="sheetfill"></use><use href="#g-08" class="lit"></use></svg></div>
+      <div>
+        <div class="head"><span class="idx">08</span><span class="nm">Eye</span><span class="kind">hole · knockout</span></div>
+        <p>An 8 × 8 square knocked out of the upper jaw. Reverse-wound inside the same path, so it is a hole
+        in one shape rather than a second shape — that is what lets the mark sit on any ground in one colour.
+        Square on purpose: nothing in this system is rounded except the seal.</p>
+        <p class="geo">8 × 8 · centre (59, 19) · 5 below the bar top · 39 from the muzzle · 8 behind the throat</p>
+        <ul class="dials"><li>size</li><li>position</li><li>knockout vs. painted (see plate 03)</li><li>shape — square is a system rule</li></ul>
+      </div>
+    </article>
+
+    <article class="part" id="p09" data-part="09">
+      <div class="chip"><svg viewBox="-6 0 120 100" aria-hidden="true">
+        <use href="#g-body" class="ghost"></use><use href="#g-holes" class="sheetfill"></use><use href="#g-09" class="lit"></use></svg></div>
+      <div>
+        <div class="head"><span class="idx">09</span><span class="nm">Mouth slit</span><span class="kind">hole · knockout</span></div>
+        <p>The gape, and the part that does the most work: it is the cut that turns one bar into two jaws.
+        A wedge running 36 back from the muzzle, 9.2 tall at the opening and tapering to 2 at the throat, on
+        a level centreline. It overshoots the head bar's left edge by 5 — but that overshoot does not open
+        the mouth, it fills solid. See finding 02. In Ember the gape is left unpainted, so it takes whatever
+        the ground is; plate 01 fills the same wedge orange.</p>
+        <p class="geo">x 11 → 47 · 9.2 tall at the mouth → 2 at the throat · centreline y 28.6 ·
+        5 past the muzzle edge, of which all 5 render as ink</p>
+        <ul class="dials"><li>gape height</li><li>taper rate</li><li>length (where the jaws hinge)</li><li>centreline — raise it for a heavier lower jaw</li><li>overshoot past the muzzle</li><li>painted vs. knockout</li></ul>
+      </div>
+    </article>
+
+    <article class="part" id="p10" data-part="10">
+      <div class="chip"><svg viewBox="-6 0 120 100" aria-hidden="true">
+        <use href="#g-body" class="ghost"></use><use href="#g-holes" class="sheetfill"></use><use href="#g-10" class="lit"></use></svg></div>
+      <div>
+        <div class="head"><span class="idx">10</span><span class="nm">Ember</span><span class="kind">accent · #FF6A1F</span></div>
+        <p>One spark, thrown clear of the muzzle and tapering away from it. This is the whole idea of the
+        cut and the only orange in it — and it is the only variant in the series where the accent lives
+        <em>outside</em> the silhouette instead of colouring a part of it. Its blunt end faces the mouth and
+        its point trails left, so it reads as motion away rather than as an arrow aimed at the head.</p>
+        <p class="geo">1 triangle · blunt edge x 9, y 25.4 → 31.8 (6.4 tall) · apex (2, 28.6) · 7 long ·
+        2 clear of the muzzle tip · on the gape centreline</p>
+        <ul class="dials"><li>size</li><li>distance from the muzzle (2 now)</li><li>taper direction</li><li>height on the centreline</li><li>back to two or three</li><li>colour</li></ul>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ══ findings ══════════════════════════════════════════ -->
+<section id="findings">
+  <div class="sechead">
+    <p class="label">Findings · before you pick tweaks</p>
+  </div>
+
+  <div class="pair" style="margin-bottom:var(--dz-space-6)">
+    <figure>
+      <div class="box"><svg viewBox="8 0 104 100" role="img" aria-label="Ember before: three sparks, all clipped away">
+        <use href="#g-body" class="ink"></use><use href="#g-10-old" class="spark"></use></svg></div>
+      <figcaption class="cap"><b>Before</b><span class="meta">three sparks at x −2 → 8 · crop started at x 8 · zero orange pixels rendered</span></figcaption>
+    </figure>
+    <figure>
+      <div class="box"><svg viewBox="-1 0 111 100" role="img" aria-label="Ember now: one spark beside the muzzle">
+        <use href="#g-body" class="ink"></use><use href="#g-10" class="spark"></use></svg></div>
+      <figcaption class="cap"><b>Now</b><span class="meta">one ember, 2 clear of the muzzle · crop −1 0 111 100 · renders down to 24 px</span></figcaption>
+    </figure>
+  </div>
+
+  <div class="findings">
+    <div class="find">
+      <span class="tag-sev sev-fixed">Fixed</span>
+      <h3>01 — The embers were cropped away</h3>
+      <p class="say">The three original sparks sat at x −2 → 8 while the <code>viewBox</code> started at x 8, so
+      the SVG root clipped every one of them: the file rendered as solid <code>#121212</code> with no accent
+      anywhere. Replaced with a single ember at x 2 → 9 and the crop opened to
+      <code>viewBox="-1 0 111 100"</code>.</p>
+      <p class="say"><b style="color:var(--dz-bone)">What that cost.</b> The box grew from 104 × 100 to
+      111 × 100 — 9 units on the left, and the aspect moved from 1.04 to 1.11. Margins are now even at 3 left,
+      3 right, 3 top, 5 bottom. Any lockup or app-icon built on the old box needs re-centring. The diagonal's
+      bottom-left tip, previously clipped by 0.38, is now fully inside the frame.</p>
+      <p class="say">Measured on the new file: 586 orange pixels at 512 px, 18 at 96 px, 3 at 48 px, 1 at 32 px
+      and 24 px, 0 at 16 px. The ember is a colour cue, not a shape, below about 48 px.</p>
+    </div>
+    <div class="find">
+      <span class="tag-sev sev-break">Breaks</span>
+      <h3>02 — The muzzle overshoot fills solid instead of opening the mouth</h3>
+      <p class="say">The gape (09) runs from x 11 to x 47, but the head bar only starts at x 16. In that
+      5-unit overshoot the wedge is reverse-wound with nothing beneath it to subtract from, so
+      <code>fill-rule: nonzero</code> counts it as <em>filled</em>. Verified by rasterising the path and probing:
+      (13, 28.6), (11.8, 28.6), (13, 26) and (13, 31) all come back ink, while the same wedge inside the bar at
+      (30, 28.6) and (46, 28.6) is correctly empty.</p>
+      <p class="say">The result is a solid black nub floating in front of the muzzle, joined to the bar at two
+      corner points only — and the gape behind it becomes a fully enclosed slot rather than an open mouth. That
+      is a second unsanctioned island under DESIGN.md's hole invariant, and it is why the mouth closes up so
+      fast at small sizes.</p>
+      <p class="say"><b style="color:var(--dz-bone)">The real fix</b> is to stop drawing the head as one bar
+      with a reverse-wound wedge and draw the two jaws as separate forward-wound subpaths. Then the mouth is
+      genuinely open at the muzzle. The cheap fix — trim the wedge to start at x 16 — removes the nub but leaves
+      the gape a closed slot. Not touched: it changes the silhouette, and that is your call.</p>
+    </div>
+    <div class="find">
+      <span class="tag-sev sev-drift">Drift</span>
+      <h3>03 — The accent is not a brand colour</h3>
+      <p class="say"><code>#FF6A1F</code> is not in <code>tokens/danyzmaj.css</code>. The system's stamp red is
+      <code>--dz-cinnabar #DA3A20</code>; the text-safe red is <code>--dz-oxide #8E1F0E</code>. The whole
+      snarl-orange series does this — worth deciding whether orange is a new token or the series should be
+      restruck in cinnabar.</p>
+    </div>
+    <div class="find">
+      <span class="tag-sev sev-drift">Drift</span>
+      <h3>04 — The ink is not the brand ink</h3>
+      <p class="say">The mark fills <code>#121212</code>, a neutral black. The system ground is
+      <code>--dz-ink #171210</code>, a warm iron-oxide black. On a bone sheet the difference is small; sitting
+      on the press bed it is visible as a cool patch.</p>
+    </div>
+    <div class="find">
+      <span class="tag-sev sev-drift">Drift</span>
+      <h3>05 — Two colours inside the mark contradicts DESIGN.md</h3>
+      <p class="say">The guide currently reads: <em>“The mark is a single filled path with fill-rule: nonzero…
+      Keep it that way: no second colour inside it.”</em> Every plate in this series puts a second colour inside
+      the silhouette. Either the rule gains an explicit accent-cut exception, or these stay explorations and
+      the single-colour cuts remain the shipped mark.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ══ size ladder ═══════════════════════════════════════ -->
+<section id="scale">
+  <div class="sechead">
+    <p class="label">At size</p>
+    <p class="meta">Same geometry as the file, at the sizes it has to survive.</p>
+  </div>
+  <div class="ladder">
+    <figure><svg viewBox="-1 0 111 100" style="height:96px;width:auto"><use href="#g-body" class="ink"></use><use href="#g-10" class="spark"></use></svg><figcaption>96 px</figcaption></figure>
+    <figure><svg viewBox="-1 0 111 100" style="height:48px;width:auto"><use href="#g-body" class="ink"></use><use href="#g-10" class="spark"></use></svg><figcaption>48 px</figcaption></figure>
+    <figure><svg viewBox="-1 0 111 100" style="height:32px;width:auto"><use href="#g-body" class="ink"></use><use href="#g-10" class="spark"></use></svg><figcaption>32 px</figcaption></figure>
+    <figure><svg viewBox="-1 0 111 100" style="height:24px;width:auto"><use href="#g-body" class="ink"></use><use href="#g-10" class="spark"></use></svg><figcaption>24 px</figcaption></figure>
+    <figure><svg viewBox="-1 0 111 100" style="height:16px;width:auto"><use href="#g-body" class="ink"></use><use href="#g-10" class="spark"></use></svg><figcaption>16 px</figcaption></figure>
+  </div>
+  <p class="note" style="margin-top:var(--dz-space-5)">The gape (09) is an enclosed slot, not a break in the
+  outline — finding 02 — so it fills in early: legible at 48 px, a smudge by 24 px. The rear fang (07) and the
+  horn's rake (04) close up around the same point, and the eye (08) is the first thing to go. The ember (10)
+  measures 3 orange pixels at 48 px and 1 at 32 px: below 48 px it is a colour cue, not a shape. Only the
+  parts that touch the outline — 01, 02, 03, 05 — hold at favicon size.</p>
+</section>
+
+<hr class="rule">
+
+<!-- ══ siblings ══════════════════════════════════════════ -->
+<section id="siblings">
+  <div class="sechead">
+    <p class="label">The series</p>
+    <p class="meta">Same body, different part carries the colour. You can mix.</p>
+  </div>
+  <div class="siblings">
+    <div class="sib"><div class="box"><img src="00-snarl-red.svg" alt="Snarl, red slit"></div><div class="cap"><b>00 · Snarl</b><span class="meta">slit in #E5231B</span></div></div>
+    <div class="sib"><div class="box"><img src="01-slit.svg" alt="Orange slit"></div><div class="cap"><b>01 · Slit</b><span class="meta">part 09 painted</span></div></div>
+    <div class="sib"><div class="box"><img src="02-fangs.svg" alt="Orange fangs"></div><div class="cap"><b>02 · Fangs</b><span class="meta">parts 06 + 07</span></div></div>
+    <div class="sib"><div class="box"><img src="03-eye.svg" alt="Orange eye"></div><div class="cap"><b>03 · Eye</b><span class="meta">part 08 filled</span></div></div>
+    <div class="sib"><div class="box"><img src="04-barb.svg" alt="Orange barb"></div><div class="cap"><b>04 · Barb</b><span class="meta">part 05</span></div></div>
+    <div class="sib here"><div class="box"><img src="05-ember.svg" alt="Ember"></div><div class="cap"><b>05 · Ember</b><span class="meta">part 10 — one spark</span></div></div>
+    <div class="sib"><div class="box"><img src="06-brow.svg" alt="Orange horn"></div><div class="cap"><b>06 · Brow</b><span class="meta">part 04</span></div></div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ══ phrasebook ════════════════════════════════════════ -->
+<section id="say">
+  <div class="sechead">
+    <p class="label">How to ask</p>
+    <p class="meta">Number + dial + direction. That is all I need.</p>
+  </div>
+  <div class="phrase">
+    <div><span>10</span> — bigger, and right up against the muzzle.</div>
+    <div><span>06</span> longer, <span>07</span> gone. One fang.</div>
+    <div><span>02</span> steeper — 50° — and thinner, 20.</div>
+    <div><span>09</span> centreline up 2 — heavier lower jaw, same gape.</div>
+    <div><span>09</span> twice the gape at the mouth, same throat. Angrier.</div>
+    <div><span>04</span> three horns instead of one, stepping down toward the muzzle.</div>
+    <div><span>05</span> deeper notch, less reach. Keep the box at x 108.</div>
+    <div><span>08</span> smaller and pushed forward, toward the muzzle.</div>
+    <div><span>01</span> + <span>03</span> shallower — 22 instead of 26 — and the counters open up.</div>
+  </div>
+  <p class="note" style="margin-top:var(--dz-space-5)">Vague is fine too: “make it snarl harder” resolves to 09,
+  06 and 04. Say the feeling and I will name the parts back to you before touching anything.</p>
+</section>
+
+<footer>
+  <p class="label">danyzmaj · explorations</p>
+  <p class="note" style="margin-top:var(--dz-space-3)">Anatomy of <code>05-ember.svg</code>. Geometry read from
+  the file, not redrawn — every coordinate on this page is the one in the path data. Colour and type from
+  <code>tokens/danyzmaj.css</code>.</p>
+</footer>
+
+</div>
+
+<script>
+(() => {
+  const nodes = [...document.querySelectorAll('[data-part]')];
+  const ro = document.getElementById('readout');
+  const els = {num:document.getElementById('ro-num'), name:document.getElementById('ro-name'),
+               body:document.getElementById('ro-body'), geo:document.getElementById('ro-geo')};
+  const empty = {name:els.name.textContent, body:els.body.textContent};
+
+  // the register is the single source of copy — read it, don't duplicate it
+  const info = {};
+  for (const art of document.querySelectorAll('.part')) {
+    info[art.dataset.part] = {
+      name: art.querySelector('.nm').textContent,
+      body: art.querySelector('p').textContent.replace(/\s+/g,' ').trim(),
+      geo:  art.querySelector('.geo').textContent.replace(/\s+/g,' ').trim(),
+    };
+  }
+
+  let pinned = null;
+
+  const paint = id => {
+    for (const n of nodes) n.classList.toggle('on', n.dataset.part === id);
+    if (!id) {
+      ro.setAttribute('data-empty','');
+      els.num.textContent = '—'; els.name.textContent = empty.name;
+      els.body.textContent = empty.body; els.geo.textContent = '';
+      return;
+    }
+    const d = info[id];
+    ro.removeAttribute('data-empty');
+    els.num.textContent = id; els.name.textContent = d.name;
+    els.body.textContent = d.body; els.geo.textContent = d.geo;
+  };
+
+  for (const n of nodes) {
+    n.addEventListener('pointerenter', () => { if (!pinned) paint(n.dataset.part); });
+    n.addEventListener('pointerleave', () => { if (!pinned) paint(null); });
+    n.addEventListener('focus',        () => { if (!pinned) paint(n.dataset.part); });
+    n.addEventListener('blur',         () => { if (!pinned) paint(null); });
+    n.addEventListener('click', e => {
+      e.preventDefault();
+      pinned = pinned === n.dataset.part ? null : n.dataset.part;
+      paint(pinned);
+    });
+    n.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); n.click(); }
+    });
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && pinned) { pinned = null; paint(null); } });
+})();
+</script>
+</body>
+</html>

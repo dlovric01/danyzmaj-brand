@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>danyzmaj — the fanged Z, four ways</title>
+<meta name="description" content="Direction 08 and three siblings: the letter Z as the creature.">
+<link rel="icon" type="image/svg+xml" href="logo/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Chivo:wght@400;700;900&family=Familjen+Grotesk:wght@400;700&family=JetBrains+Mono:wght@400;500&family=Kanit:wght@400;800&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+<style>*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#0E0C0B;color:#E8E4DA;font-family:Chivo,Archivo,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+.mono{font-family:'JetBrains Mono',monospace}
+.xs{font-size:.72rem;line-height:1.5;letter-spacing:.04em}
+.lbl{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--m);margin:32px 0 12px}
+.body{font-family:var(--text,Chivo);color:var(--t);max-width:56ch;margin:0;font-size:.95rem}
+.top{position:sticky;top:0;z-index:9;background:#0E0C0B;border-bottom:1px solid #2A2521}
+.top nav{max-width:1180px;margin:auto;display:flex;gap:22px;align-items:center;overflow-x:auto;padding:.75rem clamp(1rem,4vw,3rem);
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;scrollbar-width:none}
+.top nav::-webkit-scrollbar{display:none}
+.top a{color:#8A7F72;text-decoration:none;white-space:nowrap}
+.top a:hover,.top a:focus-visible{color:#E8E4DA}
+:focus-visible{outline:2px solid #E5231B;outline-offset:3px}
+.intro{scroll-margin-top:46px;max-width:1180px;margin:auto;padding:clamp(3rem,8vw,6rem) clamp(1rem,4vw,3rem)}
+.intro h1{font-family:Chivo,sans-serif;font-weight:900;letter-spacing:-.035em;line-height:.92;font-size:clamp(2.6rem,8vw,5.4rem);margin:0}
+.intro p{max-width:62ch;color:#BFB6A9;margin:1.4rem 0 0}
+.intro .fixed{display:grid;gap:14px;margin-top:2.6rem;padding-top:1.6rem;border-top:1px solid #2A2521}
+@media(min-width:760px){.intro .fixed{grid-template-columns:repeat(3,1fr)}}
+.dir{scroll-margin-top:46px;background:var(--g);color:var(--t);padding:clamp(3rem,7vw,5.5rem) 0;font-family:var(--text)}
+.dwrap{max-width:1180px;margin:auto;padding-inline:clamp(1rem,4vw,3rem)}
+.dhead{max-width:64ch}
+.wm{font-family:var(--disp);font-weight:var(--ww);letter-spacing:var(--wt);text-transform:var(--wc);margin:0;color:var(--t)}
+.big{font-size:clamp(2.1rem,5.4vw,3.6rem);line-height:1;margin:.35rem 0 0}
+.sub{color:var(--al);font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;margin:.5rem 0 0}
+.world{color:var(--m);margin:1.1rem 0 0;font-size:1.02rem;max-width:58ch}
+.delta{margin:1.1rem 0 0;padding:12px 14px;border-left:3px solid var(--al);background:color-mix(in srgb,var(--m) 10%,transparent);
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;line-height:1.6;color:var(--t);max-width:58ch}
+.dgrid{display:grid;gap:clamp(2rem,4vw,3.5rem);margin-top:clamp(2rem,5vw,3.5rem)}
+@media(min-width:940px){.dgrid{grid-template-columns:1fr 1fr}}
+.col{min-width:0}
+.markbox{background:var(--panel-soft);border:1px solid color-mix(in srgb,var(--m) 40%,transparent);
+  padding:clamp(1.5rem,4vw,2.5rem);display:grid;place-items:center;min-height:17rem}
+.sizes{display:flex;align-items:flex-end;gap:16px;margin-top:14px}
+.lockup{display:flex;align-items:center;gap:14px;background:var(--panel-soft);
+  border:1px solid color-mix(in srgb,var(--m) 40%,transparent);padding:18px 20px}
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:1px;border:1px solid color-mix(in srgb,var(--m) 40%,transparent)}
+.sw{min-height:6.5rem;display:flex;align-items:flex-end;padding:10px}
+.spec{font-size:clamp(2.4rem,7vw,4rem);line-height:1;text-transform:none}
+.art{margin:0}
+.cap{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--m);margin:10px 0 0;letter-spacing:.03em}
+.verdict{margin-top:30px;padding-top:6px;border-top:1px solid color-mix(in srgb,var(--m) 40%,transparent)}
+footer{max-width:1180px;margin:auto;padding:clamp(3rem,7vw,5rem) clamp(1rem,4vw,3rem)}
+footer p{max-width:62ch;color:#BFB6A9}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}</style>
+</head>
+<body>
+
+<div class="top"><nav aria-label="Directions">
+  <a href="#top">the fanged Z</a>
+  <a href="#s08">08 anchor</a><a href="#sA">08A quiet</a><a href="#sB">08B ridgeback</a><a href="#sC">08C twohead</a>
+  <a href="propositions-all-nine.html" style="color:#8A7F72">all nine &rarr;</a>
+</nav></div>
+
+<div class="intro" id="top">
+  <p class="mono xs" style="color:#FF6A5E;letter-spacing:.18em">DANYZMAJ · DIRECTION 08 · THE FANGED Z, FOUR WAYS</p>
+  <h1>You picked the<br>one that bites.</h1>
+  <p>Everything else is cleared away. What follows is the mark you chose and three siblings that keep its rule
+  and change one thing each: a heavy <b style="color:#E8E4DA">Z</b> that is also the animal, drawn as a single
+  glyph, in one ink plus one accent.</p>
+  <p>Each sibling makes a different bet. <b style="color:#E8E4DA">08A</b> bets on restraint,
+  <b style="color:#E8E4DA">08B</b> bets on a reusable system, <b style="color:#E8E4DA">08C</b> bets on the myth.
+  The block under each heading tells you exactly what changed from 08.</p>
+  <div class="fixed">
+    <p class="mono xs" style="color:#8A7F72">THE FAMILY RULE<br><span style="color:#E8E4DA">The letter comes first. The creature is made only of cuts and terminals.</span></p>
+    <p class="mono xs" style="color:#8A7F72">CONSTANT<br><span style="color:#E8E4DA">One glyph, one ink, one accent. No gradients, no second colour inside the letter.</span></p>
+    <p class="mono xs" style="color:#8A7F72">NEXT<br><span style="color:#E8E4DA">Say a letter. It gets the full kit — cuts, tokens, favicons, social card, guidelines.</span></p>
+  </div>
+</div>
+
+<section class="dir" id="s08" aria-label="08 — Fanged Z" style="--g:#FAF7F2; --t:#121212; --m:#6E6A66; --a:#E5231B; --al:#C0130C; --panel-soft:#F1EDE6; --disp:Chivo, Archivo, sans-serif; --text:Chivo, Archivo, sans-serif; --ww:900; --wt:-.02em; --wc:uppercase">
+  <div class="dwrap">
+    <header class="dhead">
+      <p class="mono xs" style="color:var(--al);letter-spacing:.18em">DIRECTION 08</p>
+      <h2 class="wm big">Fanged Z</h2>
+      <p class="sub">as you picked it</p>
+      <p class="world">The letter is the creature. A heavy Z opens a jaw at its top-left terminal, grows a brow horn and a barbed tail, and sticks its tongue out. You read the letter first and the animal half a second later.</p>
+      <p class="delta">Nothing. This is the mark you chose, unchanged.</p>
+    </header>
+    <div class="dgrid">
+      <div class="col">
+        <div class="markbox"><svg width="250" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#E5231B" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 40.00 L 22.00 25.60 Z M 30.00 34.60 L 35.00 25.00 L 40.00 33.20 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 12.00 37.50 L 48.00 28.60 L 12.00 20.50 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z"/></svg></div>
+        <div class="sizes"><svg width="48" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#E5231B" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 40.00 L 22.00 25.60 Z M 30.00 34.60 L 35.00 25.00 L 40.00 33.20 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 12.00 37.50 L 48.00 28.60 L 12.00 20.50 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z"/></svg><svg width="32" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#E5231B" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 40.00 L 22.00 25.60 Z M 30.00 34.60 L 35.00 25.00 L 40.00 33.20 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 12.00 37.50 L 48.00 28.60 L 12.00 20.50 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z"/></svg><svg width="16" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#E5231B" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 40.00 L 22.00 25.60 Z M 30.00 34.60 L 35.00 25.00 L 40.00 33.20 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 12.00 37.50 L 48.00 28.60 L 12.00 20.50 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z"/></svg>
+          <span class="mono xs" style="color:var(--m)">48 · 32 · 16<br>The jaw survives to 16px as a notch.</span></div>
+        <p class="lbl">Lockup</p>
+        <div class="lockup"><svg width="44" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#E5231B" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 40.00 L 22.00 25.60 Z M 30.00 34.60 L 35.00 25.00 L 40.00 33.20 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 12.00 37.50 L 48.00 28.60 L 12.00 20.50 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z"/></svg><span class="wm" style="font-size:1.6rem;line-height:1">DANYZMAJ</span></div>
+        <p class="lbl">Palette</p>
+        <div class="swatches"><div class="sw" style="background:#FAF7F2"><span class="mono xs" style="color:#171210">chalk<br>#FAF7F2<br><em style="opacity:.8;font-style:normal">ground</em></span></div><div class="sw" style="background:#121212"><span class="mono xs" style="color:#F2EDE4">jet<br>#121212<br><em style="opacity:.8;font-style:normal">the letter</em></span></div><div class="sw" style="background:#E5231B"><span class="mono xs" style="color:#000000">signal<br>#E5231B<br><em style="opacity:.8;font-style:normal">the tongue</em></span></div><div class="sw" style="background:#6E6A66"><span class="mono xs" style="color:#F2EDE4">grey<br>#6E6A66<br><em style="opacity:.8;font-style:normal">secondary type</em></span></div></div>
+        <p class="lbl">Type</p>
+        <p class="wm spec">Zmaj</p>
+        <p class="mono xs" style="color:var(--m);margin:6px 0 0">Chivo 900 · display</p>
+        <p class="body" style="margin-top:12px">Chivo carries the running text: proposals, invoices,
+        the long paragraph on a case page.</p>
+      </div>
+      <div class="col">
+        <p class="lbl" style="margin-top:0">Applied</p>
+        <div class="art" style="background:#121212;padding:28px;text-align:center">
+  <div style="display:grid;place-items:center"><svg width="124" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#E5231B" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z"/><path fill="#FAF7F2" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 40.00 L 22.00 25.60 Z M 30.00 34.60 L 35.00 25.00 L 40.00 33.20 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 12.00 37.50 L 48.00 28.60 L 12.00 20.50 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z"/></svg></div>
+  <p class="wm" style="color:#FAF7F2;font-size:1.7rem;margin:16px 0 0;line-height:1">DANYZMAJ</p>
+  <p class="mono xs" style="color:#FF6A5E;margin:6px 0 0">CONTRACT ENGINEERING · DANYZMAJ.COM</p>
+</div>
+<p class="cap">A die-cut sticker and, unchanged, the avatar and the favicon.</p>
+        <div class="verdict">
+          <p class="lbl" style="color:var(--al)">Best for</p>
+          <p class="body">One glyph does everything — monogram, favicon, avatar, mascot — and it prints in black, white and one red anywhere on earth.</p>
+          <p class="lbl" style="color:var(--al)">Risk</p>
+          <p class="body">The most mascot-forward of the four. It will read younger than the three below it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="dir" id="sA" aria-label="08A — Quiet Fang" style="--g:#F5F3EE; --t:#16181A; --m:#5E6165; --a:#9E2B1E; --al:#9E2B1E; --panel-soft:#EDEAE3; --disp:'Familjen Grotesk', Archivo, sans-serif; --text:'Familjen Grotesk', Archivo, sans-serif; --ww:700; --wt:-.015em; --wc:uppercase">
+  <div class="dwrap">
+    <header class="dhead">
+      <p class="mono xs" style="color:var(--al);letter-spacing:.18em">DIRECTION 08A</p>
+      <h2 class="wm big">Quiet Fang</h2>
+      <p class="sub">the volume down</p>
+      <p class="world">The same idea with everything decorative removed. No horn, no fang, no tongue, no barbed tail — one jaw cut into the top-left terminal and one square eye. It reads as a serious monogram, and the animal only arrives on the second look.</p>
+      <p class="delta">Removed: brow horn, both fangs, the tongue, the barbed tail. Kept: the jaw and the eye.</p>
+    </header>
+    <div class="dgrid">
+      <div class="col">
+        <div class="markbox"><svg width="250" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#16181A" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 12.00 29.50 L 45.00 26.20 L 12.00 17.50 Z M 53.00 23.00 L 61.00 23.00 L 61.00 15.00 L 53.00 15.00 Z"/></svg></div>
+        <div class="sizes"><svg width="48" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#16181A" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 12.00 29.50 L 45.00 26.20 L 12.00 17.50 Z M 53.00 23.00 L 61.00 23.00 L 61.00 15.00 L 53.00 15.00 Z"/></svg><svg width="32" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#16181A" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 12.00 29.50 L 45.00 26.20 L 12.00 17.50 Z M 53.00 23.00 L 61.00 23.00 L 61.00 15.00 L 53.00 15.00 Z"/></svg><svg width="16" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#16181A" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 12.00 29.50 L 45.00 26.20 L 12.00 17.50 Z M 53.00 23.00 L 61.00 23.00 L 61.00 15.00 L 53.00 15.00 Z"/></svg>
+          <span class="mono xs" style="color:var(--m)">48 · 32 · 16<br>Cleanest small of the four — two shapes cannot break.</span></div>
+        <p class="lbl">Lockup</p>
+        <div class="lockup"><svg width="44" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#16181A" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 12.00 29.50 L 45.00 26.20 L 12.00 17.50 Z M 53.00 23.00 L 61.00 23.00 L 61.00 15.00 L 53.00 15.00 Z"/></svg><span class="wm" style="font-size:1.6rem;line-height:1">DANYZMAJ</span></div>
+        <p class="lbl">Palette</p>
+        <div class="swatches"><div class="sw" style="background:#F5F3EE"><span class="mono xs" style="color:#171210">paper<br>#F5F3EE<br><em style="opacity:.8;font-style:normal">ground</em></span></div><div class="sw" style="background:#16181A"><span class="mono xs" style="color:#F2EDE4">ink<br>#16181A<br><em style="opacity:.8;font-style:normal">the letter</em></span></div><div class="sw" style="background:#9E2B1E"><span class="mono xs" style="color:#F2EDE4">brick<br>#9E2B1E<br><em style="opacity:.8;font-style:normal">one accent</em></span></div><div class="sw" style="background:#5E6165"><span class="mono xs" style="color:#F2EDE4">slate<br>#5E6165<br><em style="opacity:.8;font-style:normal">secondary type</em></span></div></div>
+        <p class="lbl">Type</p>
+        <p class="wm spec">Zmaj</p>
+        <p class="mono xs" style="color:var(--m);margin:6px 0 0">Familjen Grotesk 700 · display</p>
+        <p class="body" style="margin-top:12px">Familjen Grotesk carries the running text: proposals, invoices,
+        the long paragraph on a case page.</p>
+      </div>
+      <div class="col">
+        <p class="lbl" style="margin-top:0">Applied</p>
+        <div class="art" style="background:#EDEAE3;padding:26px">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
+    <div style="display:flex;align-items:center;gap:13px"><svg width="40" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#16181A" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 12.00 29.50 L 45.00 26.20 L 12.00 17.50 Z M 53.00 23.00 L 61.00 23.00 L 61.00 15.00 L 53.00 15.00 Z"/></svg>
+      <span class="wm" style="color:#16181A;font-size:1.35rem;line-height:1">DANYZMAJ</span></div>
+    <span class="mono xs" style="color:#5E6165">INVOICE 0001</span>
+  </div>
+  <hr style="border:0;height:1px;background:#5E6165;opacity:.35;margin:20px 0 14px">
+  <div style="display:flex;justify-content:space-between;gap:12px">
+    <span class="mono xs" style="color:#5E6165">SERVICES RENDERED · ONE OPERATOR</span>
+    <span class="mono xs" style="color:#9E2B1E">DANYZMAJ.COM</span>
+  </div>
+</div>
+<p class="cap">An invoice header. The test any mark has to pass is looking sober on a document about money.</p>
+        <div class="verdict">
+          <p class="lbl" style="color:var(--al)">Best for</p>
+          <p class="body">It grows up with you. This is the version that survives a rate rise and an enterprise procurement form without being redrawn.</p>
+          <p class="lbl" style="color:var(--al)">Risk</p>
+          <p class="body">It costs you the joke. Nobody screenshots restraint, and the dragon needs explaining.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="dir" id="sB" aria-label="08B — Ridgeback" style="--g:#F4F1EA; --t:#14161A; --m:#5D6570; --a:#B01226; --al:#B01226; --panel-soft:#EAE6DC; --disp:Oswald, Archivo, sans-serif; --text:Archivo, sans-serif; --ww:600; --wt:.02em; --wc:uppercase">
+  <div class="dwrap">
+    <header class="dhead">
+      <p class="mono xs" style="color:var(--al);letter-spacing:.18em">DIRECTION 08B</p>
+      <h2 class="wm big">Ridgeback</h2>
+      <p class="sub">the detail becomes a system</p>
+      <p class="world">The dragon-ness moves out of the head and into the spine: three scale nicks cut into the diagonal, plus a spade tail. Because they are cut in rather than stuck on, the silhouette stays a clean Z — and the nick becomes a device you can repeat on rules, edges and dividers.</p>
+      <p class="delta">Added: three subtractive scale nicks along the diagonal, a spade tail. Removed: the brow horn, the lower fang, the tongue.</p>
+    </header>
+    <div class="dgrid">
+      <div class="col">
+        <div class="markbox"><svg width="250" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#14161A" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 36.00 27.80 L 29.00 39.00 L 23.00 26.60 Z M 86.00 64.00 L 106.00 79.00 L 86.00 94.00 Z M 13.00 35.40 L 45.00 28.20 L 13.00 21.00 Z M 53.00 23.00 L 61.00 23.00 L 61.00 15.00 L 53.00 15.00 Z M 57.19 31.51 L 65.49 32.53 L 65.67 24.18 Z M 40.91 45.59 L 49.21 46.61 L 49.39 38.26 Z M 24.63 59.67 L 32.93 60.69 L 33.11 52.34 Z M 97.00 81.50 L 106.00 79.00 L 97.00 76.50 Z"/></svg></div>
+        <div class="sizes"><svg width="48" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#14161A" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 36.00 27.80 L 29.00 39.00 L 23.00 26.60 Z M 86.00 64.00 L 106.00 79.00 L 86.00 94.00 Z M 13.00 35.40 L 45.00 28.20 L 13.00 21.00 Z M 53.00 23.00 L 61.00 23.00 L 61.00 15.00 L 53.00 15.00 Z M 57.19 31.51 L 65.49 32.53 L 65.67 24.18 Z M 40.91 45.59 L 49.21 46.61 L 49.39 38.26 Z M 24.63 59.67 L 32.93 60.69 L 33.11 52.34 Z M 97.00 81.50 L 106.00 79.00 L 97.00 76.50 Z"/></svg><svg width="32" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#14161A" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 36.00 27.80 L 29.00 39.00 L 23.00 26.60 Z M 86.00 64.00 L 106.00 79.00 L 86.00 94.00 Z M 13.00 35.40 L 45.00 28.20 L 13.00 21.00 Z M 53.00 23.00 L 61.00 23.00 L 61.00 15.00 L 53.00 15.00 Z M 57.19 31.51 L 65.49 32.53 L 65.67 24.18 Z M 40.91 45.59 L 49.21 46.61 L 49.39 38.26 Z M 24.63 59.67 L 32.93 60.69 L 33.11 52.34 Z M 97.00 81.50 L 106.00 79.00 L 97.00 76.50 Z"/></svg><svg width="16" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#14161A" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 36.00 27.80 L 29.00 39.00 L 23.00 26.60 Z M 86.00 64.00 L 106.00 79.00 L 86.00 94.00 Z M 13.00 35.40 L 45.00 28.20 L 13.00 21.00 Z M 53.00 23.00 L 61.00 23.00 L 61.00 15.00 L 53.00 15.00 Z M 57.19 31.51 L 65.49 32.53 L 65.67 24.18 Z M 40.91 45.59 L 49.21 46.61 L 49.39 38.26 Z M 24.63 59.67 L 32.93 60.69 L 33.11 52.34 Z M 97.00 81.50 L 106.00 79.00 L 97.00 76.50 Z"/></svg>
+          <span class="mono xs" style="color:var(--m)">48 · 32 · 16<br>Nicks shallow out below 24px; the jaw and tail carry it.</span></div>
+        <p class="lbl">Lockup</p>
+        <div class="lockup"><svg width="44" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#14161A" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 36.00 27.80 L 29.00 39.00 L 23.00 26.60 Z M 86.00 64.00 L 106.00 79.00 L 86.00 94.00 Z M 13.00 35.40 L 45.00 28.20 L 13.00 21.00 Z M 53.00 23.00 L 61.00 23.00 L 61.00 15.00 L 53.00 15.00 Z M 57.19 31.51 L 65.49 32.53 L 65.67 24.18 Z M 40.91 45.59 L 49.21 46.61 L 49.39 38.26 Z M 24.63 59.67 L 32.93 60.69 L 33.11 52.34 Z M 97.00 81.50 L 106.00 79.00 L 97.00 76.50 Z"/></svg><span class="wm" style="font-size:1.6rem;line-height:1">DANYZMAJ</span></div>
+        <p class="lbl">Palette</p>
+        <div class="swatches"><div class="sw" style="background:#F4F1EA"><span class="mono xs" style="color:#171210">bone<br>#F4F1EA<br><em style="opacity:.8;font-style:normal">ground</em></span></div><div class="sw" style="background:#14161A"><span class="mono xs" style="color:#F2EDE4">ink<br>#14161A<br><em style="opacity:.8;font-style:normal">the letter</em></span></div><div class="sw" style="background:#B01226"><span class="mono xs" style="color:#F2EDE4">crimson<br>#B01226<br><em style="opacity:.8;font-style:normal">the nick</em></span></div><div class="sw" style="background:#5D6570"><span class="mono xs" style="color:#F2EDE4">steel<br>#5D6570<br><em style="opacity:.8;font-style:normal">secondary type</em></span></div></div>
+        <p class="lbl">Type</p>
+        <p class="wm spec">Zmaj</p>
+        <p class="mono xs" style="color:var(--m);margin:6px 0 0">Oswald 600 · display</p>
+        <p class="body" style="margin-top:12px">Archivo carries the running text: proposals, invoices,
+        the long paragraph on a case page.</p>
+      </div>
+      <div class="col">
+        <p class="lbl" style="margin-top:0">Applied</p>
+        <div class="art" style="background:#EAE6DC;padding:0">
+  <div style="height:13px"><svg width="100%" viewBox="0 0 340 13" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path fill="#B01226" fill-rule="nonzero" d="M 20.08 0.00 L 13.08 13.00 L 6.08 0.00 Z M 46.23 0.00 L 39.23 13.00 L 32.23 0.00 Z M 72.38 0.00 L 65.38 13.00 L 58.38 0.00 Z M 98.54 0.00 L 91.54 13.00 L 84.54 0.00 Z M 124.69 0.00 L 117.69 13.00 L 110.69 0.00 Z M 150.85 0.00 L 143.85 13.00 L 136.85 0.00 Z M 177.00 0.00 L 170.00 13.00 L 163.00 0.00 Z M 203.15 0.00 L 196.15 13.00 L 189.15 0.00 Z M 229.31 0.00 L 222.31 13.00 L 215.31 0.00 Z M 255.46 0.00 L 248.46 13.00 L 241.46 0.00 Z M 281.62 0.00 L 274.62 13.00 L 267.62 0.00 Z M 307.77 0.00 L 300.77 13.00 L 293.77 0.00 Z M 333.92 0.00 L 326.92 13.00 L 319.92 0.00 Z"/></svg></div>
+  <div style="padding:22px 24px 24px">
+    <div style="display:flex;align-items:center;gap:14px"><svg width="46" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#14161A" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 36.00 27.80 L 29.00 39.00 L 23.00 26.60 Z M 86.00 64.00 L 106.00 79.00 L 86.00 94.00 Z M 13.00 35.40 L 45.00 28.20 L 13.00 21.00 Z M 53.00 23.00 L 61.00 23.00 L 61.00 15.00 L 53.00 15.00 Z M 57.19 31.51 L 65.49 32.53 L 65.67 24.18 Z M 40.91 45.59 L 49.21 46.61 L 49.39 38.26 Z M 24.63 59.67 L 32.93 60.69 L 33.11 52.34 Z M 97.00 81.50 L 106.00 79.00 L 97.00 76.50 Z"/></svg>
+      <span class="wm" style="color:#14161A;font-size:1.4rem;line-height:1">DANYZMAJ</span></div>
+    <div style="margin-top:18px"><div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid rgba(20,22,26,.14)"><span class="mono xs" style="color:#5D6570">EDGE DEVICE</span><span class="mono xs" style="color:#14161A">THE NICK, REPEATED</span></div><div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid rgba(20,22,26,.14)"><span class="mono xs" style="color:#5D6570">RULE WEIGHT</span><span class="mono xs" style="color:#14161A">1PX + 13PX TEETH</span></div><div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid rgba(20,22,26,.14)"><span class="mono xs" style="color:#5D6570">USE</span><span class="mono xs" style="color:#14161A">SECTION EDGES, SLIDES, CARDS</span></div></div>
+  </div>
+</div>
+<p class="cap">The nick leaves the logo and becomes a section edge. One device, used everywhere.</p>
+        <div class="verdict">
+          <p class="lbl" style="color:var(--al)">Best for</p>
+          <p class="body">The only one of the four that hands you more than a logo — a repeatable edge device for documents, slides and web sections.</p>
+          <p class="lbl" style="color:var(--al)">Risk</p>
+          <p class="body">The nicks can read as damage rather than scales if reproduction is rough. It needs crisp printing.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="dir" id="sC" aria-label="08C — Twohead" style="--g:#F7F4EC; --t:#101010; --m:#6B5A3E; --a:#C8901A; --al:#8A6112; --panel-soft:#EFEBE1; --disp:Kanit, Archivo, sans-serif; --text:Archivo, sans-serif; --ww:800; --wt:-.01em; --wc:uppercase">
+  <div class="dwrap">
+    <header class="dhead">
+      <p class="mono xs" style="color:var(--al);letter-spacing:.18em">DIRECTION 08C</p>
+      <h2 class="wm big">Twohead</h2>
+      <p class="sub">the myth, structurally</p>
+      <p class="world">The Slavic zmaj is rarely single-headed, and a Z already has 180-degree rotational symmetry — so this puts a head at each terminal. Turn the mark upside down and nothing changes. Two jaws, two eyes, two gold tongues.</p>
+      <p class="delta">Added: a second jaw, eye, fang, horn and tongue at the bottom-right terminal. The mark is now its own 180-degree rotation.</p>
+    </header>
+    <div class="dgrid">
+      <div class="col">
+        <div class="markbox"><svg width="250" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#C8901A" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z M 93.00 71.60 L 76.00 70.80 L 82.00 67.60 L 72.00 66.40 L 93.00 64.80 Z"/><path fill="#101010" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 39.00 L 22.00 25.60 Z M 51.00 10.00 L 69.00 3.00 L 66.00 12.00 Z M 71.00 73.00 L 78.00 61.00 L 84.00 72.40 Z M 55.00 90.00 L 37.00 97.00 L 40.00 88.00 Z M 12.00 37.50 L 46.00 28.40 L 12.00 20.50 Z M 54.00 23.00 L 62.00 23.00 L 62.00 15.00 L 54.00 15.00 Z M 94.00 62.50 L 60.00 71.60 L 94.00 79.50 Z M 44.00 85.00 L 52.00 85.00 L 52.00 77.00 L 44.00 77.00 Z"/></svg></div>
+        <div class="sizes"><svg width="48" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#C8901A" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z M 93.00 71.60 L 76.00 70.80 L 82.00 67.60 L 72.00 66.40 L 93.00 64.80 Z"/><path fill="#101010" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 39.00 L 22.00 25.60 Z M 51.00 10.00 L 69.00 3.00 L 66.00 12.00 Z M 71.00 73.00 L 78.00 61.00 L 84.00 72.40 Z M 55.00 90.00 L 37.00 97.00 L 40.00 88.00 Z M 12.00 37.50 L 46.00 28.40 L 12.00 20.50 Z M 54.00 23.00 L 62.00 23.00 L 62.00 15.00 L 54.00 15.00 Z M 94.00 62.50 L 60.00 71.60 L 94.00 79.50 Z M 44.00 85.00 L 52.00 85.00 L 52.00 77.00 L 44.00 77.00 Z"/></svg><svg width="32" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#C8901A" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z M 93.00 71.60 L 76.00 70.80 L 82.00 67.60 L 72.00 66.40 L 93.00 64.80 Z"/><path fill="#101010" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 39.00 L 22.00 25.60 Z M 51.00 10.00 L 69.00 3.00 L 66.00 12.00 Z M 71.00 73.00 L 78.00 61.00 L 84.00 72.40 Z M 55.00 90.00 L 37.00 97.00 L 40.00 88.00 Z M 12.00 37.50 L 46.00 28.40 L 12.00 20.50 Z M 54.00 23.00 L 62.00 23.00 L 62.00 15.00 L 54.00 15.00 Z M 94.00 62.50 L 60.00 71.60 L 94.00 79.50 Z M 44.00 85.00 L 52.00 85.00 L 52.00 77.00 L 44.00 77.00 Z"/></svg><svg width="16" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#C8901A" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z M 93.00 71.60 L 76.00 70.80 L 82.00 67.60 L 72.00 66.40 L 93.00 64.80 Z"/><path fill="#101010" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 39.00 L 22.00 25.60 Z M 51.00 10.00 L 69.00 3.00 L 66.00 12.00 Z M 71.00 73.00 L 78.00 61.00 L 84.00 72.40 Z M 55.00 90.00 L 37.00 97.00 L 40.00 88.00 Z M 12.00 37.50 L 46.00 28.40 L 12.00 20.50 Z M 54.00 23.00 L 62.00 23.00 L 62.00 15.00 L 54.00 15.00 Z M 94.00 62.50 L 60.00 71.60 L 94.00 79.50 Z M 44.00 85.00 L 52.00 85.00 L 52.00 77.00 L 44.00 77.00 Z"/></svg>
+          <span class="mono xs" style="color:var(--m)">48 · 32 · 16<br>Weakest small of the four — two heads is twice the detail.</span></div>
+        <p class="lbl">Lockup</p>
+        <div class="lockup"><svg width="44" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#C8901A" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z M 93.00 71.60 L 76.00 70.80 L 82.00 67.60 L 72.00 66.40 L 93.00 64.80 Z"/><path fill="#101010" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 39.00 L 22.00 25.60 Z M 51.00 10.00 L 69.00 3.00 L 66.00 12.00 Z M 71.00 73.00 L 78.00 61.00 L 84.00 72.40 Z M 55.00 90.00 L 37.00 97.00 L 40.00 88.00 Z M 12.00 37.50 L 46.00 28.40 L 12.00 20.50 Z M 54.00 23.00 L 62.00 23.00 L 62.00 15.00 L 54.00 15.00 Z M 94.00 62.50 L 60.00 71.60 L 94.00 79.50 Z M 44.00 85.00 L 52.00 85.00 L 52.00 77.00 L 44.00 77.00 Z"/></svg><span class="wm" style="font-size:1.6rem;line-height:1">DANYZMAJ</span></div>
+        <p class="lbl">Palette</p>
+        <div class="swatches"><div class="sw" style="background:#F7F4EC"><span class="mono xs" style="color:#171210">chalk<br>#F7F4EC<br><em style="opacity:.8;font-style:normal">ground</em></span></div><div class="sw" style="background:#101010"><span class="mono xs" style="color:#F2EDE4">jet<br>#101010<br><em style="opacity:.8;font-style:normal">the letter</em></span></div><div class="sw" style="background:#C8901A"><span class="mono xs" style="color:#171210">gold<br>#C8901A<br><em style="opacity:.8;font-style:normal">the tongues</em></span></div><div class="sw" style="background:#6B5A3E"><span class="mono xs" style="color:#F2EDE4">umber<br>#6B5A3E<br><em style="opacity:.8;font-style:normal">secondary type</em></span></div></div>
+        <p class="lbl">Type</p>
+        <p class="wm spec">Zmaj</p>
+        <p class="mono xs" style="color:var(--m);margin:6px 0 0">Kanit 800 · display</p>
+        <p class="body" style="margin-top:12px">Archivo carries the running text: proposals, invoices,
+        the long paragraph on a case page.</p>
+      </div>
+      <div class="col">
+        <p class="lbl" style="margin-top:0">Applied</p>
+        <div class="art" style="background:#101010;padding:26px;text-align:center">
+  <div style="display:flex;align-items:center;justify-content:center;gap:26px">
+    <div><svg width="104" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#C8901A" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z M 93.00 71.60 L 76.00 70.80 L 82.00 67.60 L 72.00 66.40 L 93.00 64.80 Z"/><path fill="#F7F4EC" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 39.00 L 22.00 25.60 Z M 51.00 10.00 L 69.00 3.00 L 66.00 12.00 Z M 71.00 73.00 L 78.00 61.00 L 84.00 72.40 Z M 55.00 90.00 L 37.00 97.00 L 40.00 88.00 Z M 12.00 37.50 L 46.00 28.40 L 12.00 20.50 Z M 54.00 23.00 L 62.00 23.00 L 62.00 15.00 L 54.00 15.00 Z M 94.00 62.50 L 60.00 71.60 L 94.00 79.50 Z M 44.00 85.00 L 52.00 85.00 L 52.00 77.00 L 44.00 77.00 Z"/></svg><p class="mono xs" style="color:#B9A47A;margin:8px 0 0">0&deg;</p></div>
+    <span class="mono" style="color:#C8901A;font-size:1.4rem">=</span>
+    <div><div style="transform:rotate(180deg)"><svg width="104" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#C8901A" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z M 93.00 71.60 L 76.00 70.80 L 82.00 67.60 L 72.00 66.40 L 93.00 64.80 Z"/><path fill="#F7F4EC" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 39.00 L 22.00 25.60 Z M 51.00 10.00 L 69.00 3.00 L 66.00 12.00 Z M 71.00 73.00 L 78.00 61.00 L 84.00 72.40 Z M 55.00 90.00 L 37.00 97.00 L 40.00 88.00 Z M 12.00 37.50 L 46.00 28.40 L 12.00 20.50 Z M 54.00 23.00 L 62.00 23.00 L 62.00 15.00 L 54.00 15.00 Z M 94.00 62.50 L 60.00 71.60 L 94.00 79.50 Z M 44.00 85.00 L 52.00 85.00 L 52.00 77.00 L 44.00 77.00 Z"/></svg></div>
+      <p class="mono xs" style="color:#B9A47A;margin:8px 0 0">180&deg;</p></div>
+  </div>
+  <p class="mono xs" style="color:#F7F4EC;margin:18px 0 0">THE MARK IS ITS OWN ROTATION</p>
+</div>
+<p class="cap">Upside down it is the same drawing. Nothing else in the range can say that.</p>
+        <div class="verdict">
+          <p class="lbl" style="color:var(--al)">Best for</p>
+          <p class="body">The best story of the four and the only one with a structural idea: the mark is its own rotation. Impossible to forget once someone explains it.</p>
+          <p class="lbl" style="color:var(--al)">Risk</p>
+          <p class="body">Twice the detail, so it is busiest at 16px, and a two-headed silhouette is harder to read at a glance.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <p class="mono xs" style="color:#FF6A5E;letter-spacing:.18em">HOW TO CHOOSE</p>
+  <h2 style="font-family:Chivo,sans-serif;font-weight:900;color:#E8E4DA;font-size:clamp(1.8rem,4vw,2.8rem);line-height:1;margin:.4rem 0 1.2rem;letter-spacing:-.03em">Two questions, not ten.</h2>
+  <p><b style="color:#E8E4DA">Who sees it most?</b> If it is mostly clients on documents and in inboxes, take
+  <b style="color:#E8E4DA">08A</b>. If it is mostly people online — GitHub, X, laptop lids, conference badges —
+  keep <b style="color:#E8E4DA">08</b>.</p>
+  <p style="margin-top:1rem"><b style="color:#E8E4DA">Do you want the identity to keep giving?</b>
+  <b style="color:#E8E4DA">08B</b> is the only one where the logo hands you a device you will still be using on
+  slide 40. <b style="color:#E8E4DA">08C</b> is the only one with a fact about itself worth telling out loud.</p>
+  <p style="margin-top:1rem">All four are the same animal and the same letter, so choosing wrong is cheap — the
+  wordmark, the palette logic and the applications carry over.</p>
+  <p style="margin-top:1.6rem" class="mono xs">Marks drawn parametrically · every palette contrast-checked · danyzmaj.com</p>
+</footer>
+</body></html>

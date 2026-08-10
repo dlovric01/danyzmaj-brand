@@ -1,0 +1,9 @@
+# python build cache
+__pycache__/
+*.py[cod]
+
+# macOS
+.DS_Store
+
+# agent worktrees
+.worktrees/

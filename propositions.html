@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>danyzmaj — fanged Z, design development</title>
+<meta name="description" content="The fanged Z developed: four studies, one rejected route, and the recommended refinement.">
+<link rel="icon" type="image/svg+xml" href="logo/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#0E0B0A;color:#F5EFE6;font-family:Chivo,Archivo,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+svg{display:block}
+.mono{font-family:'JetBrains Mono',monospace}
+.xs{font-size:.7rem;letter-spacing:.06em}
+a{color:#FFC53D}
+:focus-visible{outline:2px solid #FF6A1F;outline-offset:3px}
+.top{position:sticky;top:0;z-index:9;background:#0E0B0A;border-bottom:1px solid #2A211C}
+.top nav{max-width:1280px;margin:auto;display:flex;gap:18px;align-items:center;overflow-x:auto;
+  padding:.75rem clamp(1rem,4vw,3rem);font-family:'JetBrains Mono',monospace;font-size:.7rem;
+  letter-spacing:.1em;text-transform:uppercase;scrollbar-width:none}
+.top nav::-webkit-scrollbar{display:none}
+.top a{color:#8C8378;text-decoration:none;white-space:nowrap}
+.top a:hover{color:#F5EFE6}
+.wrap{max-width:1280px;margin:auto;padding-inline:clamp(1rem,4vw,3rem)}
+.intro{padding-block:clamp(3rem,8vw,5.5rem) clamp(1.6rem,3vw,2.4rem)}
+.intro h1{font-weight:900;letter-spacing:-.035em;line-height:.9;font-size:clamp(2.5rem,7.5vw,5rem);margin:0}
+.intro p{max-width:64ch;color:#BFB6A9;margin:1.3rem 0 0}
+h2.sec{font-weight:900;letter-spacing:-.03em;font-size:clamp(1.5rem,3.6vw,2.3rem);margin:0;line-height:1}
+.sechead{padding-block:clamp(2.2rem,5vw,3.2rem) 1.4rem}
+.sechead p{color:#BFB6A9;max-width:62ch;margin:.7rem 0 0}
+.grid{display:grid;gap:2px;background:#2A211C;border-block:1px solid #2A211C}
+.g3{grid-template-columns:1fr} .g2{grid-template-columns:1fr}
+@media(min-width:820px){.g2{grid-template-columns:1fr 1fr}}
+@media(min-width:1060px){.g3{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:820px) and (max-width:1059px){.g3{grid-template-columns:1fr 1fr}}
+.tile{background:#0E0B0A;padding:clamp(1.4rem,2.6vw,2rem);min-width:0;scroll-margin-top:52px}
+.th{display:flex;align-items:baseline;gap:10px}
+.th .n{color:#FFC53D;font-size:.78rem}
+.th h3{font-weight:900;letter-spacing:-.03em;font-size:1.5rem;margin:0;text-transform:uppercase}
+.th .new{margin-left:auto;color:#0E0B0A;background:#FF6A1F;font-size:.62rem;letter-spacing:.14em;padding:2px 6px;align-self:center}
+.one{color:#8C8378;margin:.6rem 0 0;font-size:.92rem;max-width:46ch}
+.stage{margin-top:1.1rem;background:#17120F;border:1px solid #2A211C;display:grid;place-items:center;padding:24px;min-height:14rem}
+.row{display:flex;gap:2px;margin-top:2px;flex-wrap:wrap}
+.sz{background:#17120F;border:1px solid #2A211C;padding:12px 16px;display:flex;align-items:flex-end;gap:12px;flex:2 1 190px}
+.sz .mono{color:#8C8378;margin-left:4px}
+.lite{background:#FAF7F2;padding:12px 18px;display:grid;place-items:center;flex:1 1 110px}
+dl{margin:16px 0 0}
+dt{color:#FFC53D;margin-top:12px}
+dd{margin:4px 0 0;font-size:.9rem;color:#BFB6A9;max-width:46ch}
+.wmz{font-weight:900;letter-spacing:-.02em;line-height:1;font-size:1.3rem}
+.wmz.sm{font-size:1.02rem}
+.mockgrid{display:grid;gap:26px;margin-top:1.6rem}
+@media(min-width:900px){.mockgrid{grid-template-columns:1.25fr 1fr}}
+.win{border:1px solid #2A211C;background:#17120F;overflow:hidden}
+.chrome{display:flex;align-items:center;gap:6px;padding:9px 12px;background:#120E0C;border-bottom:1px solid #2A211C}
+.chrome .d{width:9px;height:9px;border-radius:50%;background:#33291F;display:inline-block}
+.chrome .tab{display:flex;align-items:center;gap:7px;margin-left:10px;background:#17120F;padding:4px 10px;color:#BFB6A9}
+.site{padding:22px 24px 26px}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-bottom:18px;border-bottom:1px solid #2A211C}
+.brand{display:flex;align-items:center;gap:10px}
+.navlinks{color:#8C8378}
+.site h4{font-weight:900;letter-spacing:-.03em;font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.02;margin:22px 0 0}
+.btnrow{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+.btn{background:#FF4A3D;color:#180705;font-weight:700;font-size:.82rem;padding:.6rem 1.1rem;display:inline-block}
+.btn.ghost{background:transparent;color:#F5EFE6;border:1px solid #3A2E26;font-weight:400}
+.dcard{aspect-ratio:1.75/1;background:#120E0C;border:1px solid #2A211C;padding:20px;display:flex;flex-direction:column;justify-content:space-between}
+.iconrow{display:flex;align-items:center;gap:12px;margin-top:18px;flex-wrap:wrap}
+.ico{background:#17120F;border:1px solid #2A211C;display:grid;place-items:center;overflow:hidden}
+.cap{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#8C8378;margin:10px 0 0}
+.merge{padding-block:clamp(2.5rem,6vw,4rem)}
+.mergebox{display:grid;gap:26px;align-items:center;margin-top:1.6rem;padding:26px;border:1px solid #2A211C;background:#17120F}
+@media(min-width:860px){.mergebox{grid-template-columns:auto 1fr}}
+.eq{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.eq .op{color:#FF6A1F;font-size:1.6rem;font-family:'JetBrains Mono',monospace}
+footer{max-width:1280px;margin:auto;padding:clamp(2rem,5vw,3rem) clamp(1rem,4vw,3rem) clamp(4rem,8vw,6rem)}
+footer p{max-width:64ch;color:#BFB6A9}
+footer h2{font-weight:900;letter-spacing:-.03em;font-size:clamp(1.7rem,4vw,2.5rem);line-height:1;margin:.4rem 0 1.1rem}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.badge{margin-left:auto;font-size:.6rem;letter-spacing:.14em;padding:2px 6px;align-self:center}
+.badge.rej{background:#3A2320;color:#FF9A90}
+.badge.keep{background:#FFC53D;color:#0E0B0A}
+.stage.rej{opacity:.55}
+.verdict{margin:14px 0 0;font-size:.9rem;color:#F5EFE6;border-left:3px solid #FFC53D;padding-left:12px}
+.verdict.rejv{border-left-color:#7A4038;color:#8C8378}
+.faults{display:grid;gap:2px;margin-top:1.6rem;background:#2A211C;border:1px solid #2A211C}
+@media(min-width:860px){.faults{grid-template-columns:repeat(3,1fr)}}
+.fault{background:#17120F;padding:20px}
+.fault h4{margin:0;font-size:.98rem;color:#F5EFE6}
+.fault p{margin:.5rem 0 0;color:#8C8378;font-size:.9rem}
+.rec{background:#17120F;border:1px solid #2A211C;padding:clamp(1.4rem,3vw,2.4rem);margin-top:1.6rem}
+.recgrid{display:grid;gap:24px;align-items:center}
+@media(min-width:900px){.recgrid{grid-template-columns:1.1fr 1fr}}
+.recpair{display:flex;gap:2px;flex-wrap:wrap}
+.recpair>div{flex:1 1 190px;display:grid;place-items:center;padding:20px}
+.recpair .onlite{background:#FAF7F2}
+.recpair .ondark{background:#0E0B0A}
+.silrow{display:flex;gap:26px;flex-wrap:wrap;align-items:flex-end;margin-top:1.4rem;padding:22px;
+  background:#17120F;border:1px solid #2A211C}
+.silcell{display:grid;justify-items:center;gap:2px}
+.silcell .mono{color:#8C8378;margin-top:6px}</style>
+</head>
+<body>
+
+<div class="top"><nav aria-label="Studies">
+  <a href="#top">development</a>
+  <a href="#faults">the faults</a>
+  <a href="#d08_1">08.1 overbite</a><a href="#d08_2">08.2 slit</a><a href="#d08_3">08.3 raked</a>
+  <a href="#d08_4">08.4 anvil</a><a href="#rec" style="color:#FFC53D">08.5 recommended</a><a href="#test">the 16px test</a>
+</nav></div>
+
+<div class="wrap intro" id="top">
+  <p class="mono xs" style="color:#FF6A1F;letter-spacing:.18em">DANYZMAJ · FANGED Z · DESIGN DEVELOPMENT</p>
+  <h1>Concept locked.<br>Now the craft.</h1>
+  <p>The fanged Z is the mark. Everything else is deleted. What follows is not a new set of ideas — it is the
+  development phase: the same concept pushed along four axes, one route rejected on the record, and a refinement
+  that takes only the decisions that survived.</p>
+  <p>A logo is not finished when the idea reads. It is finished when the idea reads <i>and</i> nothing in the
+  drawing is accidental.</p>
+</div>
+
+<div class="wrap" id="faults">
+  <p class="mono xs" style="color:#FFC53D;letter-spacing:.18em">WHAT I WOULD FLAG IN THE CURRENT DRAWING</p>
+  <h2 class="sec">Three faults, named.</h2>
+  <div class="faults">
+    <div class="fault"><h4>1 · The tail is an arrowhead</h4>
+      <p>A symmetrical triangle on the bottom-right terminal reads as a direction sign, not a barbed tail. It is
+      the one shape in the mark that points at something instead of belonging to the animal.</p></div>
+    <div class="fault"><h4>2 · The eye is a window</h4>
+      <p>A square hole punched in a square bar reads as an aperture. An eye wants a direction and an angle; a
+      square has neither.</p></div>
+    <div class="fault"><h4>3 · The weight is one notch light</h4>
+      <p>At 16px the jaw closes up before the letter does. Slightly heavier strokes buy back the gape and make the
+      favicon carry the whole idea instead of half of it.</p></div>
+  </div>
+</div>
+
+<div class="wrap sechead">
+  <p class="mono xs" style="color:#FFC53D;letter-spacing:.18em">FOUR STUDIES</p>
+  <h2 class="sec">One axis each, so the cause of every change is visible.</h2>
+  <p>Anatomy, restraint, motion, weight. Nothing is combined at this stage — combining before you know which
+  single change did the work is how you end up unable to explain your own logo.</p>
+</div>
+<div class="grid g2">
+
+    <article class="tile" id="d08_1">
+      <div class="th"><span class="mono n">08.1</span><h3>Overbite</h3><span class="mono badge rej">REJECTED</span></div>
+      <div class="stage rej"><svg width="210" viewBox="-2 -4 116 102" xmlns="http://www.w3.org/2000/svg"><path fill="#FF4A3D" fill-rule="nonzero" d="M 1.00 28.00 L 20.00 29.00 L 14.00 31.60 L 26.00 32.80 L 1.00 32.00 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 18.00 6.00 L 38.00 6.00 L 38.00 44.00 L 20.00 44.00 Z M 18.00 36.00 L 2.00 30.00 L 2.00 20.00 L 18.00 14.00 Z M 24.00 10.00 L 90.00 10.00 L 90.00 36.00 L 24.00 36.00 Z M 98.86 22.00 L 32.86 94.20 L 15.14 78.00 L 81.14 5.80 Z M 24.00 64.00 L 90.00 64.00 L 90.00 90.00 L 24.00 90.00 Z M 17.00 25.40 L 12.00 37.00 L 7.00 24.60 Z M 32.00 6.00 L 54.00 -1.00 L 50.00 9.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 14.00 33.60 L 48.00 29.40 L 0.00 25.00 Z M 22.00 24.00 L 31.00 24.00 L 31.00 15.00 L 22.00 15.00 Z"/></svg></div>
+      <div class="row">
+        <div class="sz"><svg width="44" viewBox="-2 -4 116 102" xmlns="http://www.w3.org/2000/svg"><path fill="#FF4A3D" fill-rule="nonzero" d="M 1.00 28.00 L 20.00 29.00 L 14.00 31.60 L 26.00 32.80 L 1.00 32.00 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 18.00 6.00 L 38.00 6.00 L 38.00 44.00 L 20.00 44.00 Z M 18.00 36.00 L 2.00 30.00 L 2.00 20.00 L 18.00 14.00 Z M 24.00 10.00 L 90.00 10.00 L 90.00 36.00 L 24.00 36.00 Z M 98.86 22.00 L 32.86 94.20 L 15.14 78.00 L 81.14 5.80 Z M 24.00 64.00 L 90.00 64.00 L 90.00 90.00 L 24.00 90.00 Z M 17.00 25.40 L 12.00 37.00 L 7.00 24.60 Z M 32.00 6.00 L 54.00 -1.00 L 50.00 9.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 14.00 33.60 L 48.00 29.40 L 0.00 25.00 Z M 22.00 24.00 L 31.00 24.00 L 31.00 15.00 L 22.00 15.00 Z"/></svg><svg width="26" viewBox="-2 -4 116 102" xmlns="http://www.w3.org/2000/svg"><path fill="#FF4A3D" fill-rule="nonzero" d="M 1.00 28.00 L 20.00 29.00 L 14.00 31.60 L 26.00 32.80 L 1.00 32.00 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 18.00 6.00 L 38.00 6.00 L 38.00 44.00 L 20.00 44.00 Z M 18.00 36.00 L 2.00 30.00 L 2.00 20.00 L 18.00 14.00 Z M 24.00 10.00 L 90.00 10.00 L 90.00 36.00 L 24.00 36.00 Z M 98.86 22.00 L 32.86 94.20 L 15.14 78.00 L 81.14 5.80 Z M 24.00 64.00 L 90.00 64.00 L 90.00 90.00 L 24.00 90.00 Z M 17.00 25.40 L 12.00 37.00 L 7.00 24.60 Z M 32.00 6.00 L 54.00 -1.00 L 50.00 9.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 14.00 33.60 L 48.00 29.40 L 0.00 25.00 Z M 22.00 24.00 L 31.00 24.00 L 31.00 15.00 L 22.00 15.00 Z"/></svg><svg width="16" viewBox="-2 -4 116 102" xmlns="http://www.w3.org/2000/svg"><path fill="#FF4A3D" fill-rule="nonzero" d="M 1.00 28.00 L 20.00 29.00 L 14.00 31.60 L 26.00 32.80 L 1.00 32.00 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 18.00 6.00 L 38.00 6.00 L 38.00 44.00 L 20.00 44.00 Z M 18.00 36.00 L 2.00 30.00 L 2.00 20.00 L 18.00 14.00 Z M 24.00 10.00 L 90.00 10.00 L 90.00 36.00 L 24.00 36.00 Z M 98.86 22.00 L 32.86 94.20 L 15.14 78.00 L 81.14 5.80 Z M 24.00 64.00 L 90.00 64.00 L 90.00 90.00 L 24.00 90.00 Z M 17.00 25.40 L 12.00 37.00 L 7.00 24.60 Z M 32.00 6.00 L 54.00 -1.00 L 50.00 9.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 14.00 33.60 L 48.00 29.40 L 0.00 25.00 Z M 22.00 24.00 L 31.00 24.00 L 31.00 15.00 L 22.00 15.00 Z"/></svg><span class="mono xs">44·26·16</span></div>
+        <div class="lite"><svg width="66" viewBox="-2 -4 116 102" xmlns="http://www.w3.org/2000/svg"><path fill="#E5231B" fill-rule="nonzero" d="M 1.00 28.00 L 20.00 29.00 L 14.00 31.60 L 26.00 32.80 L 1.00 32.00 Z"/><path fill="#121212" fill-rule="nonzero" d="M 18.00 6.00 L 38.00 6.00 L 38.00 44.00 L 20.00 44.00 Z M 18.00 36.00 L 2.00 30.00 L 2.00 20.00 L 18.00 14.00 Z M 24.00 10.00 L 90.00 10.00 L 90.00 36.00 L 24.00 36.00 Z M 98.86 22.00 L 32.86 94.20 L 15.14 78.00 L 81.14 5.80 Z M 24.00 64.00 L 90.00 64.00 L 90.00 90.00 L 24.00 90.00 Z M 17.00 25.40 L 12.00 37.00 L 7.00 24.60 Z M 32.00 6.00 L 54.00 -1.00 L 50.00 9.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 14.00 33.60 L 48.00 29.40 L 0.00 25.00 Z M 22.00 24.00 L 31.00 24.00 L 31.00 15.00 L 22.00 15.00 Z"/></svg></div>
+      </div>
+      <dl>
+        <dt class="mono xs">CHANGED</dt><dd>The head becomes its own mass, deeper than the bar, with the upper jaw overhanging a recessed lower jaw.</dd>
+        <dt class="mono xs">FIXES</dt><dd>The head is currently implied by a notch rather than present as a shape. Real skulls overhang.</dd>
+        <dt class="mono xs">TRADE</dt><dd>The mass protrudes above and below the bar, so the letter gains a stepped silhouette.</dd>
+      </dl>
+      <p class="verdict rejv">Rejected. The step reads as a drawing error before it reads as anatomy, and it costs the clean Z that made this mark worth choosing. The constraint this proves is worth keeping: <b>the head may never break the letter’s silhouette.</b></p>
+    </article>
+
+    <article class="tile" id="d08_2">
+      <div class="th"><span class="mono n">08.2</span><h3>Slit</h3><span class="mono badge keep">KEEP</span></div>
+      <div class="stage"><svg width="210" viewBox="6 4 106 94" xmlns="http://www.w3.org/2000/svg"><path fill="#FF4A3D" fill-rule="nonzero" d="M 12.00 28.40 L 32.00 29.40 L 25.00 32.40 L 37.00 33.80 L 12.00 35.40 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 34.00 27.00 L 27.00 41.00 L 21.00 25.40 Z M 86.00 64.00 L 108.00 79.00 L 86.00 94.00 Z M 11.00 37.50 L 57.00 28.80 L 11.00 20.00 Z M 48.00 18.00 L 62.00 22.00 L 62.00 17.00 L 48.00 13.00 Z M 98.00 82.00 L 108.00 79.00 L 98.00 76.00 Z"/></svg></div>
+      <div class="row">
+        <div class="sz"><svg width="44" viewBox="6 4 106 94" xmlns="http://www.w3.org/2000/svg"><path fill="#FF4A3D" fill-rule="nonzero" d="M 12.00 28.40 L 32.00 29.40 L 25.00 32.40 L 37.00 33.80 L 12.00 35.40 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 34.00 27.00 L 27.00 41.00 L 21.00 25.40 Z M 86.00 64.00 L 108.00 79.00 L 86.00 94.00 Z M 11.00 37.50 L 57.00 28.80 L 11.00 20.00 Z M 48.00 18.00 L 62.00 22.00 L 62.00 17.00 L 48.00 13.00 Z M 98.00 82.00 L 108.00 79.00 L 98.00 76.00 Z"/></svg><svg width="26" viewBox="6 4 106 94" xmlns="http://www.w3.org/2000/svg"><path fill="#FF4A3D" fill-rule="nonzero" d="M 12.00 28.40 L 32.00 29.40 L 25.00 32.40 L 37.00 33.80 L 12.00 35.40 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 34.00 27.00 L 27.00 41.00 L 21.00 25.40 Z M 86.00 64.00 L 108.00 79.00 L 86.00 94.00 Z M 11.00 37.50 L 57.00 28.80 L 11.00 20.00 Z M 48.00 18.00 L 62.00 22.00 L 62.00 17.00 L 48.00 13.00 Z M 98.00 82.00 L 108.00 79.00 L 98.00 76.00 Z"/></svg><svg width="16" viewBox="6 4 106 94" xmlns="http://www.w3.org/2000/svg"><path fill="#FF4A3D" fill-rule="nonzero" d="M 12.00 28.40 L 32.00 29.40 L 25.00 32.40 L 37.00 33.80 L 12.00 35.40 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 34.00 27.00 L 27.00 41.00 L 21.00 25.40 Z M 86.00 64.00 L 108.00 79.00 L 86.00 94.00 Z M 11.00 37.50 L 57.00 28.80 L 11.00 20.00 Z M 48.00 18.00 L 62.00 22.00 L 62.00 17.00 L 48.00 13.00 Z M 98.00 82.00 L 108.00 79.00 L 98.00 76.00 Z"/></svg><span class="mono xs">44·26·16</span></div>
+        <div class="lite"><svg width="66" viewBox="6 4 106 94" xmlns="http://www.w3.org/2000/svg"><path fill="#E5231B" fill-rule="nonzero" d="M 12.00 28.40 L 32.00 29.40 L 25.00 32.40 L 37.00 33.80 L 12.00 35.40 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 34.00 27.00 L 27.00 41.00 L 21.00 25.40 Z M 86.00 64.00 L 108.00 79.00 L 86.00 94.00 Z M 11.00 37.50 L 57.00 28.80 L 11.00 20.00 Z M 48.00 18.00 L 62.00 22.00 L 62.00 17.00 L 48.00 13.00 Z M 98.00 82.00 L 108.00 79.00 L 98.00 76.00 Z"/></svg></div>
+      </div>
+      <dl>
+        <dt class="mono xs">CHANGED</dt><dd>Eye becomes an angled slit. Gape deepens. Brow horn removed. Tail becomes a nicked spade.</dd>
+        <dt class="mono xs">FIXES</dt><dd>Faults 1 and 2. The slit gives the eye a direction; the spade stops pointing.</dd>
+        <dt class="mono xs">TRADE</dt><dd>Loses the horn, so the silhouette is quieter and slightly less obviously a dragon.</dd>
+      </dl>
+      <p class="verdict">Keep the slit eye. It is a strictly better eye at every size, and removing the horn costs less than I expected.</p>
+    </article>
+
+    <article class="tile" id="d08_3">
+      <div class="th"><span class="mono n">08.3</span><h3>Raked</h3><span class="mono badge keep">KEEP</span></div>
+      <div class="stage"><svg width="210" viewBox="-2 0 112 100" xmlns="http://www.w3.org/2000/svg"><g transform="skewX(-9)"><path fill="#FF4A3D" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 40.00 L 22.00 25.60 Z M 30.00 34.60 L 35.00 25.00 L 40.00 33.20 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 12.00 37.50 L 48.00 28.60 L 12.00 20.50 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z"/></g></svg></div>
+      <div class="row">
+        <div class="sz"><svg width="44" viewBox="-2 0 112 100" xmlns="http://www.w3.org/2000/svg"><g transform="skewX(-9)"><path fill="#FF4A3D" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 40.00 L 22.00 25.60 Z M 30.00 34.60 L 35.00 25.00 L 40.00 33.20 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 12.00 37.50 L 48.00 28.60 L 12.00 20.50 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z"/></g></svg><svg width="26" viewBox="-2 0 112 100" xmlns="http://www.w3.org/2000/svg"><g transform="skewX(-9)"><path fill="#FF4A3D" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 40.00 L 22.00 25.60 Z M 30.00 34.60 L 35.00 25.00 L 40.00 33.20 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 12.00 37.50 L 48.00 28.60 L 12.00 20.50 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z"/></g></svg><svg width="16" viewBox="-2 0 112 100" xmlns="http://www.w3.org/2000/svg"><g transform="skewX(-9)"><path fill="#FF4A3D" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 40.00 L 22.00 25.60 Z M 30.00 34.60 L 35.00 25.00 L 40.00 33.20 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 12.00 37.50 L 48.00 28.60 L 12.00 20.50 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z"/></g></svg><span class="mono xs">44·26·16</span></div>
+        <div class="lite"><svg width="66" viewBox="-2 0 112 100" xmlns="http://www.w3.org/2000/svg"><g transform="skewX(-9)"><path fill="#E5231B" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 40.00 L 22.00 25.60 Z M 30.00 34.60 L 35.00 25.00 L 40.00 33.20 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 12.00 37.50 L 48.00 28.60 L 12.00 20.50 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z"/></g></svg></div>
+      </div>
+      <dl>
+        <dt class="mono xs">CHANGED</dt><dd>The whole mark sheared nine degrees to the right. Nothing else touched.</dd>
+        <dt class="mono xs">FIXES</dt><dd>Nothing structural — it addresses stance. The base mark stands still; this one leans into the bite.</dd>
+        <dt class="mono xs">TRADE</dt><dd>Shearing slants the terminals, so it needs its own wordmark spacing and it fights a strictly vertical layout.</dd>
+      </dl>
+      <p class="verdict">Keep as an alternate, not the primary. Worth having for motion, video and anything with momentum.</p>
+    </article>
+
+    <article class="tile" id="d08_4">
+      <div class="th"><span class="mono n">08.4</span><h3>Anvil</h3><span class="mono badge keep">KEEP</span></div>
+      <div class="stage"><svg width="210" viewBox="4 0 116 100" xmlns="http://www.w3.org/2000/svg"><path fill="#FF4A3D" fill-rule="nonzero" d="M 10.00 28.20 L 30.00 29.40 L 23.00 32.60 L 36.00 34.00 L 10.00 36.00 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 14.00 8.00 L 92.00 8.00 L 92.00 38.00 L 14.00 38.00 Z M 101.36 22.23 L 23.36 97.23 L 4.64 77.77 L 82.64 2.77 Z M 14.00 62.00 L 92.00 62.00 L 92.00 92.00 L 14.00 92.00 Z M 35.00 27.80 L 27.00 44.00 L 20.00 26.00 Z M 90.00 63.00 L 114.00 77.00 L 102.00 81.00 L 107.00 93.00 L 91.00 87.00 L 96.00 80.00 L 90.00 82.00 Z M 9.00 39.00 L 50.00 28.00 L 9.00 19.00 Z M 56.00 22.00 L 65.00 22.00 L 65.00 13.00 L 56.00 13.00 Z"/></svg></div>
+      <div class="row">
+        <div class="sz"><svg width="44" viewBox="4 0 116 100" xmlns="http://www.w3.org/2000/svg"><path fill="#FF4A3D" fill-rule="nonzero" d="M 10.00 28.20 L 30.00 29.40 L 23.00 32.60 L 36.00 34.00 L 10.00 36.00 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 14.00 8.00 L 92.00 8.00 L 92.00 38.00 L 14.00 38.00 Z M 101.36 22.23 L 23.36 97.23 L 4.64 77.77 L 82.64 2.77 Z M 14.00 62.00 L 92.00 62.00 L 92.00 92.00 L 14.00 92.00 Z M 35.00 27.80 L 27.00 44.00 L 20.00 26.00 Z M 90.00 63.00 L 114.00 77.00 L 102.00 81.00 L 107.00 93.00 L 91.00 87.00 L 96.00 80.00 L 90.00 82.00 Z M 9.00 39.00 L 50.00 28.00 L 9.00 19.00 Z M 56.00 22.00 L 65.00 22.00 L 65.00 13.00 L 56.00 13.00 Z"/></svg><svg width="26" viewBox="4 0 116 100" xmlns="http://www.w3.org/2000/svg"><path fill="#FF4A3D" fill-rule="nonzero" d="M 10.00 28.20 L 30.00 29.40 L 23.00 32.60 L 36.00 34.00 L 10.00 36.00 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 14.00 8.00 L 92.00 8.00 L 92.00 38.00 L 14.00 38.00 Z M 101.36 22.23 L 23.36 97.23 L 4.64 77.77 L 82.64 2.77 Z M 14.00 62.00 L 92.00 62.00 L 92.00 92.00 L 14.00 92.00 Z M 35.00 27.80 L 27.00 44.00 L 20.00 26.00 Z M 90.00 63.00 L 114.00 77.00 L 102.00 81.00 L 107.00 93.00 L 91.00 87.00 L 96.00 80.00 L 90.00 82.00 Z M 9.00 39.00 L 50.00 28.00 L 9.00 19.00 Z M 56.00 22.00 L 65.00 22.00 L 65.00 13.00 L 56.00 13.00 Z"/></svg><svg width="16" viewBox="4 0 116 100" xmlns="http://www.w3.org/2000/svg"><path fill="#FF4A3D" fill-rule="nonzero" d="M 10.00 28.20 L 30.00 29.40 L 23.00 32.60 L 36.00 34.00 L 10.00 36.00 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 14.00 8.00 L 92.00 8.00 L 92.00 38.00 L 14.00 38.00 Z M 101.36 22.23 L 23.36 97.23 L 4.64 77.77 L 82.64 2.77 Z M 14.00 62.00 L 92.00 62.00 L 92.00 92.00 L 14.00 92.00 Z M 35.00 27.80 L 27.00 44.00 L 20.00 26.00 Z M 90.00 63.00 L 114.00 77.00 L 102.00 81.00 L 107.00 93.00 L 91.00 87.00 L 96.00 80.00 L 90.00 82.00 Z M 9.00 39.00 L 50.00 28.00 L 9.00 19.00 Z M 56.00 22.00 L 65.00 22.00 L 65.00 13.00 L 56.00 13.00 Z"/></svg><span class="mono xs">44·26·16</span></div>
+        <div class="lite"><svg width="66" viewBox="4 0 116 100" xmlns="http://www.w3.org/2000/svg"><path fill="#E5231B" fill-rule="nonzero" d="M 10.00 28.20 L 30.00 29.40 L 23.00 32.60 L 36.00 34.00 L 10.00 36.00 Z"/><path fill="#121212" fill-rule="nonzero" d="M 14.00 8.00 L 92.00 8.00 L 92.00 38.00 L 14.00 38.00 Z M 101.36 22.23 L 23.36 97.23 L 4.64 77.77 L 82.64 2.77 Z M 14.00 62.00 L 92.00 62.00 L 92.00 92.00 L 14.00 92.00 Z M 35.00 27.80 L 27.00 44.00 L 20.00 26.00 Z M 90.00 63.00 L 114.00 77.00 L 102.00 81.00 L 107.00 93.00 L 91.00 87.00 L 96.00 80.00 L 90.00 82.00 Z M 9.00 39.00 L 50.00 28.00 L 9.00 19.00 Z M 56.00 22.00 L 65.00 22.00 L 65.00 13.00 L 56.00 13.00 Z"/></svg></div>
+      </div>
+      <dl>
+        <dt class="mono xs">CHANGED</dt><dd>Bar 26 to 30, diagonal 24 to 27, counters tightened. The arrow tail replaced by a hooked barb.</dd>
+        <dt class="mono xs">FIXES</dt><dd>Faults 1 and 3 together. The hook belongs to the animal; the extra weight holds the jaw open at 16px.</dd>
+        <dt class="mono xs">TRADE</dt><dd>Heavier means less air. Push further and it stops being a letter and becomes a blob.</dd>
+      </dl>
+      <p class="verdict">Keep the weight and keep the hook. This is the single most valuable study of the four.</p>
+    </article>
+</div>
+
+<div class="wrap" id="rec" style="padding-block:clamp(2.5rem,6vw,4rem)">
+  <p class="mono xs" style="color:#FF6A1F;letter-spacing:.18em">THE RECOMMENDATION</p>
+  <h2 class="sec" style="font-size:clamp(1.8rem,4.6vw,2.8rem)">08.5 — weight and hook from Anvil, eye from Slit, silhouette from the original.</h2>
+  <div class="rec">
+    <div class="recgrid">
+      <div class="recpair">
+        <div class="ondark"><svg width="190" viewBox="4 0 116 100" xmlns="http://www.w3.org/2000/svg"><path fill="#FF4A3D" fill-rule="nonzero" d="M 10.00 28.40 L 31.00 29.60 L 24.00 32.80 L 37.00 34.20 L 10.00 36.20 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 16.00 8.00 L 92.00 8.00 L 92.00 38.00 L 16.00 38.00 Z M 101.48 22.11 L 25.48 97.11 L 6.52 77.89 L 82.52 2.89 Z M 16.00 62.00 L 92.00 62.00 L 92.00 92.00 L 16.00 92.00 Z M 35.00 28.00 L 27.00 45.00 L 20.00 26.00 Z M 90.00 64.00 L 114.00 78.00 L 102.00 82.00 L 107.00 94.00 L 91.00 88.00 L 96.00 81.00 L 90.00 83.00 Z M 9.00 39.00 L 52.00 28.60 L 9.00 19.00 Z M 56.00 18.00 L 70.00 22.00 L 70.00 16.00 L 56.00 12.00 Z"/></svg></div>
+        <div class="onlite"><svg width="190" viewBox="4 0 116 100" xmlns="http://www.w3.org/2000/svg"><path fill="#E5231B" fill-rule="nonzero" d="M 10.00 28.40 L 31.00 29.60 L 24.00 32.80 L 37.00 34.20 L 10.00 36.20 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 8.00 L 92.00 8.00 L 92.00 38.00 L 16.00 38.00 Z M 101.48 22.11 L 25.48 97.11 L 6.52 77.89 L 82.52 2.89 Z M 16.00 62.00 L 92.00 62.00 L 92.00 92.00 L 16.00 92.00 Z M 35.00 28.00 L 27.00 45.00 L 20.00 26.00 Z M 90.00 64.00 L 114.00 78.00 L 102.00 82.00 L 107.00 94.00 L 91.00 88.00 L 96.00 81.00 L 90.00 83.00 Z M 9.00 39.00 L 52.00 28.60 L 9.00 19.00 Z M 56.00 18.00 L 70.00 22.00 L 70.00 16.00 L 56.00 12.00 Z"/></svg></div>
+      </div>
+      <div>
+        <p style="color:#BFB6A9;margin:0">Three faults closed, nothing added. The tail is a barb that hooks back
+        on itself instead of an arrow that points away. The eye is an angled slit with a direction. The strokes are
+        heavier, so the jaw is still open at 16 pixels. The head stays flush with the bar, which is the one thing
+        the rejected study proved you must not touch.</p>
+        <p style="color:#8C8378;margin:.9rem 0 0;font-size:.92rem">The brow horn is gone. It was doing less work
+        than it cost, and without it the profile of the skull reads more clearly.</p>
+        <p class="mono xs" style="color:#FFC53D;margin:1.1rem 0 0">08.6 — the same drawing, raked nine degrees,
+        available as the alternate for motion.</p>
+        <div class="recpair" style="margin-top:12px">
+          <div class="ondark"><svg width="150" viewBox="-6 0 122 100" xmlns="http://www.w3.org/2000/svg"><g transform="skewX(-9)"><path fill="#FF4A3D" fill-rule="nonzero" d="M 10.00 28.40 L 31.00 29.60 L 24.00 32.80 L 37.00 34.20 L 10.00 36.20 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 16.00 8.00 L 92.00 8.00 L 92.00 38.00 L 16.00 38.00 Z M 101.48 22.11 L 25.48 97.11 L 6.52 77.89 L 82.52 2.89 Z M 16.00 62.00 L 92.00 62.00 L 92.00 92.00 L 16.00 92.00 Z M 35.00 28.00 L 27.00 45.00 L 20.00 26.00 Z M 90.00 64.00 L 114.00 78.00 L 102.00 82.00 L 107.00 94.00 L 91.00 88.00 L 96.00 81.00 L 90.00 83.00 Z M 9.00 39.00 L 52.00 28.60 L 9.00 19.00 Z M 56.00 18.00 L 70.00 22.00 L 70.00 16.00 L 56.00 12.00 Z"/></g></svg></div>
+          <div class="onlite"><svg width="150" viewBox="-6 0 122 100" xmlns="http://www.w3.org/2000/svg"><g transform="skewX(-9)"><path fill="#E5231B" fill-rule="nonzero" d="M 10.00 28.40 L 31.00 29.60 L 24.00 32.80 L 37.00 34.20 L 10.00 36.20 Z"/><path fill="#121212" fill-rule="nonzero" d="M 16.00 8.00 L 92.00 8.00 L 92.00 38.00 L 16.00 38.00 Z M 101.48 22.11 L 25.48 97.11 L 6.52 77.89 L 82.52 2.89 Z M 16.00 62.00 L 92.00 62.00 L 92.00 92.00 L 16.00 92.00 Z M 35.00 28.00 L 27.00 45.00 L 20.00 26.00 Z M 90.00 64.00 L 114.00 78.00 L 102.00 82.00 L 107.00 94.00 L 91.00 88.00 L 96.00 81.00 L 90.00 83.00 Z M 9.00 39.00 L 52.00 28.60 L 9.00 19.00 Z M 56.00 18.00 L 70.00 22.00 L 70.00 16.00 L 56.00 12.00 Z"/></g></svg></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap" id="test" style="padding-bottom:clamp(3rem,7vw,5rem)">
+  <p class="mono xs" style="color:#FFC53D;letter-spacing:.18em">THE ONLY TEST THAT SETTLES IT</p>
+  <h2 class="sec">Every study at 26 and 16 pixels.</h2>
+  <p style="color:#BFB6A9;max-width:62ch;margin:.7rem 0 0">Judge a mark at the size it will actually be used,
+  not at the size you drew it. Squint at this row: the heavier studies hold the jaw, the lighter ones close up.</p>
+  <div class="silrow"><div class="silcell"><div><svg width="26" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#FF4A3D" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 40.00 L 22.00 25.60 Z M 30.00 34.60 L 35.00 25.00 L 40.00 33.20 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 12.00 37.50 L 48.00 28.60 L 12.00 20.50 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z"/></svg></div><div style="margin-top:8px"><svg width="16" viewBox="8 0 104 100" xmlns="http://www.w3.org/2000/svg"><path fill="#FF4A3D" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 40.00 L 22.00 25.60 Z M 30.00 34.60 L 35.00 25.00 L 40.00 33.20 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 12.00 37.50 L 48.00 28.60 L 12.00 20.50 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z"/></svg></div><span class="mono xs">08</span></div><div class="silcell"><div><svg width="26" viewBox="-2 -4 116 102" xmlns="http://www.w3.org/2000/svg"><path fill="#FF4A3D" fill-rule="nonzero" d="M 1.00 28.00 L 20.00 29.00 L 14.00 31.60 L 26.00 32.80 L 1.00 32.00 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 18.00 6.00 L 38.00 6.00 L 38.00 44.00 L 20.00 44.00 Z M 18.00 36.00 L 2.00 30.00 L 2.00 20.00 L 18.00 14.00 Z M 24.00 10.00 L 90.00 10.00 L 90.00 36.00 L 24.00 36.00 Z M 98.86 22.00 L 32.86 94.20 L 15.14 78.00 L 81.14 5.80 Z M 24.00 64.00 L 90.00 64.00 L 90.00 90.00 L 24.00 90.00 Z M 17.00 25.40 L 12.00 37.00 L 7.00 24.60 Z M 32.00 6.00 L 54.00 -1.00 L 50.00 9.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 14.00 33.60 L 48.00 29.40 L 0.00 25.00 Z M 22.00 24.00 L 31.00 24.00 L 31.00 15.00 L 22.00 15.00 Z"/></svg></div><div style="margin-top:8px"><svg width="16" viewBox="-2 -4 116 102" xmlns="http://www.w3.org/2000/svg"><path fill="#FF4A3D" fill-rule="nonzero" d="M 1.00 28.00 L 20.00 29.00 L 14.00 31.60 L 26.00 32.80 L 1.00 32.00 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 18.00 6.00 L 38.00 6.00 L 38.00 44.00 L 20.00 44.00 Z M 18.00 36.00 L 2.00 30.00 L 2.00 20.00 L 18.00 14.00 Z M 24.00 10.00 L 90.00 10.00 L 90.00 36.00 L 24.00 36.00 Z M 98.86 22.00 L 32.86 94.20 L 15.14 78.00 L 81.14 5.80 Z M 24.00 64.00 L 90.00 64.00 L 90.00 90.00 L 24.00 90.00 Z M 17.00 25.40 L 12.00 37.00 L 7.00 24.60 Z M 32.00 6.00 L 54.00 -1.00 L 50.00 9.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 14.00 33.60 L 48.00 29.40 L 0.00 25.00 Z M 22.00 24.00 L 31.00 24.00 L 31.00 15.00 L 22.00 15.00 Z"/></svg></div><span class="mono xs">08.1</span></div><div class="silcell"><div><svg width="26" viewBox="6 4 106 94" xmlns="http://www.w3.org/2000/svg"><path fill="#FF4A3D" fill-rule="nonzero" d="M 12.00 28.40 L 32.00 29.40 L 25.00 32.40 L 37.00 33.80 L 12.00 35.40 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 34.00 27.00 L 27.00 41.00 L 21.00 25.40 Z M 86.00 64.00 L 108.00 79.00 L 86.00 94.00 Z M 11.00 37.50 L 57.00 28.80 L 11.00 20.00 Z M 48.00 18.00 L 62.00 22.00 L 62.00 17.00 L 48.00 13.00 Z M 98.00 82.00 L 108.00 79.00 L 98.00 76.00 Z"/></svg></div><div style="margin-top:8px"><svg width="16" viewBox="6 4 106 94" xmlns="http://www.w3.org/2000/svg"><path fill="#FF4A3D" fill-rule="nonzero" d="M 12.00 28.40 L 32.00 29.40 L 25.00 32.40 L 37.00 33.80 L 12.00 35.40 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 34.00 27.00 L 27.00 41.00 L 21.00 25.40 Z M 86.00 64.00 L 108.00 79.00 L 86.00 94.00 Z M 11.00 37.50 L 57.00 28.80 L 11.00 20.00 Z M 48.00 18.00 L 62.00 22.00 L 62.00 17.00 L 48.00 13.00 Z M 98.00 82.00 L 108.00 79.00 L 98.00 76.00 Z"/></svg></div><span class="mono xs">08.2</span></div><div class="silcell"><div><svg width="26" viewBox="-2 0 112 100" xmlns="http://www.w3.org/2000/svg"><g transform="skewX(-9)"><path fill="#FF4A3D" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 40.00 L 22.00 25.60 Z M 30.00 34.60 L 35.00 25.00 L 40.00 33.20 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 12.00 37.50 L 48.00 28.60 L 12.00 20.50 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z"/></g></svg></div><div style="margin-top:8px"><svg width="16" viewBox="-2 0 112 100" xmlns="http://www.w3.org/2000/svg"><g transform="skewX(-9)"><path fill="#FF4A3D" fill-rule="nonzero" d="M 13.00 28.40 L 30.00 29.20 L 24.00 32.40 L 34.00 33.60 L 13.00 35.20 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 35.00 27.00 L 28.00 40.00 L 22.00 25.60 Z M 30.00 34.60 L 35.00 25.00 L 40.00 33.20 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 12.00 37.50 L 48.00 28.60 L 12.00 20.50 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z"/></g></svg></div><span class="mono xs">08.3</span></div><div class="silcell"><div><svg width="26" viewBox="4 0 116 100" xmlns="http://www.w3.org/2000/svg"><path fill="#FF4A3D" fill-rule="nonzero" d="M 10.00 28.20 L 30.00 29.40 L 23.00 32.60 L 36.00 34.00 L 10.00 36.00 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 14.00 8.00 L 92.00 8.00 L 92.00 38.00 L 14.00 38.00 Z M 101.36 22.23 L 23.36 97.23 L 4.64 77.77 L 82.64 2.77 Z M 14.00 62.00 L 92.00 62.00 L 92.00 92.00 L 14.00 92.00 Z M 35.00 27.80 L 27.00 44.00 L 20.00 26.00 Z M 90.00 63.00 L 114.00 77.00 L 102.00 81.00 L 107.00 93.00 L 91.00 87.00 L 96.00 80.00 L 90.00 82.00 Z M 9.00 39.00 L 50.00 28.00 L 9.00 19.00 Z M 56.00 22.00 L 65.00 22.00 L 65.00 13.00 L 56.00 13.00 Z"/></svg></div><div style="margin-top:8px"><svg width="16" viewBox="4 0 116 100" xmlns="http://www.w3.org/2000/svg"><path fill="#FF4A3D" fill-rule="nonzero" d="M 10.00 28.20 L 30.00 29.40 L 23.00 32.60 L 36.00 34.00 L 10.00 36.00 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 14.00 8.00 L 92.00 8.00 L 92.00 38.00 L 14.00 38.00 Z M 101.36 22.23 L 23.36 97.23 L 4.64 77.77 L 82.64 2.77 Z M 14.00 62.00 L 92.00 62.00 L 92.00 92.00 L 14.00 92.00 Z M 35.00 27.80 L 27.00 44.00 L 20.00 26.00 Z M 90.00 63.00 L 114.00 77.00 L 102.00 81.00 L 107.00 93.00 L 91.00 87.00 L 96.00 80.00 L 90.00 82.00 Z M 9.00 39.00 L 50.00 28.00 L 9.00 19.00 Z M 56.00 22.00 L 65.00 22.00 L 65.00 13.00 L 56.00 13.00 Z"/></svg></div><span class="mono xs">08.4</span></div><div class="silcell"><div><svg width="26" viewBox="4 0 116 100" xmlns="http://www.w3.org/2000/svg"><path fill="#FF4A3D" fill-rule="nonzero" d="M 10.00 28.40 L 31.00 29.60 L 24.00 32.80 L 37.00 34.20 L 10.00 36.20 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 16.00 8.00 L 92.00 8.00 L 92.00 38.00 L 16.00 38.00 Z M 101.48 22.11 L 25.48 97.11 L 6.52 77.89 L 82.52 2.89 Z M 16.00 62.00 L 92.00 62.00 L 92.00 92.00 L 16.00 92.00 Z M 35.00 28.00 L 27.00 45.00 L 20.00 26.00 Z M 90.00 64.00 L 114.00 78.00 L 102.00 82.00 L 107.00 94.00 L 91.00 88.00 L 96.00 81.00 L 90.00 83.00 Z M 9.00 39.00 L 52.00 28.60 L 9.00 19.00 Z M 56.00 18.00 L 70.00 22.00 L 70.00 16.00 L 56.00 12.00 Z"/></svg></div><div style="margin-top:8px"><svg width="16" viewBox="4 0 116 100" xmlns="http://www.w3.org/2000/svg"><path fill="#FF4A3D" fill-rule="nonzero" d="M 10.00 28.40 L 31.00 29.60 L 24.00 32.80 L 37.00 34.20 L 10.00 36.20 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 16.00 8.00 L 92.00 8.00 L 92.00 38.00 L 16.00 38.00 Z M 101.48 22.11 L 25.48 97.11 L 6.52 77.89 L 82.52 2.89 Z M 16.00 62.00 L 92.00 62.00 L 92.00 92.00 L 16.00 92.00 Z M 35.00 28.00 L 27.00 45.00 L 20.00 26.00 Z M 90.00 64.00 L 114.00 78.00 L 102.00 82.00 L 107.00 94.00 L 91.00 88.00 L 96.00 81.00 L 90.00 83.00 Z M 9.00 39.00 L 52.00 28.60 L 9.00 19.00 Z M 56.00 18.00 L 70.00 22.00 L 70.00 16.00 L 56.00 12.00 Z"/></svg></div><span class="mono xs">08.5</span></div><div class="silcell"><div><svg width="26" viewBox="-6 0 122 100" xmlns="http://www.w3.org/2000/svg"><g transform="skewX(-9)"><path fill="#FF4A3D" fill-rule="nonzero" d="M 10.00 28.40 L 31.00 29.60 L 24.00 32.80 L 37.00 34.20 L 10.00 36.20 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 16.00 8.00 L 92.00 8.00 L 92.00 38.00 L 16.00 38.00 Z M 101.48 22.11 L 25.48 97.11 L 6.52 77.89 L 82.52 2.89 Z M 16.00 62.00 L 92.00 62.00 L 92.00 92.00 L 16.00 92.00 Z M 35.00 28.00 L 27.00 45.00 L 20.00 26.00 Z M 90.00 64.00 L 114.00 78.00 L 102.00 82.00 L 107.00 94.00 L 91.00 88.00 L 96.00 81.00 L 90.00 83.00 Z M 9.00 39.00 L 52.00 28.60 L 9.00 19.00 Z M 56.00 18.00 L 70.00 22.00 L 70.00 16.00 L 56.00 12.00 Z"/></g></svg></div><div style="margin-top:8px"><svg width="16" viewBox="-6 0 122 100" xmlns="http://www.w3.org/2000/svg"><g transform="skewX(-9)"><path fill="#FF4A3D" fill-rule="nonzero" d="M 10.00 28.40 L 31.00 29.60 L 24.00 32.80 L 37.00 34.20 L 10.00 36.20 Z"/><path fill="#F5EFE6" fill-rule="nonzero" d="M 16.00 8.00 L 92.00 8.00 L 92.00 38.00 L 16.00 38.00 Z M 101.48 22.11 L 25.48 97.11 L 6.52 77.89 L 82.52 2.89 Z M 16.00 62.00 L 92.00 62.00 L 92.00 92.00 L 16.00 92.00 Z M 35.00 28.00 L 27.00 45.00 L 20.00 26.00 Z M 90.00 64.00 L 114.00 78.00 L 102.00 82.00 L 107.00 94.00 L 91.00 88.00 L 96.00 81.00 L 90.00 83.00 Z M 9.00 39.00 L 52.00 28.60 L 9.00 19.00 Z M 56.00 18.00 L 70.00 22.00 L 70.00 16.00 L 56.00 12.00 Z"/></g></svg></div><span class="mono xs">08.6</span></div></div>
+</div>
+
+<footer>
+  <p class="mono xs" style="color:#FF6A1F;letter-spacing:.18em">NEXT</p>
+  <h2>Say 08.5 and I build the kit.</h2>
+  <p>Three size cuts drawn from 08.5 — full detail above 96px, a reduced cut for 32–96px, a heavy cut for 16–32px
+  where the slit eye and the hook simplify. Dark-first palette, tokens, favicons, social card, wordmark lockups
+  and the usage rules, at the depth of <a class="mono" href="index.html">index.html</a>.</p>
+  <p style="margin-top:1rem">If you would rather keep the original 08 exactly as it is, say so — it is a good mark
+  and I will build that instead. My argument for 08.5 is only that it is the same mark with three fewer accidents
+  in it.</p>
+  <p style="margin-top:1.6rem" class="mono xs">All studies drawn parametrically from one Z skeleton · dark palette contrast-checked · danyzmaj.com</p>
+</footer>
+</body></html>

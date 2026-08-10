@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -6 118 112" width="620">
+<path fill="#DCD5C6" fill-rule="nonzero" d="M 16.00 10.00 L 90.00 10.00 L 90.00 36.00 L 16.00 36.00 Z M 98.38 22.49 L 24.38 94.69 L 7.62 77.51 L 81.62 5.31 Z M 16.00 64.00 L 90.00 64.00 L 90.00 90.00 L 16.00 90.00 Z M 52.00 10.00 L 70.00 3.00 L 67.00 12.00 Z M 86.00 62.00 L 108.00 79.00 L 86.00 95.00 L 93.00 79.00 Z M 55.00 23.00 L 63.00 23.00 L 63.00 15.00 L 55.00 15.00 Z M 11 33.2 L 47 29.6 L 47 27.6 L 11 24 Z"/>
+<path fill="#121212" fill-rule="nonzero" d="M 27 34 L 22.5 47 L 18 34 Z M 37 34 L 33.5 43 L 30 34 Z"/>
+<g fill="none" stroke="#E5231B" stroke-width="0.9" stroke-dasharray="2.5 1.8">
+  <rect x="9.5" y="21.5" width="11" height="14"/></g>
+<g font-family="ui-sans-serif" font-size="4.2" fill="#E5231B">
+  <text x="22" y="19">the bit you circled — the SNOUT</text>
+  <text x="22" y="24.4" fill="#7A7266">the top bar is x16-90, but the mouth</text>
+  <text x="22" y="29" fill="#7A7266">is cut from x=11 — so a wedge of bar</text>
+  <text x="22" y="33.6" fill="#7A7266">sticks out past the letter’s left edge</text>
+</g>
+<g font-family="ui-sans-serif" font-size="4" fill="#3E8A5F">
+  <text x="60" y="58">diagonal overshoots both bars</text></g>
+<g font-family="ui-sans-serif" font-size="4" fill="#B8862B">
+  <text x="70" y="8">brow</text><text x="97" y="86">barb</text></g>
+</svg>
