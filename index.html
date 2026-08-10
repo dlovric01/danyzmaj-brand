@@ -94,13 +94,13 @@ html.rampage #fx{display:contents} /* children stack against the dragon, no wrap
 #fxdefs{position:absolute;width:0;height:0}
 html.rampage svg{animation:dragonfire 1ms linear 2150ms forwards} /* strike disarmed; its return re-strikes the fresh page */
 html.rampage .trigger{animation:liftoff 800ms cubic-bezier(.6,.05,.9,.5) 1050ms forwards,charge 1250ms cubic-bezier(.4,.08,.62,.92) 2150ms forwards}
-html.rampage .body{animation:ignite 1ms linear 2150ms forwards} /* white-hot for the charge */
+html.rampage .body{animation:ignite 1ms linear 2150ms forwards} /* a black shape against the fire */
 html.rampage #fire{animation:blaze 130ms linear 2150ms infinite alternate}
 html.rampage body{animation:quake 1300ms linear 2150ms} /* the impact shakes the room */
 #dim{inset:0;z-index:1;opacity:0;background:color-mix(in srgb,var(--ink) 85%,transparent);
   animation:dimdown 2150ms linear 2150ms forwards} /* the old world recedes so the fire can own the frame */
-#preglow{left:-10vw;right:-10vw;bottom:-14vh;height:64vh;z-index:1;opacity:0;filter:blur(24px);
-  background:radial-gradient(70% 62% at 50% 100%,var(--ember),color-mix(in srgb,var(--ember) 35%,transparent) 55%,transparent 78%);
+#preglow{left:-10vw;right:-10vw;bottom:-8vh;height:66vh;z-index:1;opacity:0;filter:blur(22px);
+  background:radial-gradient(70% 62% at 50% 100%,var(--ember),color-mix(in srgb,var(--ember) 45%,transparent) 60%,transparent 82%);
   animation:heatgather 1150ms ease-in-out 1400ms forwards} /* the floor breathes — something below is coming */
 #pyre,#sear{inset:0}
 #pyre{z-index:1;filter:url(#flamewarp) blur(9px);transform:scale(1.07,1.03);transform-origin:50% 100%} /* the burning rim around the seam */
@@ -113,7 +113,7 @@ html.rampage body{animation:quake 1300ms linear 2150ms} /* the impact shakes the
 #sear .clip::after{content:"";position:absolute;inset:0;opacity:0;
   background:linear-gradient(to top,var(--ember),color-mix(in srgb,var(--ember) 45%,transparent) 38%,transparent 70%);
   animation:searfade 2000ms linear 2300ms forwards} /* residual heat cools as the burn completes */
-#glow{left:50%;top:50%;width:110vmin;height:110vmin;margin:-55vmin 0 0 -55vmin;z-index:2;opacity:0;filter:blur(22px);
+#glow{left:50%;top:50%;width:96vmin;height:96vmin;margin:-48vmin 0 0 -48vmin;z-index:2;opacity:0;filter:blur(22px);
   background:radial-gradient(closest-side,color-mix(in srgb,var(--ember) 55%,transparent),transparent 72%);
   animation:glowride 1250ms cubic-bezier(.4,.08,.62,.92) 2150ms forwards} /* the halo rides the dragon */
 #flash{inset:0;z-index:2;opacity:0;
@@ -142,14 +142,14 @@ html.burned svg{filter:drop-shadow(0 2px 0 rgb(0 0 0/.14)) drop-shadow(0 28px 48
   100%{transform:translateY(-118vh) scale(.8)}
 }
 @keyframes charge{
-  0%{transform:translateY(114vh) scale(2.6)}
-  100%{transform:translateY(-140vh) scale(1.7)}
+  0%{transform:translateY(114vh) scale(1.6)}
+  100%{transform:translateY(-140vh) scale(1.2)}
 }
-@keyframes ignite{to{fill:var(--ember)}}
-@keyframes dragonfire{to{filter:drop-shadow(0 0 16px var(--ember)) drop-shadow(0 0 56px color-mix(in srgb,var(--ember) 60%,transparent))}}
+@keyframes ignite{to{fill:var(--ink)}} /* the beast goes dark — a shadow inside its own light */
+@keyframes dragonfire{to{filter:drop-shadow(0 0 12px var(--ember)) drop-shadow(0 0 42px color-mix(in srgb,var(--ember) 60%,transparent))}}
 @keyframes blaze{
   from{transform:translate(0,-5.6px) scale(2.6)}
-  to{transform:translate(0,-8.4px) scale(4)}
+  to{transform:translate(0,-7px) scale(3.1)}
 }
 @keyframes quake{
   0%,100%{transform:none}
@@ -165,8 +165,8 @@ html.burned svg{filter:drop-shadow(0 2px 0 rgb(0 0 0/.14)) drop-shadow(0 28px 48
 @keyframes dimdown{0%{opacity:0}25%{opacity:.35}85%{opacity:.25}100%{opacity:0}}
 @keyframes heatgather{
   0%{opacity:0;transform:translateY(9vh)}
-  28%{opacity:.65;transform:translateY(4vh)}
-  46%{opacity:.45;transform:translateY(5vh)}
+  28%{opacity:.85;transform:translateY(4vh)}
+  46%{opacity:.6;transform:translateY(5vh)}
   62%{opacity:.75;transform:translateY(3vh)}
   78%{opacity:1;transform:translateY(0)} /* the burst — it breaks through here */
   100%{opacity:0;transform:translateY(-4vh)}
