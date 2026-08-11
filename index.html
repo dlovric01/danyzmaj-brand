@@ -15,7 +15,6 @@
   --ink:#171210;      /* the press bed */
   --bone:#F2EDE4;     /* the mark      */
   --ember:#FF6A1F;    /* the spark     */
-  --ease:cubic-bezier(0.16,1,0.3,1);   /* entrance flourish */
   --reveal:cubic-bezier(0.4,0,0.2,1);  /* the show unfolds  */
   --p:0;              /* the wake      */
 }
@@ -39,7 +38,6 @@ svg{
   display:block;overflow:visible;
   width:min(58vmin,620px);height:auto;
   filter:drop-shadow(0 2px 0 rgb(0 0 0/.55)) drop-shadow(0 28px 48px rgb(0 0 0/.5));
-  animation:strike 620ms var(--ease) both;
   /* the type re-sets itself: skeleton, spark, wings, settle */
   --p1:clamp(0,calc(var(--p) / .55),1);            /* Z straightens   */
   --ph:clamp(0,calc((var(--p) - .3) / .15),1);     /* head flips up   */
@@ -86,7 +84,7 @@ svg{
 html.rampage #fx{display:contents} /* children stack against the dragon, no wrapper context */
 #fx>div{position:fixed;pointer-events:none}
 html.rampage{animation:wake 1400ms var(--reveal) both} /* the scroll pulls the mark awake */
-html.rampage svg{animation:none;filter:none} /* strike disarmed; a crisp cutout in flight — the shadow returns to re-strike */
+html.rampage svg{filter:none} /* a crisp cutout in flight; the shadow returns with the fresh page */
 html.rampage .trigger{animation:liftoff 800ms cubic-bezier(.6,.05,.9,.5) 1050ms forwards,charge 1250ms cubic-bezier(.4,.08,.62,.92) 2150ms forwards}
 html.rampage .body{animation:ignite 1ms linear 2150ms forwards} /* the beast burns ember, flat as the spark */
 html.rampage #fire{animation:blaze 130ms linear 2150ms infinite alternate}
@@ -113,7 +111,6 @@ html.rampage body{animation:quake 1300ms linear 2150ms} /* the impact shakes the
   background:radial-gradient(circle,var(--ember) 1.4px,transparent 1.4px),radial-gradient(circle,var(--ember) 1px,transparent 1px),radial-gradient(circle,color-mix(in srgb,var(--bone) 80%,transparent) .9px,transparent .9px);
   background-size:97px 143px,61px 89px,131px 211px;background-position:7px 13px,31px 57px,3px 41px;
   animation:emberrise 2200ms linear 2150ms forwards} /* hard sparks outlive the beast */
-@keyframes strike{from{opacity:0;transform:scale(1.14) rotate(-8deg)}to{opacity:1;transform:none}}
 @keyframes wake{to{--p:1}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.68}}
 @keyframes liftoff{
@@ -222,8 +219,7 @@ html.rampage body{animation:quake 1300ms linear 2150ms} /* the impact shakes the
         meta=document.querySelector('meta[name=theme-color]'),
         rm=matchMedia('(prefers-reduced-motion:reduce)'),
         TOTAL=4400,COMMIT=3400; // past COMMIT the beast is gone — the fire finishes what it started
-  let anims=null,target=0,pos=0,raf=0,last=0,busy=true;
-  setTimeout(()=>busy=false,700); // let the entrance strike land
+  let anims=null,target=0,pos=0,raf=0,last=0,busy=false;
   const settle=()=>{
     r.classList.toggle('burned');
     meta.setAttribute('content',getComputedStyle(r).getPropertyValue('--ink').trim());
@@ -245,6 +241,7 @@ html.rampage body{animation:quake 1300ms linear 2150ms} /* the impact shakes the
     if(busy)return;
     if(rm.matches){busy=true;settle();return} // no theatrics, same destination
     if(!raf){
+      if(d<=0)return; // scrolling up at rest summons nothing
       r.classList.add('rampage');
       requestAnimationFrame(()=>{anims=document.getAnimations().filter(a=>a.animationName!=='pulse')});
       raf=requestAnimationFrame(tick);
