@@ -15,10 +15,8 @@
   --ink:#171210;      /* the press bed */
   --bone:#F2EDE4;     /* the mark      */
   --ember:#FF6A1F;    /* the spark     */
-  --ease:cubic-bezier(0.16,1,0.3,1);   /* entrance flourish */
   --reveal:cubic-bezier(0.4,0,0.2,1);  /* the show unfolds  */
-  --recoil:cubic-bezier(0.7,0,0.84,0); /* quick snap back   */
-  --p:0;              /* tap toggle    */
+  --p:0;              /* the wake      */
 }
 *{box-sizing:border-box}
 html,body{height:100%}
@@ -29,22 +27,17 @@ body{
   padding:max(6vmin,1.5rem);
   overflow:hidden;
 }
-html{transition:--p 1400ms var(--reveal)}
-html:not(.awake){transition-duration:750ms;transition-timing-function:var(--recoil)}
-html.awake{--p:1}
+html.burned{--ink:#F2EDE4;--bone:#171210} /* the burned page: paper bed, ink mark (mirrors :root values) */
+html.burned svg{filter:drop-shadow(0 2px 0 rgb(0 0 0/.14)) drop-shadow(0 28px 48px rgb(0 0 0/.18))} /* paper throws softer shadows */
 h1{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
   clip-path:inset(50%);white-space:nowrap;border:0}
 .trigger{
-  all:unset;cursor:pointer;display:block;
-}
-.trigger:focus-visible{
-  outline:2px solid var(--ember);outline-offset:10px;border-radius:4px;
+  display:block;position:relative;z-index:3;
 }
 svg{
   display:block;overflow:visible;
   width:min(58vmin,620px);height:auto;
   filter:drop-shadow(0 2px 0 rgb(0 0 0/.55)) drop-shadow(0 28px 48px rgb(0 0 0/.5));
-  animation:strike 620ms var(--ease) both;
   /* the type re-sets itself: skeleton, spark, wings, settle */
   --p1:clamp(0,calc(var(--p) / .55),1);            /* Z straightens   */
   --ph:clamp(0,calc((var(--p) - .3) / .15),1);     /* head flips up   */
@@ -85,8 +78,90 @@ svg{
   transform-origin:15.5px 28.6px;
   transform:translate(0,calc(-5.6px*var(--ph))) scale(calc(1 + 1.6*var(--p3)));
 }
-@keyframes strike{from{opacity:0;transform:scale(1.14) rotate(-8deg)}to{opacity:1;transform:none}}
+/* ── the rampage: a scroll summons the dragon; it strafes the seam and the page burns ──
+   flat like the mark: no filters, no blur — only transform, opacity, and hard-edged clips */
+#fx{display:none}
+html.rampage #fx{display:contents} /* children stack against the dragon, no wrapper context */
+#fx>div{position:fixed;pointer-events:none}
+html.rampage{animation:wake 1400ms var(--reveal) both} /* the scroll pulls the mark awake */
+html.rampage svg{filter:none} /* a crisp cutout in flight; the shadow returns with the fresh page */
+html.rampage .trigger{animation:liftoff 800ms cubic-bezier(.6,.05,.9,.5) 1050ms forwards,charge 1250ms cubic-bezier(.4,.08,.62,.92) 2150ms forwards}
+html.rampage .body{animation:ignite 1ms linear 2150ms forwards} /* the beast burns ember, flat as the spark */
+html.rampage #fire{animation:blaze 130ms linear 2150ms infinite alternate}
+html.rampage body{animation:quake 1300ms linear 2150ms} /* the impact shakes the room */
+#dim{inset:0;z-index:1;opacity:0;background:color-mix(in srgb,var(--ink) 85%,transparent);
+  animation:dimdown 2150ms linear 2150ms forwards} /* the old world recedes so the fire can own the frame */
+#preglow{left:0;right:0;bottom:0;height:16vh;z-index:1;opacity:0;background:var(--ember);
+  clip-path:polygon(0 100%,0 55%,6% 30%,11% 62%,17% 22%,23% 58%,29% 34%,36% 66%,42% 18%,50% 52%,57% 28%,63% 62%,70% 24%,77% 58%,84% 30%,90% 64%,95% 26%,100% 48%,100% 100%);
+  animation:heatgather 1150ms ease-in-out 1400ms forwards} /* flat teeth lick at the floor — something below is coming */
+#pyre,#sear{inset:0}
+#pyre{z-index:1;transform:scale(1.05,1.025);transform-origin:50% 100%} /* the same seam, one register off — a hard ember rim */
+#sear{z-index:2}
+#pyre .clip,#sear .clip{position:absolute;inset:0;
+  clip-path:polygon(49.2% 112%,48.8% 112%,49.1% 112%,48.9% 112%,49.3% 112%,49% 112%,49.4% 112%,49.6% 111%,50.4% 111%,50.6% 112%,51% 112%,50.7% 112%,51.1% 112%,50.9% 112%,51.2% 112%,50.8% 112%);
+  animation:burnspread 2000ms linear 2300ms forwards}
+#pyre .clip{background:var(--ember)}
+#sear .clip{background:var(--bone)} /* the seam interior is already the new bed — the settle is seamless */
+#sear .clip::after{content:"";position:absolute;inset:0;opacity:0;
+  background:linear-gradient(to top,var(--ember) 0 9%,color-mix(in srgb,var(--ember) 45%,var(--bone)) 9% 26%,transparent 26%);
+  animation:searfade 2000ms linear 2300ms forwards} /* banded heat cools as the burn completes */
+#flash{inset:0;z-index:2;opacity:0;background:var(--ember);
+  animation:flashpulse 420ms ease-out 2150ms forwards} /* the entry concussion */
+#embers{left:-30vw;right:-30vw;top:-120vh;bottom:-10vh;z-index:4;opacity:0;
+  background:radial-gradient(circle,var(--ember) 1.4px,transparent 1.4px),radial-gradient(circle,var(--ember) 1px,transparent 1px),radial-gradient(circle,color-mix(in srgb,var(--bone) 80%,transparent) .9px,transparent .9px);
+  background-size:97px 143px,61px 89px,131px 211px;background-position:7px 13px,31px 57px,3px 41px;
+  animation:emberrise 2200ms linear 2150ms forwards} /* hard sparks outlive the beast */
+@keyframes wake{to{--p:1}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.68}}
+@keyframes liftoff{
+  0%{transform:translateY(0) scale(1)}
+  16%{transform:translateY(2.6vh) scale(.97)} /* coils before springing */
+  100%{transform:translateY(-118vh) scale(.8)}
+}
+@keyframes charge{
+  0%{transform:translateY(114vh) scale(1.6)}
+  100%{transform:translateY(-140vh) scale(1.2)}
+}
+@keyframes ignite{to{fill:var(--ember)}}
+@keyframes blaze{
+  from{transform:translate(0,-5.6px) scale(2.6)}
+  to{transform:translate(0,-7px) scale(3.1)}
+}
+@keyframes quake{
+  0%,100%{transform:none}
+  8%{transform:translate(2px,-3px) rotate(.2deg)}
+  16%{transform:translate(-3px,2px) rotate(-.24deg)}
+  24%{transform:translate(3px,1px) rotate(.18deg)}
+  32%{transform:translate(-2px,-2px) rotate(-.16deg)}
+  40%{transform:translate(2px,2px) rotate(.12deg)}
+  55%{transform:translate(-2px,1px) rotate(-.1deg)}
+  70%{transform:translate(1px,-1px) rotate(.06deg)}
+  85%{transform:translate(-1px,1px) rotate(-.04deg)}
+}
+@keyframes dimdown{0%{opacity:0}25%{opacity:.35}85%{opacity:.25}100%{opacity:0}}
+@keyframes heatgather{
+  0%{opacity:0;transform:translateY(15vh)}
+  28%{opacity:1;transform:translateY(5vh)}
+  46%{opacity:1;transform:translateY(9vh)}
+  62%{opacity:1;transform:translateY(6vh)}
+  78%{opacity:1;transform:translateY(0)} /* the burst — it breaks through here */
+  100%{opacity:0;transform:translateY(-4vh)}
+}
+@keyframes flashpulse{0%{opacity:0}25%{opacity:.4}100%{opacity:0}}
+@keyframes emberrise{
+  0%{opacity:0;transform:rotate(7deg) translateY(18vh)} /* the tilt breaks the lattice — sparks, not graph paper */
+  12%{opacity:.85}
+  85%{opacity:.7}
+  100%{opacity:0;transform:rotate(7deg) translateY(-46vh)}
+}
+/* the seam: a jagged sliver splits at the center, races up behind the dragon, then devours the width */
+@keyframes burnspread{
+  0%{clip-path:polygon(49.2% 112%,48.8% 112%,49.1% 112%,48.9% 112%,49.3% 112%,49% 112%,49.4% 112%,49.6% 111%,50.4% 111%,50.6% 112%,51% 112%,50.7% 112%,51.1% 112%,50.9% 112%,51.2% 112%,50.8% 112%)}
+  42%{clip-path:polygon(45% 110%,42% 88%,45.5% 66%,43% 44%,46% 24%,44% 8%,47% -4%,48.5% -10%,52% -10%,53.5% -4%,56.5% 8%,54% 24%,57.5% 44%,54.5% 66%,58.5% 88%,55.5% 110%)}
+  75%{clip-path:polygon(37% 110%,31% 88%,36% 66%,33% 44%,38% 24%,35% 8%,40% -4%,44% -10%,57% -10%,61% -4%,66% 8%,62% 24%,68% 44%,63% 66%,70% 88%,64% 110%)}
+  100%{clip-path:polygon(-12% 112%,-15% 88%,-10% 66%,-14% 44%,-9% 24%,-13% 8%,-11% -4%,-15% -12%,115% -12%,111% -4%,115% 8%,110% 24%,114% 44%,109% 66%,115% 88%,112% 112%)}
+}
+@keyframes searfade{0%{opacity:.9}45%{opacity:.75}80%{opacity:.45}100%{opacity:0}}
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:1ms !important;animation-iteration-count:1 !important}
   html{transition:none}
@@ -95,7 +170,7 @@ svg{
 </head>
 <body>
 <h1>danyzmaj</h1>
-<button type="button" class="trigger" id="trigger" aria-pressed="false" aria-label="Transform the mark">
+<div class="trigger">
 <svg viewBox="2.5 0 108.5 97.69" role="img" aria-hidden="true">
   <g id="mark">
     <g id="wings">
@@ -129,12 +204,62 @@ svg{
     </g></g>
   </g>
 </svg>
-</button>
+</div>
+<div id="fx" aria-hidden="true">
+  <div id="dim"></div>
+  <div id="preglow"></div>
+  <div id="pyre"><div class="clip"></div></div>
+  <div id="sear"><div class="clip"></div></div>
+  <div id="flash"></div>
+  <div id="embers"></div>
+</div>
 <script>
 (()=>{
-  const b=document.getElementById('trigger'),r=document.documentElement;
-  b.addEventListener('click',()=>{
-    b.setAttribute('aria-pressed',r.classList.toggle('awake'));
+  const r=document.documentElement,
+        meta=document.querySelector('meta[name=theme-color]'),
+        rm=matchMedia('(prefers-reduced-motion:reduce)'),
+        TOTAL=4400,COMMIT=3400; // past COMMIT the beast is gone — the fire finishes what it started
+  let anims=null,target=0,pos=0,raf=0,last=0,busy=false;
+  const settle=()=>{
+    r.classList.toggle('burned');
+    meta.setAttribute('content',getComputedStyle(r).getPropertyValue('--ink').trim());
+    setTimeout(()=>busy=false,600); // outlive trackpad momentum
+  };
+  const disarm=()=>{cancelAnimationFrame(raf);raf=0;anims=null;target=pos=0;r.classList.remove('rampage')};
+  const finish=()=>{busy=true;disarm();settle()}; // rampage off + burned on resolve in one recalc — seamless
+  const tick=t=>{
+    raf=requestAnimationFrame(tick);
+    if(target<COMMIT&&t-last>1000)target=Math.max(0,target-14); // untended fire dies back down
+    pos+=(target-pos)*.16;
+    if(!anims)return;
+    if(target>=TOTAL&&pos>TOTAL-16){finish();return}
+    if(target<=0&&pos<6){disarm();return}
+    const ms=Math.min(pos,TOTAL-1);
+    for(const a of anims)a.currentTime=ms;
+  };
+  const push=d=>{
+    if(busy)return;
+    if(rm.matches){busy=true;settle();return} // no theatrics, same destination
+    if(!raf){
+      if(d<=0)return; // scrolling up at rest summons nothing
+      r.classList.add('rampage');
+      requestAnimationFrame(()=>{anims=document.getAnimations().filter(a=>a.animationName!=='pulse')});
+      raf=requestAnimationFrame(tick);
+    }
+    last=performance.now();
+    target=Math.max(0,Math.min(TOTAL,target+d));
+    if(target>COMMIT)target=TOTAL; // point of no return
+  };
+  addEventListener('wheel',e=>{if(!e.ctrlKey&&e.deltaY&&Math.abs(e.deltaY)>=Math.abs(e.deltaX))push(e.deltaY*1.4)},{passive:true});
+  let ty=null;
+  addEventListener('touchstart',e=>{ty=e.touches[0].clientY},{passive:true});
+  addEventListener('touchmove',e=>{if(ty!==null){const y=e.touches[0].clientY;push((ty-y)*3);ty=y}},{passive:true});
+  addEventListener('touchend',()=>{ty=null});
+  addEventListener('keydown',e=>{
+    if(e.key==='ArrowDown')push(320);
+    else if(e.key==='PageDown')push(1100);
+    else if(e.key==='ArrowUp')push(-320);
+    else if(e.key==='PageUp')push(-1100);
   });
 })();
 </script>
