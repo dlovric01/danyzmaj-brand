@@ -35,9 +35,7 @@ html.burned{--ink:#F2EDE4;--bone:#171210} /* the burned page: paper bed, ink mar
 h1{margin:0;font-size:inherit;letter-spacing:.48em}
 .trigger{
   display:block;position:relative;z-index:3;
-  animation:breath 4600ms ease-in-out infinite alternate; /* the beast sleeps, it does not stop breathing */
 }
-@keyframes breath{from{transform:scale(1)}to{transform:scale(1.011)}}
 #lure{position:fixed;left:calc(50% - 6px);bottom:4.5vh;z-index:2;width:12px;height:9px;opacity:0;pointer-events:none;
   background:var(--ember);clip-path:polygon(0 0,100% 0,50% 100%);
   animation:lure 2800ms ease-in-out 1600ms infinite} /* one ember falls toward the floor — follow it */
@@ -256,7 +254,7 @@ html.rampage body{animation:quake 1300ms linear 2150ms} /* the impact shakes the
     if(!raf){
       if(d<=0)return; // scrolling up at rest summons nothing
       r.classList.add('rampage');
-      requestAnimationFrame(()=>{anims=document.getAnimations().filter(a=>!/^(pulse|blink|breath|lure)$/.test(a.animationName))}); // idle life keeps its own clock
+      requestAnimationFrame(()=>{anims=document.getAnimations().filter(a=>!/^(pulse|blink|lure)$/.test(a.animationName))}); // idle life keeps its own clock
       raf=requestAnimationFrame(tick);
     }
     last=performance.now();
