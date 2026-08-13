@@ -31,7 +31,8 @@ html.burned{--ink:#F2EDE4;--bone:#171210} /* the burned page: paper bed, ink mar
 #plate{position:fixed;left:0;right:0;bottom:9vh;z-index:2;margin:0;text-align:center;pointer-events:none;
   color:var(--bone);
   font:500 15px/1.4 ui-monospace,'SF Mono',Menlo,Consolas,monospace} /* the name stands on both pages */
-h1{margin:0;font-size:inherit;letter-spacing:.48em}
+h1{margin:0;font-size:inherit;letter-spacing:.18em} /* tighter than the old .48em — the long email needs less air */
+h1 span{margin:0 -.14em} /* the mono dot floats in a full advance; pull its neighbors in to match the letter rhythm */
 .trigger{
   display:block;position:relative;z-index:3;
 }
@@ -176,7 +177,7 @@ html.rampage body{animation:quake 1300ms linear 2150ms} /* the impact shakes the
 </head>
 <body>
 <header id="plate">
-  <h1>danyzmaj</h1>
+  <h1>danijel@danyzmaj<span>.</span>com</h1>
 </header>
 <div class="trigger">
 <svg viewBox="2.5 0 108.5 97.69" role="img" aria-hidden="true">
