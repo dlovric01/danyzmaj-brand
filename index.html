@@ -249,7 +249,7 @@ html.rampage body{animation:quake 1300ms linear 2150ms} /* the impact shakes the
   };
   const push=d=>{
     if(busy)return;
-    if(rm.matches){busy=true;settle();return} // no theatrics, same destination
+    if(rm.matches)return; // reduced motion: the page holds still — no rampage, no flip
     if(!raf){
       if(d<=0)return; // scrolling up at rest summons nothing
       r.classList.add('rampage');
