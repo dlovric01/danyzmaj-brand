@@ -19,13 +19,14 @@
   --p:0;              /* the wake      */
 }
 *{box-sizing:border-box}
-html,body{height:100%}
+html,body{height:100%;overflow:hidden;overscroll-behavior:none;touch-action:pinch-zoom} /* the page is a stage, not a scroll: swipes feed the timeline, never the browser chrome */
 body{
   margin:0;background:var(--ink);
   display:grid;place-items:center;
   min-height:100vh;min-height:100svh;
   padding:max(6vmin,1.5rem);
   overflow:hidden;
+  touch-action:pinch-zoom;
 }
 html.burned{--ink:#F2EDE4;--bone:#171210} /* the burned page: paper bed, ink mark (mirrors :root values) */
 #plate{position:fixed;left:0;right:0;bottom:9vh;z-index:2;margin:0;text-align:center;pointer-events:none;
