@@ -14,8 +14,12 @@ Personal brand landing page for **danyzmaj** (deployed at `https://www.danyzmaj.
 - SVG layering (paint order): wings → tail → spine → head → spark; `.body` (bone) with `.hole` (ink cutouts), `.acc` (ember accent).
 
 ## Key Directories
-Flat repo — no directories.
-- `index.html` — the entire site.
+- `index.html` — the landing page (the animated logomark; everything below describes it).
+- `<project>/` — per-app static pages for App Store listings, following the pattern
+  `/<project>/` (support page, contact email) and `/<project>/privacy/` (privacy policy).
+  Currently: `holdup/`. Each page is a self-contained HTML file reusing the brand tokens
+  (`--ink`/`--bone`/`--ember`), the mono plate type, and the inline SVG favicon — copy an
+  existing project's pair when adding a new app.
 - `.gitignore` — ignores Python bytecode, `.DS_Store`, `.worktrees/`.
 
 ## Development Commands
